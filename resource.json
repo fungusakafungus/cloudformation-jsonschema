@@ -44,13 +44,13 @@
                 "Properties": {
                     "BgpAsn": {},
                     "Type": {},
+                    "IpAddress": {},
+                    "Tags": {},
                     "required": [
                         "BgpAsn",
                         "IpAddress",
                         "Type"
-                    ],
-                    "IpAddress": {},
-                    "Tags": {}
+                    ]
                 }
             }
         }
