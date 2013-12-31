@@ -10,11 +10,12 @@ def set_resource_properties(res_type):
     h=get_pq(all[res_type])
     schema=load()
     dl = h('#divContent .variablelist dl')
-    oneOfdict=resources_dict(schema)
+    resources=resources_dict(schema)
     pairs=zip(dl('dt'),dl('dd'))
     pairs=[(q(dt),q(dd)) for dt,dd in pairs]
-    oneOfdict[res_type]['properties']['Properties']=OrderedDict((dt.text(),{}) for dt,dd in pairs)
-    required=[k.text() for k,v in pairs if v('p').filter(lambda i: 'Required' in q(this).text() and 'Yes' in q(this).text())]
-    oneOfdict[res_type]['properties']['Properties']['required']=required
-    schema['oneOf']=oneOfdict.values()
+    shortcut = resources[res_type]['properties']
+    shortcut['Properties'] = OrderedDict()
+    shortcut['Properties']['properties'] = OrderedDict((dt.text(),{}) for dt,dd in pairs)
+    required=[k.text() for k,v in pairs if v('p').filter(lambda i: 'Required : Yes' in q(this).text())]
+    shortcut['Properties']['required']=required
     return schema

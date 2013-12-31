@@ -16,24 +16,237 @@
     "type": "object",
     "oneOf": [
         {
+            "$ref": "#/definitions/AWS::AutoScaling::AutoScalingGroup"
+        },
+        {
+            "$ref": "#/definitions/AWS::AutoScaling::LaunchConfiguration"
+        },
+        {
+            "$ref": "#/definitions/AWS::AutoScaling::ScalingPolicy"
+        },
+        {
+            "$ref": "#/definitions/AWS::AutoScaling::Trigger"
+        },
+        {
+            "$ref": "#/definitions/AWS::CloudFormation::Authentication"
+        },
+        {
+            "$ref": "#/definitions/AWS::CloudFormation::CustomResource"
+        },
+        {
+            "$ref": "#/definitions/AWS::CloudFormation::Init"
+        },
+        {
+            "$ref": "#/definitions/AWS::CloudFormation::Stack"
+        },
+        {
+            "$ref": "#/definitions/AWS::CloudFormation::WaitCondition"
+        },
+        {
+            "$ref": "#/definitions/AWS::CloudFormation::WaitConditionHandle"
+        },
+        {
+            "$ref": "#/definitions/AWS::CloudFront::Distribution"
+        },
+        {
+            "$ref": "#/definitions/AWS::CloudWatch::Alarm"
+        },
+        {
+            "$ref": "#/definitions/AWS::DynamoDB::Table"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::CustomerGateway"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::DHCPOptions"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::EIP"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::EIPAssociation"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::Instance"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::InternetGateway"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::NetworkAcl"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::NetworkAclEntry"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::NetworkInterface"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::NetworkInterfaceAttachment"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::Route"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::RouteTable"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::SecurityGroup"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::SecurityGroupIngress"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::SecurityGroupEgress"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::Subnet"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::SubnetNetworkAclAssociation"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::SubnetRouteTableAssociation"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::Volume"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::VolumeAttachment"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::VPC"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::VPCDHCPOptionsAssociation"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::VPCGatewayAttachment"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::VPNConnection"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::VPNConnectionRoute"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::VPNGateway"
+        },
+        {
+            "$ref": "#/definitions/AWS::EC2::VPNGatewayRoutePropagation"
+        },
+        {
+            "$ref": "#/definitions/AWS::ElastiCache::CacheCluster"
+        },
+        {
+            "$ref": "#/definitions/AWS::ElastiCache::ParameterGroup"
+        },
+        {
+            "$ref": "#/definitions/AWS::ElastiCache::SecurityGroup"
+        },
+        {
+            "$ref": "#/definitions/AWS::ElastiCache::SecurityGroupIngress"
+        },
+        {
+            "$ref": "#/definitions/AWS::ElastiCache::SubnetGroup "
+        },
+        {
+            "$ref": "#/definitions/AWS::ElasticBeanstalk::Application"
+        },
+        {
+            "$ref": "#/definitions/AWS::ElasticBeanstalk::Environment"
+        },
+        {
+            "$ref": "#/definitions/AWS::ElasticLoadBalancing::LoadBalancer"
+        },
+        {
+            "$ref": "#/definitions/AWS::IAM::AccessKey"
+        },
+        {
+            "$ref": "#/definitions/AWS::IAM::Group"
+        },
+        {
+            "$ref": "#/definitions/AWS::IAM::InstanceProfile"
+        },
+        {
+            "$ref": "#/definitions/AWS::IAM::Policy"
+        },
+        {
+            "$ref": "#/definitions/AWS::IAM::Role"
+        },
+        {
+            "$ref": "#/definitions/AWS::IAM::User"
+        },
+        {
+            "$ref": "#/definitions/AWS::IAM::UserToGroupAddition"
+        },
+        {
+            "$ref": "#/definitions/AWS::RDS::DBInstance"
+        },
+        {
+            "$ref": "#/definitions/AWS::RDS::DBParameterGroup"
+        },
+        {
+            "$ref": "#/definitions/AWS::RDS::DBSubnetGroup"
+        },
+        {
+            "$ref": "#/definitions/AWS::RDS::DBSecurityGroup"
+        },
+        {
+            "$ref": "#/definitions/AWS::RDS::DBSecurityGroupIngress"
+        },
+        {
+            "$ref": "#/definitions/AWS::Route53::RecordSet"
+        },
+        {
+            "$ref": "#/definitions/AWS::Route53::RecordSetGroup"
+        },
+        {
+            "$ref": "#/definitions/AWS::S3::Bucket"
+        },
+        {
+            "$ref": "#/definitions/AWS::S3::BucketPolicy"
+        },
+        {
+            "$ref": "#/definitions/AWS::SDB::Domain"
+        },
+        {
+            "$ref": "#/definitions/AWS::SNS::TopicPolicy"
+        },
+        {
+            "$ref": "#/definitions/AWS::SNS::Topic"
+        },
+        {
+            "$ref": "#/definitions/AWS::SQS::Queue"
+        },
+        {
+            "$ref": "#/definitions/AWS::SQS::QueuePolicy"
+        }
+    ],
+    "definitions": {
+        "AWS::AutoScaling::AutoScalingGroup": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::AutoScaling::AutoScalingGroup$"
+                    "enum": [
+                        "AWS::AutoScaling::AutoScalingGroup"
+                    ]
                 },
                 "Properties": {
-                    "AvailabilityZones": {},
-                    "Cooldown": {},
-                    "DesiredCapacity": {},
-                    "HealthCheckGracePeriod": {},
-                    "HealthCheckType": {},
-                    "LaunchConfigurationName": {},
-                    "LoadBalancerNames": {},
-                    "MaxSize": {},
-                    "MinSize": {},
-                    "NotificationConfiguration": {},
-                    "Tags": {},
-                    "TerminationPolicies": {},
-                    "VPCZoneIdentifier": {},
+                    "properties": {
+                        "AvailabilityZones": {},
+                        "Cooldown": {},
+                        "DesiredCapacity": {},
+                        "HealthCheckGracePeriod": {},
+                        "HealthCheckType": {},
+                        "LaunchConfigurationName": {},
+                        "LoadBalancerNames": {},
+                        "MaxSize": {},
+                        "MinSize": {},
+                        "NotificationConfiguration": {},
+                        "Tags": {},
+                        "TerminationPolicies": {},
+                        "VPCZoneIdentifier": {}
+                    },
                     "required": [
                         "AvailabilityZones",
                         "LaunchConfigurationName",
@@ -43,511 +256,617 @@
                 }
             }
         },
-        {
+        "AWS::AutoScaling::LaunchConfiguration": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::AutoScaling::LaunchConfiguration$"
-                },
-                "Properties": {
-                    "AssociatePublicIpAddress": {},
-                    "BlockDeviceMappings": {},
-                    "EbsOptimized": {},
-                    "IamInstanceProfile": {},
-                    "ImageId": {},
-                    "InstanceMonitoring": {},
-                    "InstanceType": {},
-                    "KernelId": {},
-                    "KeyName": {},
-                    "RamDiskId": {},
-                    "SecurityGroups": {},
-                    "SpotPrice": {},
-                    "UserData": {},
-                    "required": [
-                        "ImageId",
-                        "InstanceType"
+                    "enum": [
+                        "AWS::AutoScaling::LaunchConfiguration"
                     ]
                 }
             }
         },
-        {
+        "AWS::AutoScaling::ScalingPolicy": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::AutoScaling::ScalingPolicy$"
-                }
-            }
-        },
-        {
-            "properties": {
-                "Type": {
-                    "pattern": "^AWS::AutoScaling::Trigger$"
-                }
-            }
-        },
-        {
-            "properties": {
-                "Type": {
-                    "pattern": "^AWS::CloudFormation::Authentication$"
-                }
-            }
-        },
-        {
-            "properties": {
-                "Type": {
-                    "pattern": "^AWS::CloudFormation::CustomResource$"
-                }
-            }
-        },
-        {
-            "properties": {
-                "Type": {
-                    "pattern": "^AWS::CloudFormation::Init$"
-                }
-            }
-        },
-        {
-            "properties": {
-                "Type": {
-                    "pattern": "^AWS::CloudFormation::Stack$"
-                }
-            }
-        },
-        {
-            "properties": {
-                "Type": {
-                    "pattern": "^AWS::CloudFormation::WaitCondition$"
-                }
-            }
-        },
-        {
-            "properties": {
-                "Type": {
-                    "pattern": "^AWS::CloudFormation::WaitConditionHandle$"
-                }
-            }
-        },
-        {
-            "properties": {
-                "Type": {
-                    "pattern": "^AWS::CloudFront::Distribution$"
-                }
-            }
-        },
-        {
-            "properties": {
-                "Type": {
-                    "pattern": "^AWS::CloudWatch::Alarm$"
-                }
-            }
-        },
-        {
-            "properties": {
-                "Type": {
-                    "pattern": "^AWS::DynamoDB::Table$"
-                }
-            }
-        },
-        {
-            "properties": {
-                "Type": {
-                    "pattern": "^AWS::EC2::CustomerGateway$"
-                },
-                "Properties": {
-                    "BgpAsn": {},
-                    "IpAddress": {},
-                    "Tags": {},
-                    "Type": {},
-                    "required": [
-                        "BgpAsn",
-                        "IpAddress",
-                        "Type"
+                    "enum": [
+                        "AWS::AutoScaling::ScalingPolicy"
                     ]
                 }
             }
         },
-        {
+        "AWS::AutoScaling::Trigger": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::DHCPOptions$"
+                    "enum": [
+                        "AWS::AutoScaling::Trigger"
+                    ]
                 }
             }
         },
-        {
+        "AWS::CloudFormation::Authentication": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::EIP$"
+                    "enum": [
+                        "AWS::CloudFormation::Authentication"
+                    ]
                 }
             }
         },
-        {
+        "AWS::CloudFormation::CustomResource": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::EIPAssociation$"
+                    "enum": [
+                        "AWS::CloudFormation::CustomResource"
+                    ]
                 }
             }
         },
-        {
+        "AWS::CloudFormation::Init": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::Instance$"
+                    "enum": [
+                        "AWS::CloudFormation::Init"
+                    ]
                 }
             }
         },
-        {
+        "AWS::CloudFormation::Stack": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::InternetGateway$"
+                    "enum": [
+                        "AWS::CloudFormation::Stack"
+                    ]
                 }
             }
         },
-        {
+        "AWS::CloudFormation::WaitCondition": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::NetworkAcl$"
+                    "enum": [
+                        "AWS::CloudFormation::WaitCondition"
+                    ]
                 }
             }
         },
-        {
+        "AWS::CloudFormation::WaitConditionHandle": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::NetworkAclEntry$"
+                    "enum": [
+                        "AWS::CloudFormation::WaitConditionHandle"
+                    ]
                 }
             }
         },
-        {
+        "AWS::CloudFront::Distribution": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::NetworkInterface$"
+                    "enum": [
+                        "AWS::CloudFront::Distribution"
+                    ]
                 }
             }
         },
-        {
+        "AWS::CloudWatch::Alarm": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::NetworkInterfaceAttachment$"
+                    "enum": [
+                        "AWS::CloudWatch::Alarm"
+                    ]
                 }
             }
         },
-        {
+        "AWS::DynamoDB::Table": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::Route$"
+                    "enum": [
+                        "AWS::DynamoDB::Table"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::CustomerGateway": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::RouteTable$"
+                    "enum": [
+                        "AWS::EC2::CustomerGateway"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::DHCPOptions": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::SecurityGroup$"
+                    "enum": [
+                        "AWS::EC2::DHCPOptions"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::EIP": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::SecurityGroupIngress$"
+                    "enum": [
+                        "AWS::EC2::EIP"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::EIPAssociation": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::SecurityGroupEgress$"
+                    "enum": [
+                        "AWS::EC2::EIPAssociation"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::Instance": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::Subnet$"
+                    "enum": [
+                        "AWS::EC2::Instance"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::InternetGateway": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::SubnetNetworkAclAssociation$"
+                    "enum": [
+                        "AWS::EC2::InternetGateway"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::NetworkAcl": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::SubnetRouteTableAssociation$"
+                    "enum": [
+                        "AWS::EC2::NetworkAcl"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::NetworkAclEntry": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::Volume$"
+                    "enum": [
+                        "AWS::EC2::NetworkAclEntry"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::NetworkInterface": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::VolumeAttachment$"
+                    "enum": [
+                        "AWS::EC2::NetworkInterface"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::NetworkInterfaceAttachment": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::VPC$"
+                    "enum": [
+                        "AWS::EC2::NetworkInterfaceAttachment"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::Route": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::VPCDHCPOptionsAssociation$"
+                    "enum": [
+                        "AWS::EC2::Route"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::RouteTable": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::VPCGatewayAttachment$"
+                    "enum": [
+                        "AWS::EC2::RouteTable"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::SecurityGroup": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::VPNConnection$"
+                    "enum": [
+                        "AWS::EC2::SecurityGroup"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::SecurityGroupIngress": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::VPNConnectionRoute$"
+                    "enum": [
+                        "AWS::EC2::SecurityGroupIngress"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::SecurityGroupEgress": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::VPNGateway$"
+                    "enum": [
+                        "AWS::EC2::SecurityGroupEgress"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::Subnet": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::EC2::VPNGatewayRoutePropagation$"
+                    "enum": [
+                        "AWS::EC2::Subnet"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::SubnetNetworkAclAssociation": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::ElastiCache::CacheCluster$"
+                    "enum": [
+                        "AWS::EC2::SubnetNetworkAclAssociation"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::SubnetRouteTableAssociation": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::ElastiCache::ParameterGroup$"
+                    "enum": [
+                        "AWS::EC2::SubnetRouteTableAssociation"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::Volume": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::ElastiCache::SecurityGroup$"
+                    "enum": [
+                        "AWS::EC2::Volume"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::VolumeAttachment": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::ElastiCache::SecurityGroupIngress$"
+                    "enum": [
+                        "AWS::EC2::VolumeAttachment"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::VPC": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::ElastiCache::SubnetGroup $"
+                    "enum": [
+                        "AWS::EC2::VPC"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::VPCDHCPOptionsAssociation": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::ElasticBeanstalk::Application$"
+                    "enum": [
+                        "AWS::EC2::VPCDHCPOptionsAssociation"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::VPCGatewayAttachment": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::ElasticBeanstalk::Environment$"
+                    "enum": [
+                        "AWS::EC2::VPCGatewayAttachment"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::VPNConnection": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::ElasticLoadBalancing::LoadBalancer$"
+                    "enum": [
+                        "AWS::EC2::VPNConnection"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::VPNConnectionRoute": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::IAM::AccessKey$"
+                    "enum": [
+                        "AWS::EC2::VPNConnectionRoute"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::VPNGateway": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::IAM::Group$"
+                    "enum": [
+                        "AWS::EC2::VPNGateway"
+                    ]
                 }
             }
         },
-        {
+        "AWS::EC2::VPNGatewayRoutePropagation": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::IAM::InstanceProfile$"
+                    "enum": [
+                        "AWS::EC2::VPNGatewayRoutePropagation"
+                    ]
                 }
             }
         },
-        {
+        "AWS::ElastiCache::CacheCluster": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::IAM::Policy$"
+                    "enum": [
+                        "AWS::ElastiCache::CacheCluster"
+                    ]
                 }
             }
         },
-        {
+        "AWS::ElastiCache::ParameterGroup": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::IAM::Role$"
+                    "enum": [
+                        "AWS::ElastiCache::ParameterGroup"
+                    ]
                 }
             }
         },
-        {
+        "AWS::ElastiCache::SecurityGroup": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::IAM::User$"
+                    "enum": [
+                        "AWS::ElastiCache::SecurityGroup"
+                    ]
                 }
             }
         },
-        {
+        "AWS::ElastiCache::SecurityGroupIngress": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::IAM::UserToGroupAddition$"
+                    "enum": [
+                        "AWS::ElastiCache::SecurityGroupIngress"
+                    ]
                 }
             }
         },
-        {
+        "AWS::ElastiCache::SubnetGroup ": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::RDS::DBInstance$"
+                    "enum": [
+                        "AWS::ElastiCache::SubnetGroup "
+                    ]
                 }
             }
         },
-        {
+        "AWS::ElasticBeanstalk::Application": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::RDS::DBParameterGroup$"
+                    "enum": [
+                        "AWS::ElasticBeanstalk::Application"
+                    ]
                 }
             }
         },
-        {
+        "AWS::ElasticBeanstalk::Environment": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::RDS::DBSubnetGroup$"
+                    "enum": [
+                        "AWS::ElasticBeanstalk::Environment"
+                    ]
                 }
             }
         },
-        {
+        "AWS::ElasticLoadBalancing::LoadBalancer": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::RDS::DBSecurityGroup$"
+                    "enum": [
+                        "AWS::ElasticLoadBalancing::LoadBalancer"
+                    ]
                 }
             }
         },
-        {
+        "AWS::IAM::AccessKey": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::RDS::DBSecurityGroupIngress$"
+                    "enum": [
+                        "AWS::IAM::AccessKey"
+                    ]
                 }
             }
         },
-        {
+        "AWS::IAM::Group": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::Route53::RecordSet$"
+                    "enum": [
+                        "AWS::IAM::Group"
+                    ]
                 }
             }
         },
-        {
+        "AWS::IAM::InstanceProfile": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::Route53::RecordSetGroup$"
+                    "enum": [
+                        "AWS::IAM::InstanceProfile"
+                    ]
                 }
             }
         },
-        {
+        "AWS::IAM::Policy": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::S3::Bucket$"
+                    "enum": [
+                        "AWS::IAM::Policy"
+                    ]
                 }
             }
         },
-        {
+        "AWS::IAM::Role": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::S3::BucketPolicy$"
+                    "enum": [
+                        "AWS::IAM::Role"
+                    ]
                 }
             }
         },
-        {
+        "AWS::IAM::User": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::SDB::Domain$"
+                    "enum": [
+                        "AWS::IAM::User"
+                    ]
                 }
             }
         },
-        {
+        "AWS::IAM::UserToGroupAddition": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::SNS::TopicPolicy$"
+                    "enum": [
+                        "AWS::IAM::UserToGroupAddition"
+                    ]
                 }
             }
         },
-        {
+        "AWS::RDS::DBInstance": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::SNS::Topic$"
+                    "enum": [
+                        "AWS::RDS::DBInstance"
+                    ]
                 }
             }
         },
-        {
+        "AWS::RDS::DBParameterGroup": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::SQS::Queue$"
+                    "enum": [
+                        "AWS::RDS::DBParameterGroup"
+                    ]
                 }
             }
         },
-        {
+        "AWS::RDS::DBSubnetGroup": {
             "properties": {
                 "Type": {
-                    "pattern": "^AWS::SQS::QueuePolicy$"
+                    "enum": [
+                        "AWS::RDS::DBSubnetGroup"
+                    ]
+                }
+            }
+        },
+        "AWS::RDS::DBSecurityGroup": {
+            "properties": {
+                "Type": {
+                    "enum": [
+                        "AWS::RDS::DBSecurityGroup"
+                    ]
+                }
+            }
+        },
+        "AWS::RDS::DBSecurityGroupIngress": {
+            "properties": {
+                "Type": {
+                    "enum": [
+                        "AWS::RDS::DBSecurityGroupIngress"
+                    ]
+                }
+            }
+        },
+        "AWS::Route53::RecordSet": {
+            "properties": {
+                "Type": {
+                    "enum": [
+                        "AWS::Route53::RecordSet"
+                    ]
+                }
+            }
+        },
+        "AWS::Route53::RecordSetGroup": {
+            "properties": {
+                "Type": {
+                    "enum": [
+                        "AWS::Route53::RecordSetGroup"
+                    ]
+                }
+            }
+        },
+        "AWS::S3::Bucket": {
+            "properties": {
+                "Type": {
+                    "enum": [
+                        "AWS::S3::Bucket"
+                    ]
+                }
+            }
+        },
+        "AWS::S3::BucketPolicy": {
+            "properties": {
+                "Type": {
+                    "enum": [
+                        "AWS::S3::BucketPolicy"
+                    ]
+                }
+            }
+        },
+        "AWS::SDB::Domain": {
+            "properties": {
+                "Type": {
+                    "enum": [
+                        "AWS::SDB::Domain"
+                    ]
+                }
+            }
+        },
+        "AWS::SNS::TopicPolicy": {
+            "properties": {
+                "Type": {
+                    "enum": [
+                        "AWS::SNS::TopicPolicy"
+                    ]
+                }
+            }
+        },
+        "AWS::SNS::Topic": {
+            "properties": {
+                "Type": {
+                    "enum": [
+                        "AWS::SNS::Topic"
+                    ]
+                }
+            }
+        },
+        "AWS::SQS::Queue": {
+            "properties": {
+                "Type": {
+                    "enum": [
+                        "AWS::SQS::Queue"
+                    ]
+                }
+            }
+        },
+        "AWS::SQS::QueuePolicy": {
+            "properties": {
+                "Type": {
+                    "enum": [
+                        "AWS::SQS::QueuePolicy"
+                    ]
                 }
             }
         }
-    ]
+    }
 }

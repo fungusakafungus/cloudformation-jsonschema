@@ -42,7 +42,7 @@
             "description": "Template resources",
             "type": "object",
             "patternProperties": {
-                "^[a-zA-Z0-9]+$": {"$ref": "https://raw.github.com/fungusakafungus/cloudformation-jsonschema/master/resource.json#/"}
+                "^[a-zA-Z0-9]+$": {"$ref": "file:/home/ilya/jsonschema/cloudformation-jsonschema/resource.json#/"}
             },
             "additionalProperties": false
         },

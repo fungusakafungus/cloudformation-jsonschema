@@ -27,15 +27,14 @@ def print_(schema):
 
 def all_resource_patterns_by_name():
     h=get_pq('http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html')
-    all_resource_patterns_by_name=OrderedDict((a,{'properties':{'Type':{'pattern':'^%s$' % a}}}) for a in h('#divContent li a').map(lambda x: this.text))
+    all_resource_patterns_by_name=OrderedDict((a,{'properties':{'Type':{'enum':[a]}}}) for a in h('#divContent li a').map(lambda x: this.text))
     return all_resource_patterns_by_name
 
 def resources_dict(schema):
-    o=OrderedDict((i['properties']['Type']['pattern'].strip('^$'), i) for i in schema['oneOf'])
-    return o
+    return schema['definitions']
 
 def update_all_resource_patterns_by_name(schema):
-    o=resources_dict()
+    o=resources_dict(schema)
     new = all_resource_patterns_by_name()
     new.update(o)
-    schema['oneOf']=all_resource_patterns_by_name.values()
+    schema['definitions']=new
