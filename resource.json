@@ -262,6 +262,56 @@
                     "enum": [
                         "AWS::AutoScaling::LaunchConfiguration"
                     ]
+                },
+                "Properties": {
+                    "properties": {
+                        "AssociatePublicIpAddress": {
+                            "type": "boolean"
+                        },
+                        "BlockDeviceMappings": {
+                            "$ref": "#http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-mapping.html"
+                        },
+                        "EbsOptimized": {
+                            "type": "boolean"
+                        },
+                        "IamInstanceProfile": {
+                            "type": "string"
+                        },
+                        "ImageId": {
+                            "type": "string"
+                        },
+                        "InstanceMonitoring": {
+                            "type": "boolean"
+                        },
+                        "InstanceType": {
+                            "type": "string"
+                        },
+                        "KernelId": {
+                            "type": "string"
+                        },
+                        "KeyName": {
+                            "type": "string"
+                        },
+                        "RamDiskId": {
+                            "type": "string"
+                        },
+                        "SecurityGroups": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "SpotPrice": {
+                            "type": "string"
+                        },
+                        "UserData": {
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "ImageId",
+                        "InstanceType"
+                    ]
                 }
             }
         },

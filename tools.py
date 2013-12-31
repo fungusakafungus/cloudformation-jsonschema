@@ -14,9 +14,14 @@ def get_pq(uri='http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aw
     h.make_links_absolute()
     return h
 
+def all_resource_properties_hrefs():
+    h=get_pq('http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-property-reference.html')
+    res = OrderedDict((a.attr('href'),a.text()) for a in [q(a) for a in h('#divContent li a')])
+    return res
+
 def all_resource_hrefs():
     h=get_pq('http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-template-resource-type-ref.html')
-    all_resource_hrefs = OrderedDict([(a.text(), a.attr('href')) for a in [q(a) for a in h('#divContent li a')]])
+    all_resource_hrefs = OrderedDict((a.text(), a.attr('href')) for a in [q(a) for a in h('#divContent li a')])
     return all_resource_hrefs
 
 def write(schema, filename='resource.json'):
