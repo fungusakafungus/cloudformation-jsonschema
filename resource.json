@@ -47,6 +47,25 @@
             "properties": {
                 "Type": {
                     "pattern": "^AWS::AutoScaling::LaunchConfiguration$"
+                },
+                "Properties": {
+                    "AssociatePublicIpAddress": {},
+                    "BlockDeviceMappings": {},
+                    "EbsOptimized": {},
+                    "IamInstanceProfile": {},
+                    "ImageId": {},
+                    "InstanceMonitoring": {},
+                    "InstanceType": {},
+                    "KernelId": {},
+                    "KeyName": {},
+                    "RamDiskId": {},
+                    "SecurityGroups": {},
+                    "SpotPrice": {},
+                    "UserData": {},
+                    "required": [
+                        "ImageId",
+                        "InstanceType"
+                    ]
                 }
             }
         },
