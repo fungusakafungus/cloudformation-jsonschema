@@ -233,19 +233,57 @@
                 },
                 "Properties": {
                     "properties": {
-                        "AvailabilityZones": {},
-                        "Cooldown": {},
-                        "DesiredCapacity": {},
-                        "HealthCheckGracePeriod": {},
-                        "HealthCheckType": {},
-                        "LaunchConfigurationName": {},
-                        "LoadBalancerNames": {},
-                        "MaxSize": {},
-                        "MinSize": {},
-                        "NotificationConfiguration": {},
-                        "Tags": {},
-                        "TerminationPolicies": {},
-                        "VPCZoneIdentifier": {}
+                        "AvailabilityZones": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "Cooldown": {
+                            "type": "string"
+                        },
+                        "DesiredCapacity": {
+                            "type": "string"
+                        },
+                        "HealthCheckGracePeriod": {
+                            "type": "integer"
+                        },
+                        "HealthCheckType": {
+                            "type": "string"
+                        },
+                        "LaunchConfigurationName": {
+                            "type": "string"
+                        },
+                        "LoadBalancerNames": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "MaxSize": {
+                            "type": "string"
+                        },
+                        "MinSize": {
+                            "type": "string"
+                        },
+                        "NotificationConfiguration": {
+                            "$ref": "#http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-notificationconfiguration.html"
+                        },
+                        "Tags": {
+                            "$ref": "#http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-tags.html"
+                        },
+                        "TerminationPolicies": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "VPCZoneIdentifier": {
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        }
                     },
                     "required": [
                         "AvailabilityZones",
