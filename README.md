@@ -1,4 +1,4 @@
-An attempt to write a json schema (jsonschema.org) for AWS Cloudformation.
+An attempt to write a json schema (http://json-schema.org) for AWS Cloudformation.
 
 For now, I'm scraping AWS documentation with PyQuery.
 
