@@ -10,29 +10,49 @@
             "type": "string"
         }
     },
-    "required": ["Type"],
+    "required": [
+        "Type"
+    ],
     "type": "object",
     "oneOf": [
-    {
-        "properties": {
-            "Type": {
-                "pattern": "^AWS::AutoScaling::AutoScalingGroup$"
+        {
+            "properties": {
+                "Type": {
+                    "pattern": "^AWS::AutoScaling::AutoScalingGroup$"
+                }
+            }
+        },
+        {
+            "properties": {
+                "Type": {
+                    "pattern": "^AWS::EC2::Instance$"
+                }
+            }
+        },
+        {
+            "properties": {
+                "Type": {
+                    "pattern": "^AWS::ElasticLoadBalancing::LoadBalancer$"
+                }
+            }
+        },
+        {
+            "properties": {
+                "Type": {
+                    "pattern": "^AWS::EC2::CustomerGateway$"
+                },
+                "Properties": {
+                    "BgpAsn": {},
+                    "Type": {},
+                    "required": [
+                        "BgpAsn",
+                        "IpAddress",
+                        "Type"
+                    ],
+                    "IpAddress": {},
+                    "Tags": {}
+                }
             }
         }
-    },
-    {
-        "properties": {
-            "Type": {
-                "pattern": "^AWS::ElasticLoadBalancing::LoadBalancer$"
-            }
-        }
-    },
-    {
-        "properties": {
-            "Type": {
-                "pattern": "^AWS::EC2::Instance$"
-            }
-        }
-    }
     ]
 }
