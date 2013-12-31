@@ -1,0 +1,38 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Resource",
+    "description": "Cloudformation template resource",
+    "properties": {
+        "Properties": {
+            "type": "object"
+        },
+        "Type": {
+            "type": "string"
+        }
+    },
+    "required": ["Type"],
+    "type": "object",
+    "oneOf": [
+    {
+        "properties": {
+            "Type": {
+                "pattern": "^AWS::AutoScaling::AutoScalingGroup$"
+            }
+        }
+    },
+    {
+        "properties": {
+            "Type": {
+                "pattern": "^AWS::ElasticLoadBalancing::LoadBalancer$"
+            }
+        }
+    },
+    {
+        "properties": {
+            "Type": {
+                "pattern": "^AWS::EC2::Instance$"
+            }
+        }
+    }
+    ]
+}
