@@ -19,6 +19,27 @@
             "properties": {
                 "Type": {
                     "pattern": "^AWS::AutoScaling::AutoScalingGroup$"
+                },
+                "Properties": {
+                    "AvailabilityZones": {},
+                    "Cooldown": {},
+                    "DesiredCapacity": {},
+                    "HealthCheckGracePeriod": {},
+                    "HealthCheckType": {},
+                    "LaunchConfigurationName": {},
+                    "LoadBalancerNames": {},
+                    "MaxSize": {},
+                    "MinSize": {},
+                    "NotificationConfiguration": {},
+                    "Tags": {},
+                    "TerminationPolicies": {},
+                    "VPCZoneIdentifier": {},
+                    "required": [
+                        "AvailabilityZones",
+                        "LaunchConfigurationName",
+                        "MaxSize",
+                        "MinSize"
+                    ]
                 }
             }
         },
@@ -113,9 +134,9 @@
                 },
                 "Properties": {
                     "BgpAsn": {},
-                    "Type": {},
                     "IpAddress": {},
                     "Tags": {},
+                    "Type": {},
                     "required": [
                         "BgpAsn",
                         "IpAddress",
