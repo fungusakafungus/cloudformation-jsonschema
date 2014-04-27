@@ -6,6 +6,16 @@ from collections import OrderedDict
 from tools import *
 from logging import *
 
+
+def property_name_from_href(href):
+    href = str(href)
+    href, _ = href.rsplit(".", 1)
+    _, href = href.rsplit("/", 1)
+    return href
+def property_ref_from_href(href):
+    return {'$ref': '#/definitions/property_types/%s' % property_name_from_href(href)}
+
+
 def get_type(dd_):
     dd = dd_('p').filter(lambda x: q(this).text().startswith('Type'))
     t = dd.text().lower()
@@ -18,7 +28,7 @@ def get_type(dd_):
     if 'type : boolean' in t:
         return {'type': 'boolean'}
     if dd('a'):
-        return {'$ref': '#%s' % dd('a').attr('href')}
+        return property_ref_from_href(dd('a').attr('href'))
     if dd_('.type') and len(dd_('.type')):
         if (dd_('.type').text() == 'AWS::EC2::SecurityGroup' and
                 'list of' in t):
@@ -43,3 +53,16 @@ def set_resource_properties(res_type):
     required=[k.text() for k,v in pairs if v('p').filter(lambda i: 'Required : Yes' in q(this).text())]
     shortcut['Properties']['required']=required
     return schema
+
+
+def all_properties():
+    h = get_pq('https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-property-reference.html')
+    res = OrderedDict(
+        (
+            property_name_from_href(q(a).attr("href")),
+            {
+                "title": " ".join(a.text.split()),
+                "description": q(a).attr("href")
+            }
+        ) for a in h('#divContent li a'))
+    return res
