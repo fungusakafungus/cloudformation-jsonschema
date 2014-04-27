@@ -50,7 +50,7 @@ def set_resource_properties(res_type):
     all = all_resource_hrefs()
     h = get_pq(all[res_type])
     schema = load()
-    dl = h('#divContent .variablelist dl')
+    dl = h('#divContent .variablelist dl').eq(0)
     resources = resources_dict(schema)
     pairs = zip(dl('dt'), dl('dd'))
     pairs = [(q(dt), q(dd)) for dt, dd in pairs]
@@ -66,7 +66,9 @@ def set_resource_properties(res_type):
         in pairs
         if v('p').filter(lambda i: 'Required : Yes' in q(this).text())
     ]
-    shortcut['Properties']['required'] = required
+    if required:
+        shortcut['Properties']['required'] = required
+        resources[res_type]['required'] = ['Properties']
     return schema
 
 

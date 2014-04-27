@@ -545,8 +545,90 @@
                         "enum": [
                             "AWS::EC2::Instance"
                         ]
+                    },
+                    "Properties": {
+                        "properties": {
+                            "AvailabilityZone": {
+                                "type": "string"
+                            },
+                            "BlockDeviceMappings": {
+                                "$ref": "#/definitions/property_types/aws-properties-ec2-blockdev-mapping"
+                            },
+                            "DisableApiTermination": {
+                                "type": "boolean"
+                            },
+                            "EbsOptimized": {
+                                "type": "boolean"
+                            },
+                            "IamInstanceProfile": {
+                                "type": "string"
+                            },
+                            "ImageId": {
+                                "type": "string"
+                            },
+                            "InstanceType": {
+                                "type": "string"
+                            },
+                            "KernelId": {
+                                "type": "string"
+                            },
+                            "KeyName": {
+                                "type": "string"
+                            },
+                            "Monitoring": {
+                                "type": "boolean"
+                            },
+                            "NetworkInterfaces": {
+                                "$ref": "#/definitions/property_types/aws-properties-ec2-network-iface-embedded"
+                            },
+                            "PlacementGroupName": {
+                                "type": "string"
+                            },
+                            "PrivateIpAddress": {
+                                "type": "string"
+                            },
+                            "RamdiskId": {
+                                "type": "string"
+                            },
+                            "SecurityGroupIds": {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            "SecurityGroups": {
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            "SourceDestCheck": {
+                                "type": "boolean"
+                            },
+                            "SubnetId": {
+                                "type": "string"
+                            },
+                            "Tags": {
+                                "$ref": "#/definitions/property_types/aws-properties-ec2-tags"
+                            },
+                            "Tenancy": {
+                                "type": "string"
+                            },
+                            "UserData": {
+                                "type": "string"
+                            },
+                            "Volumes": {
+                                "$ref": "#/definitions/property_types/aws-properties-ec2-mount-point"
+                            }
+                        },
+                        "required": [
+                            "ImageId"
+                        ]
                     }
-                }
+                },
+                "required": [
+                    "Properties"
+                ]
             },
             "AWS::EC2::InternetGateway": {
                 "properties": {
