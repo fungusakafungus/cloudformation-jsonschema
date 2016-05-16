@@ -2,3 +2,4 @@ jsonschema
 pyquery
 requests
 cachecontrol[filecache]
+pytest

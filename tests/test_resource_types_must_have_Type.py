@@ -19,7 +19,7 @@ import jsonschema
 import json
 import pytest
 
-resource_schema = json.load(open('../resource.json'))
+resource_schema = json.load(open('resource.json'))
 def test_valid():
     jsonschema.validate(json.loads(valid), resource_schema)
 
