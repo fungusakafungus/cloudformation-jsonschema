@@ -86,9 +86,12 @@
             "type": "object",
             "properties": {
                 "Type": {
-                    "type": "string",
                     "description": "A parameter of type String is simply a literal string.\nA parameter of type Number can be an integer or float. Note that AWS CloudFormation validates the parameter as a number but uses the parameter value within the template as a string.\nA parameter of type CommaDelimitedList is an array of literal strings separated by commas. The member strings are space trimmed and there is one more string than there are commas in the specified value.",
-                    "pattern": "String|Number|CommaDelimitedList"
+                    "enum": [
+                        "String",
+                        "Number",
+                        "CommaDelimitedList"
+                    ]
                 },
                 "Default": {
                     "type": "string",
