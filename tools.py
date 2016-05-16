@@ -82,3 +82,5 @@ def update_all_resource_patterns_by_name(schema):
     new.update(o)
     schema['oneOf'] = get_oneOf()
     schema['definitions']['resource_types'] = new
+    # put definitions last
+    schema['definitions'] = schema.pop('definitions')
