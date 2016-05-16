@@ -1,1 +1,6 @@
 *.pyc
+.web_cache
+.ropeproject
+.*.swp
+tags
+venv/

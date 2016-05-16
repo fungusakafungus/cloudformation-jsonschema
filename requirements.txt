@@ -1,2 +1,4 @@
 jsonschema
 pyquery
+requests
+cachecontrol[filecache]
