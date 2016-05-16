@@ -4,19 +4,28 @@ For now, I'm scraping AWS documentation with PyQuery.
 
 This is not your glossy software.
 
-TODO
- - jsonschema
-  - specialized validator (the one which will tell you that this resource type is not known)
-  - name some features
-   - resource types
-    - resource types must have Type
-    - all resource types should be known
-    - unknown resource types are invalid
-    - requires resource type properties are desribed
-    - missing required resource properties are invalid
+### how to use
+Use `schema.json` to validate complete Cloudformation templates.
+
+Use `resource.json` to validate a particular resource.
+
+### how to contribute
+Create a virtualenv (`virtualenv venv; pip install -r requirements.txt`)
+
+You can then scrape AWS documentation for cloudformation resource types and save it as jsonschema:
+
+```
+./create_resource_schema.py resource.json
+```
+
+### TODO
+ - specialized validator (the one which will tell you that this resource type is not known)
  - tests with valid and invalid fragments for every feature
- - define intermediate format for...???
- - define a type for a basic cfn value (string, number or function call object)
+ - define a type for a basic cfn value (string, number or function call(Ref, Join) object)
+ - integrate/link schema.json and resource.json
+ - travis/circleci
+ - scrape Resource Property Types from http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-property-reference.html
+ - make json objects more stable (use more OrderedDict)
 
 cloudformation reference url
  - list of all things, url
