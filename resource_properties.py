@@ -29,11 +29,14 @@ def get_type(dd_):
     dd = dd_('p').filter(lambda x: q(this).text().startswith('Type'))
     t = dd.text().lower()
     if 'type : string' in t:
-        return {'type': 'string'}
+        return {"$ref": "#/definitions/basic_types/string"}
     if 'list of strings' in t:
-        return {'type': 'array', 'items': {'type': 'string'}}
+        return {
+            'type': 'array',
+            'items': {"$ref": "#/definitions/basic_types/string"}
+        }
     if 'type : integer' in t:
-        return {'type': 'integer'}
+        return {"$ref": "#/definitions/basic_types/integer"}
     if 'type : boolean' in t:
         return {'type': 'boolean'}
     if 'list of key-value pairs' in t:
@@ -42,12 +45,8 @@ def get_type(dd_):
             ('items', OrderedDict((
                 ('type', 'array'),
                 ('items', [
-                    {
-                        "type": "string"
-                    },
-                    {
-                        "type": "string"
-                    },
+                    {"$ref": "#/definitions/basic_types/string"},
+                    {"$ref": "#/definitions/basic_types/string"},
                 ])
             ))),
         ))
@@ -56,7 +55,12 @@ def get_type(dd_):
     if dd_('.type') and len(dd_('.type')):
         if (dd_('.type').text() == 'AWS::EC2::SecurityGroup' and
                 'list of' in t):
-            return {'type': 'array', 'items': {'type': 'string'}}
+            return {
+                'type': 'array',
+                'items': {
+                    "$ref": "#/definitions/basic_types/string"
+                }
+            }
 
     log.warning('Could not parse resource property type: "%s"', dd_.html())
     return {}

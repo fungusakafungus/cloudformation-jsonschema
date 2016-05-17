@@ -482,6 +482,130 @@
         }
     ],
     "definitions": {
+        "basic_types": {
+            "string": {
+                "oneOf": [
+                    {
+                        "type": "string"
+                    },
+                    {
+                        "$ref": "#/definitions/basic_types/function"
+                    }
+                ]
+            },
+            "number": {
+                "oneOf": [
+                    {
+                        "type": "string",
+                        "pattern": "^[0-9]+$"
+                    },
+                    {
+                        "type": "integer"
+                    },
+                    {
+                        "$ref": "#/definitions/basic_types/function"
+                    }
+                ]
+            },
+            "function": {
+                "oneOf": [
+                    {
+                        "$ref": "#/definitions/basic_types/functions/Fn::Base64"
+                    },
+                    {
+                        "$ref": "#/definitions/basic_types/functions/Fn::FindInMap"
+                    },
+                    {
+                        "$ref": "#/definitions/basic_types/functions/Fn::GetAtt"
+                    },
+                    {
+                        "$ref": "#/definitions/basic_types/functions/Ref"
+                    }
+                ]
+            },
+            "functions": {
+                "Fn::Base64": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "Fn::Base64": {
+                            "$ref": "#/definitions/basic_types/string"
+                        }
+                    },
+                    "required": [
+                        "Fn::Base64"
+                    ]
+                },
+                "Fn::FindInMap": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "Fn::FindInMap": {
+                            "type": "array",
+                            "minItems": 3,
+                            "maxItems": 3,
+                            "items": {
+                                "oneOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/basic_types/functions/Fn::FindInMap"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/basic_types/functions/Ref"
+                                    }
+                                ]
+                            }
+                        }
+                    },
+                    "required": [
+                        "Fn::FindInMap"
+                    ]
+                },
+                "Fn::GetAtt": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "Fn::GetAtt": {
+                            "type": "array",
+                            "minItems": 2,
+                            "maxItems": 2,
+                            "items": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "oneOf": [
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "$ref": "#/definitions/basic_types/functions/Ref"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "required": [
+                        "Fn::GetAtt"
+                    ]
+                },
+                "Ref": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "Ref": {
+                            "$ref": "#/definitions/basic_types/string"
+                        }
+                    },
+                    "required": [
+                        "Ref"
+                    ]
+                }
+            }
+        },
         "resource_types": {
             "AWS::ApiGateway::Account": {
                 "properties": {
@@ -493,7 +617,7 @@
                     "Properties": {
                         "properties": {
                             "CloudWatchRoleArn": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         }
                     }
@@ -509,13 +633,13 @@
                     "Properties": {
                         "properties": {
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Enabled": {
                                 "type": "boolean"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "StageKeys": {
                                 "$ref": "#/definitions/property_types/aws-properties-apitgateway-apikey-stagekey"
@@ -537,28 +661,28 @@
                     "Properties": {
                         "properties": {
                             "AuthorizerCredentials": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "AuthorizerResultTtlInSeconds": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "AuthorizerUri": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "IdentitySource": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "IdentityValidationExpression": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RestApiId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Type": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -583,16 +707,16 @@
                     "Properties": {
                         "properties": {
                             "BasePath": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DomainName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RestApiId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Stage": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -612,7 +736,7 @@
                     "Properties": {
                         "properties": {
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         }
                     }
@@ -631,16 +755,16 @@
                     "Properties": {
                         "properties": {
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RestApiId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "StageDescription": {
                                 "$ref": "#/definitions/property_types/aws-properties-apitgateway-deployment-stagedescription"
                             },
                             "StageName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -666,13 +790,13 @@
                                 "type": "boolean"
                             },
                             "AuthorizationType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "AuthorizerId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "HttpMethod": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Integration": {
                                 "$ref": "#/definitions/property_types/aws-properties-apitgateway-method-integration"
@@ -686,10 +810,10 @@
                                     "type": "array",
                                     "items": [
                                         {
-                                            "type": "string"
+                                            "$ref": "#/definitions/basic_types/string"
                                         },
                                         {
-                                            "type": "string"
+                                            "$ref": "#/definitions/basic_types/string"
                                         }
                                     ]
                                 }
@@ -700,19 +824,19 @@
                                     "type": "array",
                                     "items": [
                                         {
-                                            "type": "string"
+                                            "$ref": "#/definitions/basic_types/string"
                                         },
                                         {
-                                            "type": "string"
+                                            "$ref": "#/definitions/basic_types/string"
                                         }
                                     ]
                                 }
                             },
                             "ResourceId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RestApiId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -737,19 +861,19 @@
                     "Properties": {
                         "properties": {
                             "ContentType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RestApiId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Schema": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -771,13 +895,13 @@
                     "Properties": {
                         "properties": {
                             "ParentId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "PathPart": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RestApiId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -798,7 +922,7 @@
                     "Properties": {
                         "properties": {
                             "Body": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "BodyS3Location": {
                                 "$ref": "#/definitions/property_types/aws-properties-apitgateway-restapi-bodys3location"
@@ -823,25 +947,25 @@
                                 "type": "boolean"
                             },
                             "CacheClusterSize": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ClientCertificateId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DeploymentId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "MethodSettings": {
                                 "$ref": "#/definitions/property_types/aws-properties-apitgateway-stage-methodsetting"
                             },
                             "RestApiId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "StageName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Variables": {
                                 "type": "array",
@@ -849,10 +973,10 @@
                                     "type": "array",
                                     "items": [
                                         {
-                                            "type": "string"
+                                            "$ref": "#/definitions/basic_types/string"
                                         },
                                         {
-                                            "type": "string"
+                                            "$ref": "#/definitions/basic_types/string"
                                         }
                                     ]
                                 }
@@ -880,61 +1004,61 @@
                         "properties": {
                             "AvailabilityZones": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "Cooldown": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DesiredCapacity": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "HealthCheckGracePeriod": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "HealthCheckType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "InstanceId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "LaunchConfigurationName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "LoadBalancerNames": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "MaxSize": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "MetricsCollection": {
                                 "$ref": "#/definitions/property_types/aws-properties-as-metricscollection"
                             },
                             "MinSize": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "NotificationConfigurations": {
                                 "$ref": "#/definitions/property_types/aws-properties-as-notificationconfigurations"
                             },
                             "PlacementGroup": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-as-tags"
                             },
                             "TerminationPolicies": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "VPCZoneIdentifier": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             }
@@ -965,11 +1089,11 @@
                                 "$ref": "#/definitions/property_types/aws-properties-as-launchconfig-blockdev-mapping"
                             },
                             "ClassicLinkVPCId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ClassicLinkVPCSecurityGroups": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
@@ -977,43 +1101,43 @@
                                 "type": "boolean"
                             },
                             "IamInstanceProfile": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ImageId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "InstanceId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "InstanceMonitoring": {
                                 "type": "boolean"
                             },
                             "InstanceType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "KernelId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "KeyName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "PlacementTenancy": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RamDiskId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SecurityGroups": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "SpotPrice": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "UserData": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -1036,25 +1160,25 @@
                     "Properties": {
                         "properties": {
                             "AutoScalingGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DefaultResult": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "HeartbeatTimeout": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "LifecycleTransition": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "NotificationMetadata": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "NotificationTargetARN": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RoleARN": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -1079,28 +1203,28 @@
                     "Properties": {
                         "properties": {
                             "AdjustmentType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "AutoScalingGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Cooldown": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EstimatedInstanceWarmup": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "MetricAggregationType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "MinAdjustmentMagnitude": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "PolicyType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ScalingAdjustment": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "StepAdjustments": {
                                 "$ref": "#/definitions/property_types/aws-properties-autoscaling-scalingpolicy-stepadjustments"
@@ -1126,20 +1250,20 @@
                     "Properties": {
                         "properties": {
                             "AutoScalingGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DesiredCapacity": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "EndTime": {},
                             "MaxSize": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "MinSize": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "Recurrence": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "StartTime": {}
                         },
@@ -1162,34 +1286,34 @@
                     "Properties": {
                         "properties": {
                             "accessKeyId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "buckets": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "password": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "secretKey": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "type": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "uris": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "username": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "roleName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -1211,7 +1335,7 @@
                     "Properties": {
                         "properties": {
                             "ServiceToken": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -1265,7 +1389,7 @@
                         "properties": {
                             "NotificationARNs": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
@@ -1276,10 +1400,10 @@
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
                             },
                             "TemplateURL": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "TimeoutInMinutes": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -1301,13 +1425,13 @@
                     "Properties": {
                         "properties": {
                             "Count": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Handle": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Timeout": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -1361,10 +1485,10 @@
                     "Properties": {
                         "properties": {
                             "CloudWatchLogsLogGroupArn": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "CloudWatchLogsRoleArn": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EnableLogFileValidation": {
                                 "type": "boolean"
@@ -1390,54 +1514,54 @@
                             },
                             "AlarmActions": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "AlarmDescription": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "AlarmName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ComparisonOperator": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Dimensions": {
                                 "$ref": "#/definitions/property_types/aws-properties-cw-dimension"
                             },
                             "EvaluationPeriods": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "InsufficientDataActions": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "MetricName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Namespace": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "OKActions": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "Period": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Statistic": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Threshold": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Unit": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -1462,7 +1586,7 @@
                     "Properties": {
                         "properties": {
                             "ApplicationName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         }
                     }
@@ -1478,7 +1602,7 @@
                     "Properties": {
                         "properties": {
                             "DeploymentConfigName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "MinimumHealthyHosts": {
                                 "$ref": "#/definitions/property_types/aws-properties-codedeploy-deploymentconfig-minimumhealthyhosts"
@@ -1500,11 +1624,11 @@
                     "Properties": {
                         "properties": {
                             "ApplicationName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "AutoScalingGroups": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
@@ -1512,10 +1636,10 @@
                                 "$ref": "#/definitions/property_types/aws-properties-codedeploy-deploymentgroup-deployment"
                             },
                             "DeploymentConfigName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DeploymentGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Ec2TagFilters": {
                                 "$ref": "#/definitions/property_types/aws-properties-codedeploy-deploymentgroup-ec2tagfilters"
@@ -1524,7 +1648,7 @@
                                 "$ref": "#/definitions/property_types/aws-properties-codedeploy-deploymentgroup-onpremisesinstancetagfilters"
                             },
                             "ServiceRoleArn": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -1547,7 +1671,7 @@
                     "Properties": {
                         "properties": {
                             "Category": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ConfigurationProperties": {
                                 "$ref": "#/definitions/property_types/aws-resource-codepipeline-customactiontype-configurationproperties"
@@ -1559,13 +1683,13 @@
                                 "$ref": "#/definitions/property_types/aws-resource-codepipeline-customactiontype-artifactdetails"
                             },
                             "Provider": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Settings": {
                                 "$ref": "#/definitions/property_types/aws-resource-codepipeline-customactiontype-settings"
                             },
                             "Version": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -1596,13 +1720,13 @@
                                 "$ref": "#/definitions/property_types/aws-properties-codepipeline-pipeline-disableinboundstagetransitions"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RestartExecutionOnUpdate": {
                                 "type": "boolean"
                             },
                             "RoleArn": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Stages": {
                                 "$ref": "#/definitions/property_types/aws-properties-codepipeline-pipeline-stages"
@@ -1629,14 +1753,14 @@
                     "Properties": {
                         "properties": {
                             "ConfigRuleName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "InputParameters": {},
                             "MaximumExecutionFrequency": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Scope": {
                                 "$ref": "#/definitions/property_types/aws-properties-config-configrule-scope"
@@ -1664,13 +1788,13 @@
                     "Properties": {
                         "properties": {
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RecordingGroup": {
                                 "$ref": "#/definitions/property_types/aws-properties-config-configurationrecorder-recordinggroup"
                             },
                             "RoleARN": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -1695,16 +1819,16 @@
                                 "$ref": "#/definitions/property_types/aws-properties-config-deliverychannel-configsnapshotdeliveryproperties"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "S3BucketName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "S3KeyPrefix": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SnsTopicARN": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -1729,10 +1853,10 @@
                                 "type": "boolean"
                             },
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ParameterObjects": {
                                 "$ref": "#/definitions/property_types/aws-properties-datapipeline-pipeline-parameterobjects"
@@ -1773,13 +1897,13 @@
                                 "type": "boolean"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Password": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ShortName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "VpcSettings": {
                                 "$ref": "#/definitions/property_types/aws-properties-directoryservice-microsoftad-vpcsettings"
@@ -1809,22 +1933,22 @@
                                 "type": "boolean"
                             },
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EnableSso": {
                                 "type": "boolean"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Password": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ShortName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Size": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "VpcSettings": {
                                 "$ref": "#/definitions/property_types/aws-properties-directoryservice-simplead-vpcsettings"
@@ -1870,7 +1994,7 @@
                                 "$ref": "#/definitions/property_types/aws-properties-dynamodb-streamspecification"
                             },
                             "TableName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -1895,13 +2019,13 @@
                         "properties": {
                             "BgpAsn": {},
                             "IpAddress": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
                             },
                             "Type": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -1922,24 +2046,24 @@
                     "Properties": {
                         "properties": {
                             "DomainName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DomainNameServers": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "NetbiosNameServers": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "NetbiosNodeType": {},
                             "NtpServers": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
@@ -1960,10 +2084,10 @@
                     "Properties": {
                         "properties": {
                             "InstanceId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Domain": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         }
                     }
@@ -1979,19 +2103,19 @@
                     "Properties": {
                         "properties": {
                             "AllocationId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EIP": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "InstanceId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "NetworkInterfaceId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "PrivateIpAddress": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         }
                     }
@@ -2010,13 +2134,13 @@
                     "Properties": {
                         "properties": {
                             "AutoPlacement": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "AvailabilityZone": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "InstanceType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -2039,10 +2163,10 @@
                     "Properties": {
                         "properties": {
                             "Affinity": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "AvailabilityZone": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "BlockDeviceMappings": {
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-blockdev-mapping"
@@ -2054,25 +2178,25 @@
                                 "type": "boolean"
                             },
                             "HostId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "IamInstanceProfile": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ImageId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "InstanceInitiatedShutdownBehavior": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "InstanceType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "KernelId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "KeyName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Monitoring": {
                                 "type": "boolean"
@@ -2081,23 +2205,23 @@
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-network-iface-embedded"
                             },
                             "PlacementGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "PrivateIpAddress": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RamdiskId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SecurityGroupIds": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "SecurityGroups": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
@@ -2108,22 +2232,22 @@
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-instance-ssmassociations"
                             },
                             "SubnetId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
                             },
                             "Tenancy": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "UserData": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Volumes": {
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-mount-point"
                             },
                             "AdditionalInfo": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -2161,10 +2285,10 @@
                     "Properties": {
                         "properties": {
                             "AllocationId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SubnetId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -2190,7 +2314,7 @@
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
                             },
                             "VpcId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -2212,7 +2336,7 @@
                     "Properties": {
                         "properties": {
                             "CidrBlock": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Egress": {
                                 "type": "boolean"
@@ -2221,14 +2345,14 @@
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-icmp"
                             },
                             "NetworkAclId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "PortRange": {
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-port-range"
                             },
                             "Protocol": {},
                             "RuleAction": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RuleNumber": {}
                         },
@@ -2255,28 +2379,28 @@
                     "Properties": {
                         "properties": {
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "GroupSet": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "PrivateIpAddress": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "PrivateIpAddresses": {
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-network-interface-privateipspec"
                             },
                             "SecondaryPrivateIpAddressCount": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "SourceDestCheck": {
                                 "type": "boolean"
                             },
                             "SubnetId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
@@ -2304,13 +2428,13 @@
                                 "type": "boolean"
                             },
                             "DeviceIndex": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "InstanceId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "NetworkInterfaceId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -2331,7 +2455,7 @@
                     "Properties": {
                         "properties": {
                             "Strategy": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         }
                     }
@@ -2350,22 +2474,22 @@
                     "Properties": {
                         "properties": {
                             "DestinationCidrBlock": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "GatewayId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "InstanceId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "NatGatewayId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "NetworkInterfaceId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RouteTableId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -2388,7 +2512,7 @@
                     "Properties": {
                         "properties": {
                             "VpcId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
@@ -2413,7 +2537,7 @@
                     "Properties": {
                         "properties": {
                             "GroupDescription": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SecurityGroupEgress": {
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-security-group-rule"
@@ -2425,7 +2549,7 @@
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
                             },
                             "VpcId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -2448,22 +2572,22 @@
                     "Properties": {
                         "properties": {
                             "CidrIp": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DestinationSecurityGroupId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "FromPort": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "GroupId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "IpProtocol": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ToPort": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             }
                         },
                         "required": [
@@ -2488,31 +2612,31 @@
                     "Properties": {
                         "properties": {
                             "CidrIp": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "FromPort": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "GroupId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "GroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "IpProtocol": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SourceSecurityGroupId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SourceSecurityGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SourceSecurityGroupOwnerId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ToPort": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             }
                         },
                         "required": [
@@ -2558,10 +2682,10 @@
                     "Properties": {
                         "properties": {
                             "AvailabilityZone": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "CidrBlock": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "MapPublicIpOnLaunch": {
                                 "type": "boolean"
@@ -2591,10 +2715,10 @@
                     "Properties": {
                         "properties": {
                             "SubnetId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "NetworkAclId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -2617,10 +2741,10 @@
                     "Properties": {
                         "properties": {
                             "RouteTableId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SubnetId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -2646,26 +2770,26 @@
                                 "type": "boolean"
                             },
                             "AvailabilityZone": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Encrypted": {
                                 "type": "boolean"
                             },
                             "Iops": {},
                             "KmsKeyId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Size": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SnapshotId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
                             },
                             "VolumeType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -2687,13 +2811,13 @@
                     "Properties": {
                         "properties": {
                             "Device": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "InstanceId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "VolumeId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -2717,7 +2841,7 @@
                     "Properties": {
                         "properties": {
                             "CidrBlock": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EnableDnsSupport": {
                                 "type": "boolean"
@@ -2726,7 +2850,7 @@
                                 "type": "boolean"
                             },
                             "InstanceTenancy": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
@@ -2751,10 +2875,10 @@
                     "Properties": {
                         "properties": {
                             "DhcpOptionsId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "VpcId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -2779,15 +2903,15 @@
                             "PolicyDocument": {},
                             "RouteTableIds": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "ServiceName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "VpcId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -2810,13 +2934,13 @@
                     "Properties": {
                         "properties": {
                             "InternetGatewayId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "VpcId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "VpnGatewayId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -2838,13 +2962,13 @@
                     "Properties": {
                         "properties": {
                             "PeerVpcId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
                             },
                             "VpcId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -2867,10 +2991,10 @@
                     "Properties": {
                         "properties": {
                             "Type": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "CustomerGatewayId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "StaticRoutesOnly": {
                                 "type": "boolean"
@@ -2879,7 +3003,7 @@
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
                             },
                             "VpnGatewayId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -2903,10 +3027,10 @@
                     "Properties": {
                         "properties": {
                             "DestinationCidrBlock": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "VpnConnectionId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -2929,7 +3053,7 @@
                     "Properties": {
                         "properties": {
                             "Type": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
@@ -2955,7 +3079,7 @@
                         "properties": {
                             "RouteTableIds": {},
                             "VpnGatewayId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -2975,7 +3099,7 @@
                     "Properties": {
                         "properties": {
                             "RepositoryName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RepositoryPolicyText": {}
                         }
@@ -3007,22 +3131,22 @@
                     "Properties": {
                         "properties": {
                             "Cluster": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DeploymentConfiguration": {
                                 "$ref": "#/definitions/property_types/aws-properties-ecs-service-deploymentconfiguration"
                             },
                             "DesiredCount": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "LoadBalancers": {
                                 "$ref": "#/definitions/property_types/aws-properties-ecs-service-loadbalancers"
                             },
                             "Role": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "TaskDefinition": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -3087,19 +3211,19 @@
                     "Properties": {
                         "properties": {
                             "FileSystemId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "IpAddress": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SecurityGroups": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "SubnetId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -3126,74 +3250,74 @@
                                 "type": "boolean"
                             },
                             "AZMode": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "CacheNodeType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "CacheParameterGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "CacheSecurityGroupNames": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "CacheSubnetGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ClusterName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Engine": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EngineVersion": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "NotificationTopicArn": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "NumCacheNodes": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Port": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "PreferredAvailabilityZone": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "PreferredAvailabilityZones": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "PreferredMaintenanceWindow": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SnapshotArns": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "SnapshotName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SnapshotRetentionLimit": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "SnapshotWindow": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
                             },
                             "VpcSecurityGroupIds": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             }
@@ -3219,10 +3343,10 @@
                     "Properties": {
                         "properties": {
                             "CacheParameterGroupFamily": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Properties": {}
                         },
@@ -3253,64 +3377,64 @@
                                 "type": "boolean"
                             },
                             "CacheNodeType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "CacheParameterGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "CacheSecurityGroupNames": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "CacheSubnetGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Engine": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EngineVersion": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "NotificationTopicArn": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "NumCacheClusters": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "Port": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "PreferredCacheClusterAZs": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "PreferredMaintenanceWindow": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ReplicationGroupDescription": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SecurityGroupIds": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "SnapshotArns": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "SnapshotRetentionLimit": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "SnapshotWindow": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -3332,7 +3456,7 @@
                     "Properties": {
                         "properties": {
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         }
                     }
@@ -3351,13 +3475,13 @@
                     "Properties": {
                         "properties": {
                             "CacheSecurityGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EC2SecurityGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EC2SecurityGroupOwnerId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -3380,10 +3504,10 @@
                     "Properties": {
                         "properties": {
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SubnetIds": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -3403,10 +3527,10 @@
                     "Properties": {
                         "properties": {
                             "ApplicationName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         }
                     }
@@ -3425,10 +3549,10 @@
                     "Properties": {
                         "properties": {
                             "ApplicationName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SourceBundle": {
                                 "$ref": "#/definitions/property_types/aws-properties-beanstalk-sourcebundle"
@@ -3454,19 +3578,19 @@
                     "Properties": {
                         "properties": {
                             "ApplicationName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EnvironmentId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "OptionSettings": {
                                 "$ref": "#/definitions/property_types/aws-properties-beanstalk-option-settings"
                             },
                             "SolutionStackName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SourceConfiguration": {
                                 "$ref": "#/definitions/property_types/aws-properties-beanstalk-configurationtemplate-sourceconfiguration"
@@ -3491,34 +3615,34 @@
                     "Properties": {
                         "properties": {
                             "ApplicationName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "CNAMEPrefix": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EnvironmentName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "OptionSettings": {
                                 "$ref": "#/definitions/property_types/aws-properties-beanstalk-option-settings"
                             },
                             "SolutionStackName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
                             },
                             "TemplateName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Tier": {
                                 "$ref": "#/definitions/property_types/aws-properties-beanstalk-environment-tier"
                             },
                             "VersionLabel": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -3547,7 +3671,7 @@
                             },
                             "AvailabilityZones": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
@@ -3565,7 +3689,7 @@
                             },
                             "Instances": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
@@ -3573,7 +3697,7 @@
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-elb-LBCookieStickinessPolicy"
                             },
                             "LoadBalancerName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Listeners": {
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-elb-listener"
@@ -3582,12 +3706,12 @@
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-elb-policy"
                             },
                             "Scheme": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SecurityGroups": {},
                             "Subnets": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
@@ -3613,7 +3737,7 @@
                             "AccessPolicies": {},
                             "AdvancedOptions": {},
                             "DomainName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EBSOptions": {
                                 "$ref": "#/definitions/property_types/aws-properties-elasticsearch-domain-ebsoptions"
@@ -3660,19 +3784,19 @@
                                 "$ref": "#/definitions/property_types/aws-properties-emr-cluster-jobflowinstancesconfig"
                             },
                             "JobFlowRole": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "LogUri": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ReleaseLabel": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ServiceRole": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
@@ -3703,7 +3827,7 @@
                     "Properties": {
                         "properties": {
                             "BidPrice": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Configurations": {
                                 "$ref": "#/definitions/property_types/aws-properties-emr-cluster-configuration"
@@ -3712,22 +3836,22 @@
                                 "$ref": "#/definitions/property_types/aws-properties-emr-ebsconfiguration"
                             },
                             "InstanceCount": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "InstanceRole": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "InstanceType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "JobFlowId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Market": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -3752,16 +3876,16 @@
                     "Properties": {
                         "properties": {
                             "ActionOnFailure": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "HadoopJarStep": {
                                 "$ref": "#/definitions/property_types/aws-properties-emr-step-hadoopjarstepconfig"
                             },
                             "JobFlowId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -3783,18 +3907,18 @@
                     "Properties": {
                         "properties": {
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EventPattern": {},
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RoleArn": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ScheduleExpression": {},
                             "State": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Targets": {
                                 "$ref": "#/definitions/property_types/aws-properties-events-rule-target"
@@ -3816,10 +3940,10 @@
                     "Properties": {
                         "properties": {
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RoutingStrategy": {
                                 "$ref": "#/definitions/property_types/aws-properties-gamelift-alias-routingstrategy"
@@ -3842,13 +3966,13 @@
                     "Properties": {
                         "properties": {
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "StorageLocation": {
                                 "$ref": "#/definitions/property_types/aws-properties-gamelift-build-storagelocation"
                             },
                             "Version": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         }
                     }
@@ -3867,40 +3991,40 @@
                     "Properties": {
                         "properties": {
                             "BuildId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DesiredEC2Instances": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "EC2InboundPermissions": {
                                 "$ref": "#/definitions/property_types/aws-properties-gamelift-fleet-ec2inboundpermission"
                             },
                             "EC2InstanceType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "LogPaths": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "MaxSize": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "MinSize": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ServerLaunchParameters": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ServerLaunchPath": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -3926,13 +4050,13 @@
                     "Properties": {
                         "properties": {
                             "Serial": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "Status": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "UserName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -3952,12 +4076,12 @@
                         "properties": {
                             "ManagedPolicyArns": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "Path": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Policies": {
                                 "$ref": "#/definitions/property_types/aws-properties-iam-policy"
@@ -3979,7 +4103,7 @@
                     "Properties": {
                         "properties": {
                             "Path": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Roles": {}
                         },
@@ -4003,27 +4127,27 @@
                     "Properties": {
                         "properties": {
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Groups": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "Path": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "PolicyDocument": {},
                             "Roles": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "Users": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             }
@@ -4048,23 +4172,23 @@
                         "properties": {
                             "Groups": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "PolicyDocument": {},
                             "PolicyName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Roles": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "Users": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             }
@@ -4091,12 +4215,12 @@
                             "AssumeRolePolicyDocument": {},
                             "ManagedPolicyArns": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "Path": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Policies": {
                                 "$ref": "#/definitions/property_types/aws-properties-iam-policy"
@@ -4119,7 +4243,7 @@
                         "properties": {
                             "Groups": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
@@ -4128,12 +4252,12 @@
                             },
                             "ManagedPolicyArns": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "Path": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Policies": {
                                 "$ref": "#/definitions/property_types/aws-properties-iam-policy"
@@ -4155,7 +4279,7 @@
                     "Properties": {
                         "properties": {
                             "GroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Users": {}
                         },
@@ -4179,7 +4303,7 @@
                     "Properties": {
                         "properties": {
                             "ShardCount": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
@@ -4204,7 +4328,7 @@
                     "Properties": {
                         "properties": {
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Enabled": {
                                 "type": "boolean"
@@ -4233,19 +4357,19 @@
                     "Properties": {
                         "properties": {
                             "BatchSize": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "Enabled": {
                                 "type": "boolean"
                             },
                             "EventSourceArn": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "FunctionName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "StartingPosition": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -4269,16 +4393,16 @@
                     "Properties": {
                         "properties": {
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "FunctionName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "FunctionVersion": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -4305,25 +4429,25 @@
                                 "$ref": "#/definitions/property_types/aws-properties-lambda-function-code"
                             },
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "FunctionName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Handler": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "MemorySize": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "Role": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Runtime": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Timeout": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "VpcConfig": {
                                 "$ref": "#/definitions/property_types/aws-properties-lambda-function-vpcconfig"
@@ -4351,19 +4475,19 @@
                     "Properties": {
                         "properties": {
                             "Action": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "FunctionName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Principal": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SourceAccount": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SourceArn": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -4387,13 +4511,13 @@
                     "Properties": {
                         "properties": {
                             "CodeSha256": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "FunctionName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -4415,16 +4539,16 @@
                     "Properties": {
                         "properties": {
                             "DestinationName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DestinationPolicy": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RoleArn": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "TargetArn": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -4446,7 +4570,7 @@
                     "Properties": {
                         "properties": {
                             "RetentionInDays": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             }
                         }
                     }
@@ -4465,10 +4589,10 @@
                     "Properties": {
                         "properties": {
                             "LogGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "LogStreamName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -4491,12 +4615,12 @@
                         "properties": {
                             "FilterPattern": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "LogGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "MetricTransformations": {
                                 "$ref": "#/definitions/property_types/aws-properties-logs-metricfilter-metrictransformation"
@@ -4523,16 +4647,16 @@
                     "Properties": {
                         "properties": {
                             "DestinationArn": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "FilterPattern": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "LogGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RoleArn": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -4564,20 +4688,20 @@
                                     "type": "array",
                                     "items": [
                                         {
-                                            "type": "string"
+                                            "$ref": "#/definitions/basic_types/string"
                                         },
                                         {
-                                            "type": "string"
+                                            "$ref": "#/definitions/basic_types/string"
                                         }
                                     ]
                                 }
                             },
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Domains": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
@@ -4588,19 +4712,19 @@
                                 "$ref": "#/definitions/property_types/aws-properties-opsworks-app-environment"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Shortname": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SslConfiguration": {
                                 "$ref": "#/definitions/property_types/aws-properties-opsworks-app-sslconfiguration"
                             },
                             "StackId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Type": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -4624,10 +4748,10 @@
                     "Properties": {
                         "properties": {
                             "ElasticLoadBalancerName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "LayerId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -4650,16 +4774,16 @@
                     "Properties": {
                         "properties": {
                             "AmiId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Architecture": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "AutoScalingType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "AvailabilityZone": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EbsOptimized": {
                                 "type": "boolean"
@@ -4668,28 +4792,28 @@
                                 "type": "boolean"
                             },
                             "InstanceType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "LayerIds": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "Os": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RootDeviceType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SshKeyName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "StackId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SubnetId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "TimeBasedAutoScaling": {
                                 "$ref": "#/definitions/property_types/aws-properties-opsworks-instance-timebasedautoscaling"
@@ -4721,10 +4845,10 @@
                                     "type": "array",
                                     "items": [
                                         {
-                                            "type": "string"
+                                            "$ref": "#/definitions/basic_types/string"
                                         },
                                         {
-                                            "type": "string"
+                                            "$ref": "#/definitions/basic_types/string"
                                         }
                                     ]
                                 }
@@ -4736,14 +4860,14 @@
                                 "type": "boolean"
                             },
                             "CustomInstanceProfileArn": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "CustomRecipes": {
                                 "$ref": "#/definitions/property_types/aws-properties-opsworks-layer-recipes"
                             },
                             "CustomSecurityGroupIds": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
@@ -4760,22 +4884,22 @@
                                 "$ref": "#/definitions/property_types/aws-properties-opsworks-layer-loadbasedautoscaling"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Packages": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "Shortname": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "StackId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Type": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "VolumeConfigurations": {
                                 "$ref": "#/definitions/property_types/aws-properties-opsworks-layer-volumeconfig"
@@ -4806,7 +4930,7 @@
                     "Properties": {
                         "properties": {
                             "AgentVersion": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Attributes": {
                                 "type": "array",
@@ -4814,10 +4938,10 @@
                                     "type": "array",
                                     "items": [
                                         {
-                                            "type": "string"
+                                            "$ref": "#/definitions/basic_types/string"
                                         },
                                         {
-                                            "type": "string"
+                                            "$ref": "#/definitions/basic_types/string"
                                         }
                                     ]
                                 }
@@ -4833,31 +4957,31 @@
                             },
                             "CustomJson": {},
                             "DefaultAvailabilityZone": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DefaultInstanceProfileArn": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DefaultOs": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DefaultRootDeviceType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DefaultSshKeyName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DefaultSubnetId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "HostnameTheme": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ServiceRoleArn": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "UseCustomCookbooks": {
                                 "type": "boolean"
@@ -4866,7 +4990,7 @@
                                 "type": "boolean"
                             },
                             "VpcId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -4890,46 +5014,46 @@
                     "Properties": {
                         "properties": {
                             "AvailabilityZones": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "BackupRetentionPeriod": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "DatabaseName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DBClusterParameterGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DBSubnetGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Engine": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EngineVersion": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "KmsKeyId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "MasterUsername": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "MasterUserPassword": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Port": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "PreferredBackupWindow": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "PreferredMaintenanceWindow": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SnapshotIdentifier": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "StorageEncrypted": {
                                 "type": "boolean"
@@ -4939,7 +5063,7 @@
                             },
                             "VpcSecurityGroupIds": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             }
@@ -4990,7 +5114,7 @@
                     "Properties": {
                         "properties": {
                             "AllocatedStorage": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "AllowMajorVersionUpgrade": {
                                 "type": "boolean"
@@ -4999,93 +5123,93 @@
                                 "type": "boolean"
                             },
                             "AvailabilityZone": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "BackupRetentionPeriod": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "CharacterSetName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DBClusterIdentifier": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DBInstanceClass": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DBInstanceIdentifier": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DBName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DBParameterGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DBSecurityGroups": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "DBSnapshotIdentifier": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DBSubnetGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Engine": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EngineVersion": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Iops": {},
                             "KmsKeyId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "LicenseModel": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "MasterUsername": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "MasterUserPassword": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "MultiAZ": {
                                 "type": "boolean"
                             },
                             "OptionGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Port": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "PreferredBackupWindow": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "PreferredMaintenanceWindow": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "PubliclyAccessible": {
                                 "type": "boolean"
                             },
                             "SourceDBInstanceIdentifier": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "StorageEncrypted": {
                                 "type": "boolean"
                             },
                             "StorageType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
                             },
                             "VPCSecurityGroups": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             }
@@ -5135,13 +5259,13 @@
                     "Properties": {
                         "properties": {
                             "EC2VpcId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DBSecurityGroupIngress": {
                                 "$ref": "#/definitions/property_types/aws-properties-rds-security-group-rule"
                             },
                             "GroupDescription": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
@@ -5167,19 +5291,19 @@
                     "Properties": {
                         "properties": {
                             "CIDRIP": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DBSecurityGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EC2SecurityGroupId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EC2SecurityGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EC2SecurityGroupOwnerId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -5201,11 +5325,11 @@
                     "Properties": {
                         "properties": {
                             "DBSubnetGroupDescription": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SubnetIds": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
@@ -5237,21 +5361,21 @@
                             },
                             "EventCategories": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "SnsTopicArn": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SourceIds": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "SourceType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -5273,13 +5397,13 @@
                     "Properties": {
                         "properties": {
                             "EngineName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "MajorEngineVersion": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "OptionGroupDescription": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "OptionConfigurations": {
                                 "$ref": "#/definitions/property_types/aws-properties-rds-optiongroup-optionconfigurations"
@@ -5313,78 +5437,78 @@
                                 "type": "boolean"
                             },
                             "AutomatedSnapshotRetentionPeriod": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "AvailabilityZone": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ClusterParameterGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ClusterSecurityGroups": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "ClusterSubnetGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ClusterType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ClusterVersion": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DBName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ElasticIp": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Encrypted": {
                                 "type": "boolean"
                             },
                             "HsmClientCertificateIdentifier": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "HsmConfigurationIdentifier": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "KmsKeyId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "MasterUsername": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "MasterUserPassword": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "NodeType": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "NumberOfNodes": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "OwnerAccount": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Port": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "PreferredMaintenanceWindow": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "PubliclyAccessible": {
                                 "type": "boolean"
                             },
                             "SnapshotClusterIdentifier": {},
                             "SnapshotIdentifier": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "VpcSecurityGroupIds": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             }
@@ -5412,10 +5536,10 @@
                     "Properties": {
                         "properties": {
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ParameterGroupFamily": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Parameters": {
                                 "$ref": "#/definitions/property_types/aws-property-redshift-clusterparametergroup-parameter"
@@ -5441,7 +5565,7 @@
                     "Properties": {
                         "properties": {
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -5463,16 +5587,16 @@
                     "Properties": {
                         "properties": {
                             "ClusterSecurityGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "CIDRIP": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EC2SecurityGroupName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "EC2SecurityGroupOwnerId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -5494,11 +5618,11 @@
                     "Properties": {
                         "properties": {
                             "Description": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SubnetIds": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             }
@@ -5554,7 +5678,7 @@
                                 "$ref": "#/definitions/property_types/aws-properties-route53-hostedzone-hostedzonetags"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "VPCs": {
                                 "$ref": "#/definitions/property_types/aws-resource-route53-hostedzone-hostedzonevpcs"
@@ -5582,41 +5706,41 @@
                                 "$ref": "#/definitions/property_types/aws-properties-route53-aliastarget"
                             },
                             "Comment": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Failover": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "GeoLocation": {
                                 "$ref": "#/definitions/property_types/aws-properties-route53-recordset-geolocation"
                             },
                             "HealthCheckId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "HostedZoneId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "HostedZoneName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Region": {},
                             "ResourceRecords": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             },
                             "SetIdentifier": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "TTL": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Type": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Weight": {}
                         },
@@ -5640,13 +5764,13 @@
                     "Properties": {
                         "properties": {
                             "Comment": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "HostedZoneId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "HostedZoneName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RecordSets": {
                                 "$ref": "#/definitions/property_types/aws-properties-route53-recordset"
@@ -5668,10 +5792,10 @@
                     "Properties": {
                         "properties": {
                             "AccessControl": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "BucketName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "CorsConfiguration": {
                                 "$ref": "#/definitions/property_types/aws-properties-s3-bucket-cors"
@@ -5714,7 +5838,7 @@
                     "Properties": {
                         "properties": {
                             "Bucket": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "PolicyDocument": {}
                         },
@@ -5747,13 +5871,13 @@
                     "Properties": {
                         "properties": {
                             "DisplayName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Subscription": {
                                 "$ref": "#/definitions/property_types/aws-properties-sns-subscription"
                             },
                             "TopicName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         }
                     }
@@ -5791,25 +5915,25 @@
                     "Properties": {
                         "properties": {
                             "DelaySeconds": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "MaximumMessageSize": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "MessageRetentionPeriod": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "QueueName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "ReceiveMessageWaitTimeSeconds": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             },
                             "RedrivePolicy": {
                                 "$ref": "#/definitions/property_types/aws-properties-sqs-queues-redrivepolicy"
                             },
                             "VisibilityTimeout": {
-                                "type": "integer"
+                                "$ref": "#/definitions/basic_types/integer"
                             }
                         }
                     }
@@ -5830,7 +5954,7 @@
                             "PolicyDocument": {},
                             "Queues": {
                                 "items": {
-                                    "type": "string"
+                                    "$ref": "#/definitions/basic_types/string"
                                 },
                                 "type": "array"
                             }
@@ -5878,7 +6002,7 @@
                                 "$ref": "#/definitions/property_types/aws-properties-waf-bytematchset-bytematchtuples"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -5905,7 +6029,7 @@
                             "c-ip": {},
                             "x-forwarded-for": {},
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [
@@ -5927,10 +6051,10 @@
                     "Properties": {
                         "properties": {
                             "MetricName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Predicates": {
                                 "$ref": "#/definitions/property_types/aws-properties-waf-rule-predicates"
@@ -5956,7 +6080,7 @@
                     "Properties": {
                         "properties": {
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SizeConstraints": {
                                 "$ref": "#/definitions/property_types/aws-properties-waf-sizeconstraintset-sizeconstraint"
@@ -5982,7 +6106,7 @@
                     "Properties": {
                         "properties": {
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "SqlInjectionMatchTuples": {
                                 "$ref": "#/definitions/property_types/aws-properties-waf-sqlinjectionmatchset-sqlinjectionmatchtuples"
@@ -6010,10 +6134,10 @@
                                 "$ref": "#/definitions/property_types/aws-properties-waf-webacl-action"
                             },
                             "MetricName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "Rules": {
                                 "$ref": "#/definitions/property_types/aws-properties-waf-webacl-rules"
@@ -6040,7 +6164,7 @@
                     "Properties": {
                         "properties": {
                             "Name": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "XssMatchTuples": {
                                 "$ref": "#/definitions/property_types/aws-properties-waf-xssmatchset-xssmatchtuple"
@@ -6065,13 +6189,13 @@
                     "Properties": {
                         "properties": {
                             "BundleId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "DirectoryId": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "UserName": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             },
                             "RootVolumeEncryptionEnabled": {
                                 "type": "boolean"
@@ -6080,7 +6204,7 @@
                                 "type": "boolean"
                             },
                             "VolumeEncryptionKey": {
-                                "type": "string"
+                                "$ref": "#/definitions/basic_types/string"
                             }
                         },
                         "required": [

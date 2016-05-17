@@ -67,6 +67,8 @@ def resources_dict(schema):
         schema['definitions'] = OrderedDict(
             {'resource_types': OrderedDict()}
         )
+    if 'resource_types' not in schema['definitions']:
+        schema['definitions']['resource_types'] = OrderedDict()
 
     return schema['definitions']['resource_types']
 
