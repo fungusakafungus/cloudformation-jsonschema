@@ -3,15 +3,134 @@
     "title": "Resource",
     "description": "Cloudformation template resource",
     "properties": {
-        "Properties": {
-            "type": "object"
-        },
-        "Type": {
-            "type": "string"
-        }
+	"Properties": {
+	    "type": "object"
+	},
+	"Type": {
+	    "type": "string"
+	}
     },
     "required": [
-        "Type"
+	"Type"
     ],
-    "type": "object"
+    "type": "object",
+    "definitions": {
+	"basic_types": {
+	    "string": {
+		"oneOf": [
+		    {
+			"type": "string"
+		    },
+		    {
+			"$ref": "#/definitions/basic_types/function"
+		    }
+		]
+	    },
+	    "number": {
+		"oneOf": [
+		    {
+			"type": "string",
+			"pattern": "^[0-9]+$"
+		    },
+		    {
+			"type": "integer"
+		    },
+		    {
+			"$ref": "#/definitions/basic_types/function"
+		    }
+		]
+	    },
+	    "function": {
+		"oneOf": [
+		    {
+			"$ref": "#/definitions/basic_types/functions/Fn::Base64"
+		    },
+		    {
+			"$ref": "#/definitions/basic_types/functions/Fn::FindInMap"
+		    },
+		    {
+			"$ref": "#/definitions/basic_types/functions/Fn::GetAtt"
+		    },
+		    {
+			"$ref": "#/definitions/basic_types/functions/Ref"
+		    }
+		]
+	    },
+	    "functions": {
+		"Fn::Base64": {
+		    "type": "object",
+		    "additionalProperties": false,
+		    "properties": {
+			"Fn::Base64": {
+			    "$ref": "#/definitions/basic_types/string"
+			}
+		    },
+		    "required": ["Fn::Base64"]
+		},
+		"Fn::FindInMap": {
+		    "type": "object",
+		    "additionalProperties": false,
+		    "properties": {
+			"Fn::FindInMap": {
+			    "type": "array",
+			    "minItems": 3,
+			    "maxItems": 3,
+			    "items": {
+				"oneOf": [
+				    {
+					"type": "string"
+				    },
+				    {
+					"$ref": "#/definitions/basic_types/functions/Fn::FindInMap"
+				    },
+				    {
+					"$ref": "#/definitions/basic_types/functions/Ref"
+				    }
+				]
+			    }
+			}
+		    },
+		    "required": ["Fn::FindInMap"]
+		},
+		"Fn::GetAtt": {
+		    "type": "object",
+		    "additionalProperties": false,
+		    "properties": {
+			"Fn::GetAtt": {
+			    "type": "array",
+			    "minItems": 2,
+			    "maxItems": 2,
+			    "items": [
+				{
+				    "type": "string"
+				},
+				{
+				    "oneOf": [
+					{
+					    "type": "string"
+					},
+				    	{
+					    "$ref": "#/definitions/basic_types/functions/Ref"
+					}
+				    ]
+				}
+			    ]
+
+			}
+		    },
+		    "required": ["Fn::GetAtt"]
+		},
+		"Ref": {
+		    "type": "object",
+		    "additionalProperties": false,
+		    "properties": {
+			"Ref": {
+			    "$ref": "#/definitions/basic_types/string"
+			}
+		    },
+		    "required": ["Ref"]
+		}
+	    }
+	}
+    }
 }

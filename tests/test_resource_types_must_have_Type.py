@@ -25,5 +25,5 @@ def test_valid():
 
 def test_invalid():
     with pytest.raises(jsonschema.ValidationError) as excinfo:
-        jsonschema.validate(json.loads(invalid), resource_schema)
-    assert 'Typex' in str(excinfo.value)
+        jsonschema.validate(json.load(open('tests/no-type.json')), resource_schema)
+    assert "'Type' is a required property" in excinfo.value.message
