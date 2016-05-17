@@ -26,30 +26,24 @@ def merge(a, b, path=None):
 
 
 @pytest.mark.parametrize("instance", [
-    """
     {
         "Type": "sometype",
         "test": {
             "Fn::Base64": "string value"
         }
-    }
-    """,
-    """
+    },
     {
         "Type": "sometype",
         "test": {
             "Fn::Base64": {"Ref": "resource"}
         }
-    }
-    """,
-    """
+    },
     {
         "Type": "sometype",
         "test": {
             "Fn::Base64": {"Fn::Base64": "doubleencode"}
         }
-    }
-    """,
+    },
 ])
 def test_fn_base64_valid(instance):
     amended_schema = {
@@ -60,35 +54,29 @@ def test_fn_base64_valid(instance):
         }
     }
     merge(amended_schema, resource_schema)
-    jsonschema.validate(json.loads(instance), amended_schema)
+    jsonschema.validate(instance, amended_schema)
 
 
 @pytest.mark.parametrize("instance", [
-    """
     {
         "Type": "sometype",
         "test": {
-            "Fn::Base64": true
+            "Fn::Base64": True
         }
-    }
-    """,
-    """
+    },
     {
         "Type": "sometype",
         "test": {
             "Fn::Base64": {"invalidfunction": "arg"}
         }
-    }
-    """,
-    """
+    },
     {
         "Type": "sometype",
         "test": {
             "Fn::Base64": "arg",
             "extraProp": 1
         }
-    }
-    """,
+    },
 ])
 def test_fn_base64_invalid(instance):
     amended_schema = {
@@ -100,46 +88,38 @@ def test_fn_base64_invalid(instance):
     }
     merge(amended_schema, resource_schema)
     with pytest.raises(jsonschema.ValidationError):
-        jsonschema.validate(json.loads(instance), amended_schema)
+        jsonschema.validate(instance, amended_schema)
 
 
 @pytest.mark.parametrize("instance", [
-    """
     {
         "Type": "sometype",
         "test": {
-            "Fn::FindInMap" : ["MapName", "TopLevelKey", "SecondLevelKey"]
+            "Fn::FindInMap": ["MapName", "TopLevelKey", "SecondLevelKey"]
         }
-    }
-    """,
-    """
+    },
     {
         "Type": "sometype",
         "test": {
-            "Fn::FindInMap" : [{"Ref": "MapName"}, "TopLevelKey", "SecondLevelKey"]
+            "Fn::FindInMap": [{"Ref": "MapName"}, "TopLevelKey", "SecondLevelKey"]
         }
-    }
-    """,
-    """
+    },
     {
         "Type": "sometype",
         "test": {
-            "Fn::FindInMap" : ["MapName", {"Ref":"AWS::Region"}, "SecondLevelKey"]
+            "Fn::FindInMap": ["MapName", {"Ref": "AWS::Region"}, "SecondLevelKey"]
         }
-    }
-    """,
-    """
+    },
     {
         "Type": "sometype",
         "test": {
-            "Fn::FindInMap" : [
+            "Fn::FindInMap": [
                 {"Fn::FindInMap": ["AnotherMapName", "TopLevelKey", "SecondLevelKey"]},
                 "TopLevelKey",
                 "SecondLevelKey"
             ]
         }
-    }
-    """,
+    },
 ])
 def test_fn_findinmap_valid(instance):
     amended_schema = {
@@ -150,4 +130,4 @@ def test_fn_findinmap_valid(instance):
         }
     }
     merge(amended_schema, resource_schema)
-    jsonschema.validate(json.loads(instance), amended_schema)
+    jsonschema.validate(instance, amended_schema)
