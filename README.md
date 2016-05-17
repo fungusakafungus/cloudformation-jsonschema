@@ -22,18 +22,18 @@ You can then scrape AWS documentation for cloudformation resource types and save
  - [ ] specialized validator (the one which will tell you that this resource type is not known)
  - [ ] tests with valid and invalid fragments for every feature
  - [ ] define a type for a basic cfn value (string, number or function call(Ref, Join) object)
-  - [ ] Fn::Base64
+  - [x] Fn::Base64
   - [ ] Condition Functions
-  - [ ] Fn::FindInMap
-  - [ ] Fn::GetAtt
+  - [x] Fn::FindInMap
+  - [x] Fn::GetAtt
   - [ ] Fn::GetAZs
   - [ ] Fn::Join
   - [ ] Fn::Select
-  - [ ] Ref
-  - [ ] number
-  - [ ] string
+  - [x] Ref
+  - [x] number
+  - [x] string
  - [ ] integrate/link schema.json and resource.json
- - [ ] travis/circleci
+ - [x] travis/circleci
  - [ ] scrape Resource Property Types from http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-property-reference.html
  - [ ] make json objects more stable (use more OrderedDict)
 
