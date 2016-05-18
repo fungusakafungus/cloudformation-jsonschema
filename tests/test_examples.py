@@ -7,7 +7,7 @@ import os
 
 schema_str = open('schema.json').read()
 schema_str = schema_str.replace(
-    '/home/ilya/jsonschema/cloudformation-jsonschema/',
+    '/home/ilya/jsonschema/cloudformation-jsonschema',
     os.getcwd()
 )
 schema = json.loads(schema_str)
