@@ -38,6 +38,9 @@
                         "true",
                         "false"
                     ]
+                },
+                {
+                    "$ref": "#/definitions/function"
                 }
             ]
         },
