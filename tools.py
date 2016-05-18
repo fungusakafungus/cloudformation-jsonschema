@@ -44,6 +44,7 @@ def all_resource_hrefs():
 def write(schema, filename='resource.json'):
     with open(filename, 'w') as f:
         f.write(json.dumps(schema, indent=4, separators=(',', ': ')))
+        f.write("\n")
 
 
 def print_(schema):
