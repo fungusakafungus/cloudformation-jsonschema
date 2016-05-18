@@ -90,7 +90,8 @@
                     "enum": [
                         "String",
                         "Number",
-                        "CommaDelimitedList"
+                        "CommaDelimitedList",
+			"AWS::EC2::KeyPair::KeyName"
                     ]
                 },
                 "Default": {
