@@ -26,8 +26,8 @@ You can then scrape AWS documentation for cloudformation resource types and save
   - [ ] Condition Functions
   - [x] Fn::FindInMap
   - [x] Fn::GetAtt
-  - [ ] Fn::GetAZs
-  - [ ] Fn::Join
+  - [x] Fn::GetAZs
+  - [x] Fn::Join
   - [ ] Fn::Select
   - [x] Ref
   - [x] number
