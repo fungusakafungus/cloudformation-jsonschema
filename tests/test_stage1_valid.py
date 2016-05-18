@@ -76,7 +76,6 @@ def test_fn_if_valid(instance):
 @pytest.mark.parametrize("instance", [
     {'Fn::If': [['not a string'], 1, 2]},
     {'Fn::If': ['one', 'too', 'many', 'args']},
-    {'Fn::If': ['one', 'too', 'many', 'args']},
     {'Fn::If': [{"Ref": "not a ref"}, 1, 2]},
 ])
 def test_fn_if_invalid(instance):
@@ -110,7 +109,29 @@ def test_fn_getazs_invalid(instance):
     {'Fn::GetAZs': 'is a function'},
     ['string', 'string'],
     ['string', {'Ref': 'res'}],
+    {'Fn::If': [
+        'Is-EC2-VPC',
+        [{'Fn::GetAtt': ['DBEC2SecurityGroup', 'GroupId']}],
+        {'Ref': 'AWS::NoValue'}
+    ]},
 ])
 def test_string_list_valid(instance):
     val.val(instance, basic_types_schema,
             definition="#/definitions/list<string>")
+
+long_if = {'Fn::If': [
+    'Is-EC2-VPC',
+    [{'Fn::GetAtt': ['DBEC2SecurityGroup', 'GroupId']}],
+    {'Ref': 'AWS::NoValue'}
+]}
+
+
+@pytest.mark.parametrize(("instance", "definition"), [
+    (long_if, "#/definitions/string"),
+    (long_if, "#/definitions/function"),
+    (long_if, "#/definitions/condition_function"),
+    (long_if, "#/definitions/condition_functions/Fn::If"),
+])
+def test_string_function_valid(instance, definition):
+    val.val(instance, basic_types_schema,
+            definition=definition)

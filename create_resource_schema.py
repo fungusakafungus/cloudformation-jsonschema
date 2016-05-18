@@ -39,6 +39,14 @@ def main(argv):
     all_properties = resource_properties.all_res_properties()
     resource_schema['definitions']['property_types'] = all_properties
 
+    # fix inconsistencies
+    resource_schema['definitions']['resource_types']['AWS::Route53::RecordSetGroup']['properties']['Properties']['properties']['RecordSets'] = {
+        "type": "array",
+        "items": {
+            "$ref": "#/definitions/resource_types/AWS::Route53::RecordSet/properties/Properties"
+        }
+    }
+
     if len(argv) == 2 and argv[1].endswith('json'):
         tools.write(resource_schema, argv[1])
     else:

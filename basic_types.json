@@ -82,6 +82,9 @@
                     "$ref": "#/definitions/condition_function"
                 },
                 {
+                    "$ref": "#/definitions/functions/Fn::Select"
+                },
+                {
                     "$ref": "#/definitions/functions/Ref"
                 }
             ]
@@ -192,6 +195,25 @@
                 },
                 "required": ["Fn::Join"]
             },
+            "Fn::Select": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                    "Fn::Select": {
+                        "type": "array",
+                        "minItems": 2,
+                        "maxItems": 2,
+                        "items": [
+                            {
+                                "$ref": "#/definitions/integer"
+                            },
+                            {
+                            }
+                        ]
+                    }
+                },
+                "required": ["Fn::Select"]
+            },
             "Ref": {
                 "type": "object",
                 "additionalProperties": false,
@@ -286,44 +308,8 @@
                             {
                                 "type": "string"
                             },
-                            {
-                                "anyOf": [
-                                    {
-                                        "type": "object"
-                                    },
-                                    {
-                                        "$ref": "#/definitions/string"
-                                    },
-                                    {
-                                        "$ref": "#/definitions/integer"
-                                    },
-                                    {
-                                        "$ref": "#/definitions/boolean"
-                                    },
-                                    {
-                                        "$ref": "#/definitions/function"
-                                    }
-                                ]
-                            },
-                            {
-                                "anyOf": [
-                                    {
-                                        "type": "object"
-                                    },
-                                    {
-                                        "$ref": "#/definitions/string"
-                                    },
-                                    {
-                                        "$ref": "#/definitions/integer"
-                                    },
-                                    {
-                                        "$ref": "#/definitions/boolean"
-                                    },
-                                    {
-                                        "$ref": "#/definitions/function"
-                                    }
-                                ]
-                            }
+                            {},
+                            {}
                         ]
                     }
                 },

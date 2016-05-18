@@ -5404,7 +5404,7 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "RecordSets": {
-                                "$ref": "#/definitions/property_types/aws-properties-route53-recordset"
+                                "$ref": "#/definitions/resource_types/AWS::Route53::RecordSet/properties/Properties"
                             }
                         },
                         "required": [
