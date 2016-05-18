@@ -2,9 +2,15 @@ import jsonschema
 import json
 import pytest
 import glob
+import os
 
 
-schema = json.load(open('schema.json'))
+schema_str = open('schema.json').read()
+schema_str.replace(
+    '/home/ilya/jsonschema/cloudformation-jsonschema/',
+    os.getcwd()
+)
+schema = json.loads(schema_str)
 
 
 @pytest.mark.parametrize("template", glob.glob('tests/examples/*.template'))
