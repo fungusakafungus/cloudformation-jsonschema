@@ -30,6 +30,8 @@ def get_type(dd_):
     t = dd.text().lower()
     if 'type : string' in t:
         return {"$ref": "basic_types.json#/definitions/string"}
+    if 'type : ref id' in t:
+        return {"$ref": "basic_types.json#/definitions/string"}
     if 'list of strings' in t:
         return {
             "$ref": "basic_types.json#/definitions/list<string>"
@@ -78,7 +80,10 @@ def set_resource_properties(schema, res_type):
         k.text()
         for k, v
         in pairs
-        if v('p').filter(lambda i: 'Required : Yes' in q(this).text())
+        if v('p').filter(
+            lambda i: 'Required : Yes' in q(this).text() and
+            not 'Yes, for VPC security groups' in q(this).text()
+        )
     ]
     if required:
         shortcut['Properties']['required'] = required

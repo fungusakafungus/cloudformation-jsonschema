@@ -2336,8 +2336,7 @@
                             }
                         },
                         "required": [
-                            "GroupDescription",
-                            "VpcId"
+                            "GroupDescription"
                         ]
                     }
                 }
@@ -2476,7 +2475,9 @@
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
                             },
-                            "VpcId": {}
+                            "VpcId": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            }
                         },
                         "required": [
                             "CidrBlock",
