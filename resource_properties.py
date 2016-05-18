@@ -38,7 +38,7 @@ def get_type(dd_):
     if 'type : integer' in t:
         return {"$ref": "#/definitions/basic_types/integer"}
     if 'type : boolean' in t:
-        return {'type': 'boolean'}
+        return {"$ref": "#/definitions/basic_types/boolean"}
     if 'list of key-value pairs' in t:
         return OrderedDict((
             ('type', 'array'),

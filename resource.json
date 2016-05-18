@@ -493,7 +493,7 @@
                     }
                 ]
             },
-            "number": {
+            "integer": {
                 "oneOf": [
                     {
                         "type": "string",
@@ -507,6 +507,22 @@
                     }
                 ]
             },
+            "boolean": {
+                "oneOf": [
+                    {
+                        "type": "boolean"
+                    },
+                    {
+                        "type": "string",
+                        "enum": [
+                            "True",
+                            "False",
+                            "true",
+                            "false"
+                        ]
+                    }
+                ]
+            },
             "function": {
                 "oneOf": [
                     {
@@ -517,6 +533,12 @@
                     },
                     {
                         "$ref": "#/definitions/basic_types/functions/Fn::GetAtt"
+                    },
+                    {
+                        "$ref": "#/definitions/basic_types/functions/Fn::GetAZs"
+                    },
+                    {
+                        "$ref": "#/definitions/basic_types/functions/Fn::Join"
                     },
                     {
                         "$ref": "#/definitions/basic_types/functions/Ref"
@@ -592,6 +614,57 @@
                         "Fn::GetAtt"
                     ]
                 },
+                "Fn::GetAZs": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "Fn::GetAZs": {
+                            "oneOf": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "oneOf": [
+                                        {
+                                            "type": "string"
+                                        },
+                                        {
+                                            "$ref": "#/definitions/basic_types/functions/Ref"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    },
+                    "required": [
+                        "Fn::GetAZs"
+                    ]
+                },
+                "Fn::Join": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "properties": {
+                        "Fn::Join": {
+                            "type": "array",
+                            "minItems": 2,
+                            "maxItems": 2,
+                            "items": [
+                                {
+                                    "type": "string"
+                                },
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/basic_types/string"
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "required": [
+                        "Fn::Join"
+                    ]
+                },
                 "Ref": {
                     "type": "object",
                     "additionalProperties": false,
@@ -636,7 +709,7 @@
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "Enabled": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "Name": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -787,7 +860,7 @@
                     "Properties": {
                         "properties": {
                             "ApiKeyRequired": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "AuthorizationType": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -944,7 +1017,7 @@
                     "Properties": {
                         "properties": {
                             "CacheClusterEnabled": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "CacheClusterSize": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -1083,7 +1156,7 @@
                     "Properties": {
                         "properties": {
                             "AssociatePublicIpAddress": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "BlockDeviceMappings": {
                                 "$ref": "#/definitions/property_types/aws-properties-as-launchconfig-blockdev-mapping"
@@ -1098,7 +1171,7 @@
                                 "type": "array"
                             },
                             "EbsOptimized": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "IamInstanceProfile": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -1110,7 +1183,7 @@
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "InstanceMonitoring": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "InstanceType": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -1491,7 +1564,7 @@
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "EnableLogFileValidation": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             }
                         }
                     }
@@ -1510,7 +1583,7 @@
                     "Properties": {
                         "properties": {
                             "ActionsEnabled": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "AlarmActions": {
                                 "items": {
@@ -1723,7 +1796,7 @@
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "RestartExecutionOnUpdate": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "RoleArn": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -1850,7 +1923,7 @@
                     "Properties": {
                         "properties": {
                             "Activate": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "Description": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -1891,10 +1964,10 @@
                     "Properties": {
                         "properties": {
                             "CreateAlias": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "EnableSso": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "Name": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -1930,13 +2003,13 @@
                     "Properties": {
                         "properties": {
                             "CreateAlias": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "Description": {
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "EnableSso": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "Name": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -2172,10 +2245,10 @@
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-blockdev-mapping"
                             },
                             "DisableApiTermination": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "EbsOptimized": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "HostId": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -2199,7 +2272,7 @@
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "Monitoring": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "NetworkInterfaces": {
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-network-iface-embedded"
@@ -2226,7 +2299,7 @@
                                 "type": "array"
                             },
                             "SourceDestCheck": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "SsmAssociations": {
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-instance-ssmassociations"
@@ -2339,7 +2412,7 @@
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "Egress": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "Icmp": {
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-icmp"
@@ -2397,7 +2470,7 @@
                                 "$ref": "#/definitions/basic_types/integer"
                             },
                             "SourceDestCheck": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "SubnetId": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -2425,7 +2498,7 @@
                     "Properties": {
                         "properties": {
                             "DeleteOnTermination": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "DeviceIndex": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -2688,7 +2761,7 @@
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "MapPublicIpOnLaunch": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
@@ -2767,13 +2840,13 @@
                     "Properties": {
                         "properties": {
                             "AutoEnableIO": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "AvailabilityZone": {
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "Encrypted": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "Iops": {},
                             "KmsKeyId": {
@@ -2844,10 +2917,10 @@
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "EnableDnsSupport": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "EnableDnsHostnames": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "InstanceTenancy": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -2997,7 +3070,7 @@
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "StaticRoutesOnly": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
@@ -3247,7 +3320,7 @@
                     "Properties": {
                         "properties": {
                             "AutoMinorVersionUpgrade": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "AZMode": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -3371,10 +3444,10 @@
                     "Properties": {
                         "properties": {
                             "AutomaticFailoverEnabled": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "AutoMinorVersionUpgrade": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "CacheNodeType": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -3682,7 +3755,7 @@
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-elb-connectionsettings"
                             },
                             "CrossZone": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "HealthCheck": {
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-elb-health-check"
@@ -3802,7 +3875,7 @@
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
                             },
                             "VisibleToAllUsers": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             }
                         },
                         "required": [
@@ -4331,10 +4404,10 @@
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "Enabled": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "EnableKeyRotation": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "KeyPolicy": {}
                         },
@@ -4360,7 +4433,7 @@
                                 "$ref": "#/definitions/basic_types/integer"
                             },
                             "Enabled": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "EventSourceArn": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -4706,7 +4779,7 @@
                                 "type": "array"
                             },
                             "EnableSsl": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "Environment": {
                                 "$ref": "#/definitions/property_types/aws-properties-opsworks-app-environment"
@@ -4786,10 +4859,10 @@
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "EbsOptimized": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "InstallUpdatesOnBoot": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "InstanceType": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -4854,10 +4927,10 @@
                                 }
                             },
                             "AutoAssignElasticIps": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "AutoAssignPublicIps": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "CustomInstanceProfileArn": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -4872,10 +4945,10 @@
                                 "type": "array"
                             },
                             "EnableAutoHealing": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "InstallUpdatesOnBoot": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "LifecycleEventConfiguration": {
                                 "$ref": "#/definitions/property_types/aws-properties-opsworks-layer-lifecycleeventconfiguration"
@@ -4984,10 +5057,10 @@
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "UseCustomCookbooks": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "UseOpsworksSecurityGroups": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "VpcId": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -5056,7 +5129,7 @@
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "StorageEncrypted": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
@@ -5117,10 +5190,10 @@
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "AllowMajorVersionUpgrade": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "AutoMinorVersionUpgrade": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "AvailabilityZone": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -5178,7 +5251,7 @@
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "MultiAZ": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "OptionGroupName": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -5193,13 +5266,13 @@
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "PubliclyAccessible": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "SourceDBInstanceIdentifier": {
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "StorageEncrypted": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "StorageType": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -5357,7 +5430,7 @@
                     "Properties": {
                         "properties": {
                             "Enabled": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "EventCategories": {
                                 "items": {
@@ -5434,7 +5507,7 @@
                     "Properties": {
                         "properties": {
                             "AllowVersionUpgrade": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "AutomatedSnapshotRetentionPeriod": {
                                 "$ref": "#/definitions/basic_types/integer"
@@ -5467,7 +5540,7 @@
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "Encrypted": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "HsmClientCertificateIdentifier": {
                                 "$ref": "#/definitions/basic_types/string"
@@ -5500,7 +5573,7 @@
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "PubliclyAccessible": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "SnapshotClusterIdentifier": {},
                             "SnapshotIdentifier": {
@@ -6198,10 +6271,10 @@
                                 "$ref": "#/definitions/basic_types/string"
                             },
                             "RootVolumeEncryptionEnabled": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "UserVolumeEncryptionEnabled": {
-                                "type": "boolean"
+                                "$ref": "#/definitions/basic_types/boolean"
                             },
                             "VolumeEncryptionKey": {
                                 "$ref": "#/definitions/basic_types/string"

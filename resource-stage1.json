@@ -26,7 +26,7 @@
 		    }
 		]
 	    },
-	    "number": {
+	    "integer": {
 		"oneOf": [
 		    {
 			"type": "string",
@@ -40,6 +40,22 @@
 		    }
 		]
 	    },
+	    "boolean": {
+		"oneOf": [
+		    {
+			"type": "boolean"
+		    },
+		    {
+			"type": "string",
+			"enum": [
+			    "True",
+			    "False",
+			    "true",
+			    "false"
+			]
+		    }
+		]
+	    },
 	    "function": {
 		"oneOf": [
 		    {
@@ -50,6 +66,12 @@
 		    },
 		    {
 			"$ref": "#/definitions/basic_types/functions/Fn::GetAtt"
+		    },
+		    {
+			"$ref": "#/definitions/basic_types/functions/Fn::GetAZs"
+		    },
+		    {
+			"$ref": "#/definitions/basic_types/functions/Fn::Join"
 		    },
 		    {
 			"$ref": "#/definitions/basic_types/functions/Ref"
@@ -109,7 +131,7 @@
 					{
 					    "type": "string"
 					},
-				    	{
+					{
 					    "$ref": "#/definitions/basic_types/functions/Ref"
 					}
 				    ]
@@ -119,6 +141,55 @@
 			}
 		    },
 		    "required": ["Fn::GetAtt"]
+		},
+		"Fn::GetAZs": {
+		    "type": "object",
+		    "additionalProperties": false,
+		    "properties": {
+			"Fn::GetAZs": {
+			    "oneOf": [
+				{
+				    "type": "string"
+				},
+				{
+				    "oneOf": [
+					{
+					    "type": "string"
+					},
+					{
+					    "$ref": "#/definitions/basic_types/functions/Ref"
+					}
+				    ]
+				}
+			    ]
+
+			}
+		    },
+		    "required": ["Fn::GetAZs"]
+		},
+		"Fn::Join": {
+		    "type": "object",
+		    "additionalProperties": false,
+		    "properties": {
+			"Fn::Join": {
+			    "type": "array",
+			    "minItems": 2,
+			    "maxItems": 2,
+			    "items": [
+				{
+				    "type": "string"
+				},
+				{
+				    "type": "array",
+				    "items": {
+					"$ref": "#/definitions/basic_types/string"
+				    }
+				}
+			    ]
+
+			}
+		    },
+		    "required": ["Fn::Join"]
 		},
 		"Ref": {
 		    "type": "object",
