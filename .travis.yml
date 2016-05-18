@@ -1,3 +1,6 @@
 language: python
 script: py.test -v tests
 cache: pip
+branches:
+  only:
+    - master
