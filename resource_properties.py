@@ -29,27 +29,17 @@ def get_type(dd_):
     dd = dd_('p').filter(lambda x: q(this).text().startswith('Type'))
     t = dd.text().lower()
     if 'type : string' in t:
-        return {"$ref": "#/definitions/basic_types/string"}
+        return {"$ref": "basic_types.json#/definitions/string"}
     if 'list of strings' in t:
         return {
-            'type': 'array',
-            'items': {"$ref": "#/definitions/basic_types/string"}
+            "$ref": "basic_types.json#/definitions/list<string>"
         }
     if 'type : integer' in t:
-        return {"$ref": "#/definitions/basic_types/integer"}
+        return {"$ref": "basic_types.json#/definitions/integer"}
     if 'type : boolean' in t:
-        return {"$ref": "#/definitions/basic_types/boolean"}
+        return {"$ref": "basic_types.json#/definitions/boolean"}
     if 'list of key-value pairs' in t:
-        return OrderedDict((
-            ('type', 'array'),
-            ('items', OrderedDict((
-                ('type', 'array'),
-                ('items', [
-                    {"$ref": "#/definitions/basic_types/string"},
-                    {"$ref": "#/definitions/basic_types/string"},
-                ])
-            ))),
-        ))
+        return {"$ref": "basic_types.json#/definitions/key-value-pairs"}
     if dd('a'):
         return property_ref_from_href(dd('a').attr('href'))
     if dd_('.type') and len(dd_('.type')):
@@ -58,7 +48,7 @@ def get_type(dd_):
             return {
                 'type': 'array',
                 'items': {
-                    "$ref": "#/definitions/basic_types/string"
+                    "$ref": "basic_types.json#/definitions/string"
                 }
             }
 

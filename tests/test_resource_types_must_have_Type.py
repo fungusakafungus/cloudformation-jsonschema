@@ -1,5 +1,6 @@
-import jsonschema
+import val
 import json
+import jsonschema
 import pytest
 
 valid = {
@@ -19,9 +20,9 @@ resource_schema = json.load(open('resource.json'))
 
 
 def test_valid():
-    jsonschema.validate(valid, resource_schema)
+    val.val(valid, resource_schema)
 
 
 def test_invalid():
     with pytest.raises(jsonschema.ValidationError):
-        jsonschema.validate(invalid, resource_schema)
+        val.val(invalid, resource_schema)
