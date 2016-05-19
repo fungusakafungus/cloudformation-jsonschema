@@ -1,0 +1,8 @@
+*.pyc
+*.cache
+.web_cache/
+.ropeproject
+.*.sw[op]
+Gemfile.lock
+tags
+venv/
