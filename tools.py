@@ -2,6 +2,7 @@
 from pyquery import PyQuery as q
 import json
 from collections import OrderedDict
+from copy import deepcopy
 
 this = None
 BASE = 'http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/'
@@ -51,39 +52,44 @@ def print_(schema):
     return json.dumps(schema, indent=4)
 
 
-def all_resource_patterns_by_name():
+def get_all_resource_type_names():
     h = get_pq(BASE + 'aws-template-resource-type-ref.html')
-    all_resource_patterns_by_name = OrderedDict(
-        (
-            a.strip(),
-            {'properties': {'Type': {'enum': [a.strip()]}}}
-        )
-        for a in h('#main-col-body li a').map(lambda x: this.text)
-    )
-    return all_resource_patterns_by_name
+    result = [
+        a.strip()
+        for a
+        in h('#main-col-body li a').map(lambda x: this.text)
+    ]
+    return result
 
 
-def resources_dict(schema):
+def get_resource_types(schema):
     if 'definitions' not in schema:
-        schema['definitions'] = OrderedDict(
-            {'resource_types': OrderedDict()}
-        )
+        schema['definitions'] = OrderedDict()
     if 'resource_types' not in schema['definitions']:
         schema['definitions']['resource_types'] = OrderedDict()
 
     return schema['definitions']['resource_types']
 
 
-def get_oneOf():
-    res_names = all_resource_patterns_by_name().keys()
-    return [{"$ref": "#/definitions/resource_types/" + i} for i in res_names]
+def get_oneOf(resource_type_names):
+    return [{"$ref": "#/definitions/resource_types/" + i} for i in resource_type_names]
 
 
-def update_all_resource_patterns_by_name(schema):
-    o = resources_dict(schema)
-    new = all_resource_patterns_by_name()
-    new.update(o)
-    schema['oneOf'] = get_oneOf()
-    schema['definitions']['resource_types'] = new
+def make_resource_type_definition(schema, resource_type_name):
+    result = deepcopy(schema['definitions']['resource_template'])
+    result['properties']['Type']['enum'] = [resource_type_name]
+
+    return result
+
+
+def update_all_resource_patterns_by_name(schema, resource_type_names):
+    resource_types = get_resource_types(schema)
+    for rt_name in resource_type_names:
+        rt_definition = make_resource_type_definition(
+            schema,
+            rt_name
+        )
+        resource_types[rt_name] = rt_definition
+    schema['oneOf'] = get_oneOf(resource_type_names)
     # put definitions last
     schema['definitions'] = schema.pop('definitions')

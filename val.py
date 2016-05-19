@@ -33,8 +33,9 @@ def val(instance, schema, definition=None):
         schema_path = '/'.join(str(p) for p in e.absolute_schema_path)
         if schema_path == 'properties/Resources/patternProperties/^[a-zA-Z0-9]+$/oneOf':
             validate_resource(e.instance, e.schema)
-        else:
-            raise
+        if schema_path == 'properties/Resources/patternProperties/^[a-zA-Z0-9]+$/additionalProperties':
+            validate_resource(e.instance, e.schema)
+        raise
 
 
 def validate_and_return_error(instance, schema):
