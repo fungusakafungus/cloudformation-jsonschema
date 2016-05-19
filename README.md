@@ -5,8 +5,8 @@ For now, I'm scraping AWS documentation with PyQuery.
 This is not your glossy software.
 
 ### current state
-Many things are validated, but some are not: attributes and resource property types are not validated yet.
-Some resource properties are not parsed properly.
+Many things are validated, but some are not: [resource property types](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-property-reference.html) are not validated yet.
+Some resource properties are not parsed properly, so their values are not validated.
 
 Preliminary hosted version of the schema can be found at http://fungusakafungus.github.io/cloudformation-jsonschema/v0.1/schema.json
 
@@ -63,5 +63,5 @@ You can then scrape AWS documentation for cloudformation resource types and save
  - [x] integrate/link schema.json and resource.json
  - [x] travis/circleci
  - [ ] validate resource property types (listed here: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-property-reference.html)
- - [ ] validate attributes (`Metadata`, `UpdatePolicy` and others)
+ - [x] validate attributes (`Metadata`, `UpdatePolicy` and others)
  - [ ] make json objects more stable (use more OrderedDict)

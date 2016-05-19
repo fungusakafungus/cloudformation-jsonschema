@@ -3,6 +3,7 @@
 import tools
 import resource_properties
 import val
+import tweak_resource_schema
 
 import requests
 from cachecontrol import CacheControl
@@ -18,14 +19,18 @@ def main(argv):
     # resource has a type
     val.val({"Type": "Something"}, resource_schema)
 
-    tools.update_all_resource_patterns_by_name(resource_schema)
+    resource_type_names = tools.get_all_resource_type_names()
+    tools.update_all_resource_patterns_by_name(
+        resource_schema,
+        resource_type_names
+    )
     # all resource types are known
     val.val({"Type": "AWS::Lambda::Function"}, resource_schema)
 
-    resource_type_names = tools.all_resource_patterns_by_name().keys()
     for resource_type_name in resource_type_names:
         print >> sys.stderr, resource_type_name
         resource_properties.set_resource_properties(resource_schema, resource_type_name)
+
     # simple resource properties are validated
     val.val(
         {
@@ -34,32 +39,18 @@ def main(argv):
                 "Groups": ["some_group"]
             }
         },
-        resource_schema
+        resource_schema,
+        '#/definitions/resource_types/AWS::IAM::User'
     )
+    del resource_schema['definitions']['resource_template']
+
     all_properties = resource_properties.all_res_properties()
     resource_schema['definitions']['property_types'] = all_properties
 
-    # fix inconsistencies
-    resource_schema['definitions']['resource_types']['AWS::Route53::RecordSetGroup']['properties']['Properties']['properties']['RecordSets'] = {
-        "type": "array",
-        "items": {
-            "$ref": "#/definitions/resource_types/AWS::Route53::RecordSet/properties/Properties"
-        }
-    }
-
-    # add Custom::* resource
-    resource_schema['definitions']['resource_types']['AWS::CloudFormation::CustomResource']['properties']['Type'] = {
-        "oneOf": [
-            {
-                "enum": [
-                    "AWS::CloudFormation::CustomResource"
-                ]
-            },
-            {
-                "pattern": "^Custom::.*"
-            }
-        ]
-    }
+    tweak_resource_schema.fix_RecordSetGroup(resource_schema)
+    tweak_resource_schema.add_Custom(resource_schema)
+    tweak_resource_schema.add_CreationPolicy(resource_schema)
+    tweak_resource_schema.add_UpdatePolicy(resource_schema)
 
     if len(argv) == 2 and argv[1].endswith('json'):
         tools.write(resource_schema, argv[1])

@@ -26,37 +26,45 @@ def property_ref_from_href(href):
     }
 
 
+type_patterns = (
+    ('type : string',
+     {"$ref": "basic_types.json#/definitions/string"}),
+    ('type : ref id',
+     {"$ref": "basic_types.json#/definitions/string"}),
+    ('list of strings',
+     {"$ref": "basic_types.json#/definitions/list<string>"}),
+    ('type : integer',
+     {"$ref": "basic_types.json#/definitions/integer"}),
+    ('type : number',
+     {"$ref": "basic_types.json#/definitions/integer"}),
+    ('type : boolean',
+     {"$ref": "basic_types.json#/definitions/boolean"}),
+    ('type : json object',
+     {"type": "object"}),
+    ('type : a list of amazon sns topics arns',
+     {"$ref": "basic_types.json#/definitions/list<string>"}),
+    ('key-value pairs',
+     {"$ref": "basic_types.json#/definitions/key-value-pairs"}),
+)
+
+
 def get_type(dd_):
     dd = dd_('p').filter(lambda x: q(this).text().startswith('Type'))
     t = dd.text().lower()
-    if 'type : string' in t:
-        return {"$ref": "basic_types.json#/definitions/string"}
-    if 'type : ref id' in t:
-        return {"$ref": "basic_types.json#/definitions/string"}
-    if 'list of strings' in t:
-        return {
-            "$ref": "basic_types.json#/definitions/list<string>"
-        }
-    if 'type : integer' in t:
-        return {"$ref": "basic_types.json#/definitions/integer"}
-    if 'type : boolean' in t:
-        return {"$ref": "basic_types.json#/definitions/boolean"}
-    if 'list of key-value pairs' in t:
-        return {"$ref": "basic_types.json#/definitions/key-value-pairs"}
+    for pattern, schema_fragment in type_patterns:
+        if pattern in t:
+            return schema_fragment
     if dd('a'):
         return property_ref_from_href(dd('a').attr('href'))
     if dd_('.type') and len(dd_('.type')):
         if (dd_('.type').text() == 'AWS::EC2::SecurityGroup' and
                 'list of' in t):
-            return {
-                'type': 'array',
-                'items': {
-                    "$ref": "basic_types.json#/definitions/string"
-                }
-            }
+            return {"$ref": "basic_types.json#/definitions/list<string>"}
 
-    log.warning('Could not parse resource property type: "%s"', dd_.html())
-    return {}
+    ind = t.find('type :')
+    extract = t[ind:ind + 50]
+    log.warning('Could not parse resource property type: "%s"\n"%s"', extract, dd_.html())
+    return {'description': dd_.html()}
 
 all_properties = tools.all_resource_properties_hrefs()
 all_resource_hrefs = tools.all_resource_hrefs()
@@ -68,7 +76,7 @@ def set_resource_properties(schema, res_type):
     log.extra['href'] = type_href
     h = tools.get_pq(type_href)
     dl = h('#main-col-body .variablelist dl').eq(0)
-    resources = tools.resources_dict(schema)
+    resources = tools.get_resource_types(schema)
     pairs = zip(dl('dt'), dl('dd'))
     pairs = [(q(dt), q(dd)) for dt, dd in pairs]
     shortcut = resources[res_type]['properties']
@@ -89,6 +97,7 @@ def set_resource_properties(schema, res_type):
     if required:
         shortcut['Properties']['required'] = required
         resources[res_type]['required'] = ['Properties']
+    resources[res_type]['additionalProperties'] = False
     return schema
 
 
