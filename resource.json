@@ -14,6 +14,7 @@
         "Type"
     ],
     "type": "object",
+    "additionalProperties": false,
     "oneOf": [
         {
             "$ref": "#/definitions/resource_types/AWS::ApiGateway::Account"
