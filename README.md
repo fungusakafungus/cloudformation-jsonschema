@@ -10,6 +10,8 @@ Some resource properties are not parsed properly, so their values are not valida
 
 Preliminary hosted version of the schema can be found at http://fungusakafungus.github.io/cloudformation-jsonschema/v0.2/schema.json
 
+The scraping code is in a miserable state.
+
 [![Build Status](https://travis-ci.org/fungusakafungus/cloudformation-jsonschema.svg?branch=master)](https://travis-ci.org/fungusakafungus/cloudformation-jsonschema)
 
 ### how to use
