@@ -43,6 +43,8 @@
 <p>Many things are validated, but some are not: attributes and resource property types are not validated yet.
 Some resource properties are not parsed properly.</p>
 
+<p>Preliminary hosted version of schema can be found at <a href="http://fungusakafungus.github.io/cloudformation-jsonschema/v0.1/schema.json">http://fungusakafungus.github.io/cloudformation-jsonschema/v0.1/schema.json</a></p>
+
 <p><a href="https://travis-ci.org/fungusakafungus/cloudformation-jsonschema"><img src="https://travis-ci.org/fungusakafungus/cloudformation-jsonschema.svg?branch=master" alt="Build Status"></a></p>
 
 <h3>
@@ -56,8 +58,23 @@ Some resource properties are not parsed properly.</p>
 
 <p>The schema consists of multiple files, <code>schema.json</code>, <code>resource.json</code> and <code>basic_types.json</code>. To resolve JSON pointers (<code>{"$ref": "basic_types.json#/definitions/string"}</code>) to files on local filesystem, you'll have to use a special resolver. See <code>val.py</code> for the example.</p>
 
+<p>Use released hosted version with <a href="http://python-jsonschema.readthedocs.io/en/latest/">python-jsonschema</a>:</p>
+
+<div class="highlight highlight-source-python"><pre><span class="pl-k">import</span> jsonschema, requests
+
+schema <span class="pl-k">=</span> requests.get(<span class="pl-s"><span class="pl-pds">'</span>http://fungusakafungus.github.io/cloudformation-jsonschema/v0.1/schema.json<span class="pl-pds">'</span></span>).json()
+jsonschema.validate(
+  {<span class="pl-s"><span class="pl-pds">'</span>Resources<span class="pl-pds">'</span></span>:{}, <span class="pl-s"><span class="pl-pds">'</span>Outputs<span class="pl-pds">'</span></span>:{<span class="pl-s"><span class="pl-pds">'</span>o<span class="pl-pds">'</span></span>:{<span class="pl-s"><span class="pl-pds">'</span>Value<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>test<span class="pl-pds">'</span></span>}}},
+  schema
+)</pre></div>
+
 <h3>
 <a id="how-to-contribute" class="anchor" href="#how-to-contribute" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>how to contribute</h3>
+
+<p>Submit false positive/negative issues with valid and invalid templates.</p>
+
+<h4>
+<a id="hack-the-schema" class="anchor" href="#hack-the-schema" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>hack the schema:</h4>
 
 <p>Create a virtualenv (<code>virtualenv venv; pip install -r requirements.txt</code>)</p>
 
@@ -93,13 +110,6 @@ Some resource properties are not parsed properly.</p>
 <li>[ ] validate resource property types (listed here: <a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-property-reference.html">http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-property-reference.html</a>)</li>
 <li>[ ] validate attributes (<code>Metadata</code>, <code>UpdatePolicy</code> and others)</li>
 <li>[ ] make json objects more stable (use more OrderedDict)</li>
-</ul>
-
-<p>cloudformation reference url</p>
-
-<ul>
-<li>list of all things, url</li>
-<li>html for one resource type/property type</li>
 </ul>
       </section>
     </div>
