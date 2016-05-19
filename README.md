@@ -8,16 +8,16 @@ This is not your glossy software.
 Many things are validated, but some are not: attributes and resource property types are not validated yet.
 Some resource properties are not parsed properly.
 
-Preliminary hosted version of schema can be found at http://fungusakafungus.github.io/cloudformation-jsonschema/v0.1/schema.json
+Preliminary hosted version of the schema can be found at http://fungusakafungus.github.io/cloudformation-jsonschema/v0.1/schema.json
 
 [![Build Status](https://travis-ci.org/fungusakafungus/cloudformation-jsonschema.svg?branch=master)](https://travis-ci.org/fungusakafungus/cloudformation-jsonschema)
 
 ### how to use
-Use `./validate_template.py tests/examples-aws/Rails_Single_Instance.template` to validate cloudformation templates on command line.
+Use `./validate_template.py tests/examples-aws/Rails_Single_Instance.template` to validate cloudformation templates on the command line.
 
 Use `schema.json` programmatically to validate complete Cloudformation templates.
 
-Use `resource.json` to validate one resource.
+Use `resource.json` to validate a single resource.
 
 The schema consists of multiple files, `schema.json`, `resource.json` and `basic_types.json`. To resolve JSON pointers (`{"$ref": "basic_types.json#/definitions/string"}`) to files on local filesystem, you'll have to use a special resolver. See `val.py` for the example.
 
