@@ -8,13 +8,40 @@
         },
         "Type": {
             "type": "string"
+        },
+        "DependsOn": {
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "Metadata": {
+            "type": "object"
+        },
+        "DeletionPolicy": {
+            "type": "string",
+            "enum": [
+                "Delete",
+                "Retain",
+                "Snapshot"
+            ]
+        },
+        "Condition": {
+            "type": "string"
         }
     },
+    "additionalProperties": false,
     "required": [
         "Type"
     ],
     "type": "object",
-    "additionalProperties": false,
     "oneOf": [
         {
             "$ref": "#/definitions/resource_types/AWS::ApiGateway::Account"

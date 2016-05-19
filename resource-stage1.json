@@ -3,15 +3,43 @@
     "title": "Resource",
     "description": "Cloudformation template resource",
     "properties": {
-	"Properties": {
-	    "type": "object"
-	},
-	"Type": {
-	    "type": "string"
-	}
+        "Properties": {
+            "type": "object"
+        },
+        "Type": {
+            "type": "string"
+        },
+        "DependsOn": {
+            "oneOf": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                }
+            ]
+        },
+        "Metadata": {
+            "type": "object"
+        },
+        "DeletionPolicy": {
+            "type": "string",
+            "enum": [
+                "Delete",
+                "Retain",
+                "Snapshot"
+            ]
+        },
+        "Condition": {
+            "type": "string"
+        }
     },
+    "additionalProperties": false,
     "required": [
-	"Type"
+        "Type"
     ],
     "type": "object"
 }
