@@ -8,7 +8,7 @@ This is not your glossy software.
 Many things are validated, but some are not: [resource property types](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-property-reference.html) are not validated yet.
 Some resource properties are not parsed properly, so their values are not validated.
 
-Preliminary hosted version of the schema can be found at http://fungusakafungus.github.io/cloudformation-jsonschema/v0.1/schema.json
+Preliminary hosted version of the schema can be found at http://fungusakafungus.github.io/cloudformation-jsonschema/v0.2/schema.json
 
 [![Build Status](https://travis-ci.org/fungusakafungus/cloudformation-jsonschema.svg?branch=master)](https://travis-ci.org/fungusakafungus/cloudformation-jsonschema)
 
@@ -25,7 +25,7 @@ Use released hosted version with [python-jsonschema](http://python-jsonschema.re
 ```python
 import jsonschema, requests
 
-schema = requests.get('http://fungusakafungus.github.io/cloudformation-jsonschema/v0.1/schema.json').json()
+schema = requests.get('http://fungusakafungus.github.io/cloudformation-jsonschema/v0.2/schema.json').json()
 jsonschema.validate(
   {'Resources':{}, 'Outputs':{'o':{'Value':'test'}}},
   schema
