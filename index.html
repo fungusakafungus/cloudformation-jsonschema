@@ -40,21 +40,21 @@
 <h3>
 <a id="current-state" class="anchor" href="#current-state" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>current state</h3>
 
-<p>Many things are validated, but some are not: attributes and resource property types are not validated yet.
-Some resource properties are not parsed properly.</p>
+<p>Many things are validated, but some are not: <a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-property-reference.html">resource property types</a> are not validated yet.
+Some resource properties are not parsed properly, so their values are not validated.</p>
 
-<p>Preliminary hosted version of schema can be found at <a href="http://fungusakafungus.github.io/cloudformation-jsonschema/v0.1/schema.json">http://fungusakafungus.github.io/cloudformation-jsonschema/v0.1/schema.json</a></p>
+<p>Preliminary hosted version of the schema can be found at <a href="http://fungusakafungus.github.io/cloudformation-jsonschema/v0.2/schema.json">http://fungusakafungus.github.io/cloudformation-jsonschema/v0.2/schema.json</a></p>
 
 <p><a href="https://travis-ci.org/fungusakafungus/cloudformation-jsonschema"><img src="https://travis-ci.org/fungusakafungus/cloudformation-jsonschema.svg?branch=master" alt="Build Status"></a></p>
 
 <h3>
 <a id="how-to-use" class="anchor" href="#how-to-use" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>how to use</h3>
 
-<p>Use <code>./validate_template.py tests/examples-aws/Rails_Single_Instance.template</code> to validate cloudformation templates on command line.</p>
+<p>Use <code>./validate_template.py tests/examples-aws/Rails_Single_Instance.template</code> to validate cloudformation templates on the command line.</p>
 
 <p>Use <code>schema.json</code> programmatically to validate complete Cloudformation templates.</p>
 
-<p>Use <code>resource.json</code> to validate one resource.</p>
+<p>Use <code>resource.json</code> to validate a single resource.</p>
 
 <p>The schema consists of multiple files, <code>schema.json</code>, <code>resource.json</code> and <code>basic_types.json</code>. To resolve JSON pointers (<code>{"$ref": "basic_types.json#/definitions/string"}</code>) to files on local filesystem, you'll have to use a special resolver. See <code>val.py</code> for the example.</p>
 
@@ -62,7 +62,7 @@ Some resource properties are not parsed properly.</p>
 
 <div class="highlight highlight-source-python"><pre><span class="pl-k">import</span> jsonschema, requests
 
-schema <span class="pl-k">=</span> requests.get(<span class="pl-s"><span class="pl-pds">'</span>http://fungusakafungus.github.io/cloudformation-jsonschema/v0.1/schema.json<span class="pl-pds">'</span></span>).json()
+schema <span class="pl-k">=</span> requests.get(<span class="pl-s"><span class="pl-pds">'</span>http://fungusakafungus.github.io/cloudformation-jsonschema/v0.2/schema.json<span class="pl-pds">'</span></span>).json()
 jsonschema.validate(
   {<span class="pl-s"><span class="pl-pds">'</span>Resources<span class="pl-pds">'</span></span>:{}, <span class="pl-s"><span class="pl-pds">'</span>Outputs<span class="pl-pds">'</span></span>:{<span class="pl-s"><span class="pl-pds">'</span>o<span class="pl-pds">'</span></span>:{<span class="pl-s"><span class="pl-pds">'</span>Value<span class="pl-pds">'</span></span>:<span class="pl-s"><span class="pl-pds">'</span>test<span class="pl-pds">'</span></span>}}},
   schema
@@ -108,7 +108,7 @@ jsonschema.validate(
 <li>[x] integrate/link schema.json and resource.json</li>
 <li>[x] travis/circleci</li>
 <li>[ ] validate resource property types (listed here: <a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-property-reference.html">http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-property-reference.html</a>)</li>
-<li>[ ] validate attributes (<code>Metadata</code>, <code>UpdatePolicy</code> and others)</li>
+<li>[x] validate attributes (<code>Metadata</code>, <code>UpdatePolicy</code> and others)</li>
 <li>[ ] make json objects more stable (use more OrderedDict)</li>
 </ul>
       </section>
