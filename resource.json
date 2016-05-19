@@ -1144,8 +1144,15 @@
                 ],
                 "properties": {
                     "Type": {
-                        "enum": [
-                            "AWS::CloudFormation::CustomResource"
+                        "oneOf": [
+                            {
+                                "enum": [
+                                    "AWS::CloudFormation::CustomResource"
+                                ]
+                            },
+                            {
+                                "pattern": "^Custom::.*"
+                            }
                         ]
                     },
                     "Properties": {

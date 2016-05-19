@@ -25,6 +25,7 @@
     "Resources": {
         "EMRInstanceProfile": {
             "Properties": {
+                "Path": "/",
                 "Roles": [
                     {
                         "Ref": "EMRJobFlowRole"

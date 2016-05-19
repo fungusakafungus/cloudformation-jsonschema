@@ -47,6 +47,20 @@ def main(argv):
         }
     }
 
+    # add Custom::* resource
+    resource_schema['definitions']['resource_types']['AWS::CloudFormation::CustomResource']['properties']['Type'] = {
+        "oneOf": [
+            {
+                "enum": [
+                    "AWS::CloudFormation::CustomResource"
+                ]
+            },
+            {
+                "pattern": "^Custom::.*"
+            }
+        ]
+    }
+
     if len(argv) == 2 and argv[1].endswith('json'):
         tools.write(resource_schema, argv[1])
     else:

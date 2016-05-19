@@ -3,6 +3,7 @@
     "Resources": {
         "CFNInstanceProfile": {
             "Properties": {
+                "Path": "/",
                 "Roles": [
                     {
                         "Ref": "CFNRole"
