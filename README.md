@@ -8,6 +8,8 @@ This is not your glossy software.
 Many things are validated, but some are not: attributes and resource property types are not validated yet.
 Some resource properties are not parsed properly.
 
+[![Build Status](https://travis-ci.org/fungusakafungus/cloudformation-jsonschema.svg?branch=master)](https://travis-ci.org/fungusakafungus/cloudformation-jsonschema)
+
 ### how to use
 Use `./validate_template.py tests/examples-aws/Rails_Single_Instance.template` to validate cloudformation templates on command line.
 
