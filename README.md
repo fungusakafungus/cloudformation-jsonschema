@@ -36,7 +36,7 @@ jsonschema.validate(
 ### how to contribute
 Submit false positive/negative issues with valid and invalid templates.
 
-#### Hack the schema:
+#### hack the schema:
 
 Create a virtualenv (`virtualenv venv; pip install -r requirements.txt`)
 
