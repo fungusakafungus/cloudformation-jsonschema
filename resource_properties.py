@@ -1,14 +1,15 @@
 # coding: utf-8
 from pyquery import PyQuery as q
 from collections import OrderedDict
-from tools import *
+import tools
 import logging
 
 
 logging.basicConfig(format='%(levelname)s %(type)s %(href)s\n  %(message)s')
 log = logging.LoggerAdapter(logging.getLogger(), {'type': '', 'href': ''})
 
-PROPERTIES_REFERENCE = BASE + 'aws-product-property-reference.html'
+PROPERTIES_REFERENCE = tools.BASE + 'aws-product-property-reference.html'
+this = None
 
 
 def property_name_from_href(href):
@@ -29,27 +30,19 @@ def get_type(dd_):
     dd = dd_('p').filter(lambda x: q(this).text().startswith('Type'))
     t = dd.text().lower()
     if 'type : string' in t:
-        return {"$ref": "#/definitions/basic_types/string"}
+        return {"$ref": "basic_types.json#/definitions/string"}
+    if 'type : ref id' in t:
+        return {"$ref": "basic_types.json#/definitions/string"}
     if 'list of strings' in t:
         return {
-            'type': 'array',
-            'items': {"$ref": "#/definitions/basic_types/string"}
+            "$ref": "basic_types.json#/definitions/list<string>"
         }
     if 'type : integer' in t:
-        return {"$ref": "#/definitions/basic_types/integer"}
+        return {"$ref": "basic_types.json#/definitions/integer"}
     if 'type : boolean' in t:
-        return {"$ref": "#/definitions/basic_types/boolean"}
+        return {"$ref": "basic_types.json#/definitions/boolean"}
     if 'list of key-value pairs' in t:
-        return OrderedDict((
-            ('type', 'array'),
-            ('items', OrderedDict((
-                ('type', 'array'),
-                ('items', [
-                    {"$ref": "#/definitions/basic_types/string"},
-                    {"$ref": "#/definitions/basic_types/string"},
-                ])
-            ))),
-        ))
+        return {"$ref": "basic_types.json#/definitions/key-value-pairs"}
     if dd('a'):
         return property_ref_from_href(dd('a').attr('href'))
     if dd_('.type') and len(dd_('.type')):
@@ -58,24 +51,24 @@ def get_type(dd_):
             return {
                 'type': 'array',
                 'items': {
-                    "$ref": "#/definitions/basic_types/string"
+                    "$ref": "basic_types.json#/definitions/string"
                 }
             }
 
     log.warning('Could not parse resource property type: "%s"', dd_.html())
     return {}
 
-all_properties = all_resource_properties_hrefs()
+all_properties = tools.all_resource_properties_hrefs()
+all_resource_hrefs = tools.all_resource_hrefs()
 
 
 def set_resource_properties(schema, res_type):
     log.extra['type'] = res_type
-    all_ = all_resource_hrefs()
-    type_href = all_[res_type]
+    type_href = all_resource_hrefs[res_type]
     log.extra['href'] = type_href
-    h = get_pq(type_href)
+    h = tools.get_pq(type_href)
     dl = h('#main-col-body .variablelist dl').eq(0)
-    resources = resources_dict(schema)
+    resources = tools.resources_dict(schema)
     pairs = zip(dl('dt'), dl('dd'))
     pairs = [(q(dt), q(dd)) for dt, dd in pairs]
     shortcut = resources[res_type]['properties']
@@ -88,7 +81,10 @@ def set_resource_properties(schema, res_type):
         k.text()
         for k, v
         in pairs
-        if v('p').filter(lambda i: 'Required : Yes' in q(this).text())
+        if v('p').filter(
+            lambda i: 'Required : Yes' in q(this).text() and
+            not 'Yes, for VPC security groups' in q(this).text()
+        )
     ]
     if required:
         shortcut['Properties']['required'] = required
@@ -97,7 +93,7 @@ def set_resource_properties(schema, res_type):
 
 
 def all_res_properties():
-    h = get_pq(PROPERTIES_REFERENCE)
+    h = tools.get_pq(PROPERTIES_REFERENCE)
     res = OrderedDict(
         (
             property_name_from_href(q(a).attr("href")),
