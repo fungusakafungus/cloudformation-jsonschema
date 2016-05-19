@@ -95,6 +95,16 @@ def test_fn_getazs_valid(instance):
 
 
 @pytest.mark.parametrize("instance", [
+    {'Fn::Join': [', ', ['a', 'b']]},
+    {'Fn::Join': [', ', [{'Ref': 'p1'}, 'b']]},
+    {'Fn::Join': [', ', {'Fn::GetAtt': ['AllSecurityGroups', 'Value']}]},
+])
+def test_fn_join_valid(instance):
+    val.val(instance, basic_types_schema,
+            definition="#/definitions/functions/Fn::Join")
+
+
+@pytest.mark.parametrize("instance", [
     {'Fn::GetAZs': []},
     {'Fn::GetAZs': {'Fn::Join': ['-', ['us', 'east', '1']]}},
     {"Fn::GetAZs": {"Ref": "AWS::Region", 'extra': 3}},

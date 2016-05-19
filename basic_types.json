@@ -187,10 +187,17 @@
                                 "type": "string"
                             },
                             {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/string"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/string"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "#/definitions/function"
+                                    }
+                                ]
                             }
                         ]
 
