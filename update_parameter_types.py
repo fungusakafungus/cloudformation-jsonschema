@@ -3,6 +3,8 @@
 import tools
 import resource_properties
 import val
+from pyquery import PyQuery as q
+from collections import OrderedDict
 
 import requests
 from cachecontrol import CacheControl
@@ -10,9 +12,8 @@ from cachecontrol.caches import FileCache
 
 
 def parse_paremeter_types(dd):
-    from pyquery import PyQuery as q
-    from collections import OrderedDict
     types = [q(dt).text() for dt in dd('dl dt')]
+    types += ['List<String>']  # undocumented
     result = OrderedDict()
     result['type'] = 'string'
     result['enum'] = types
@@ -21,8 +22,6 @@ def parse_paremeter_types(dd):
 
 
 def parse_parameters():
-    from pyquery import PyQuery as q
-    from collections import OrderedDict
     parameters_href = tools.BASE + 'parameters-section-structure.html'
     h = tools.get_pq(parameters_href)
     dl = h('#main-col-body .variablelist dl').eq(0)
@@ -33,6 +32,8 @@ def parse_parameters():
     result['Type'] = parse_paremeter_types(dl.pop('Type'))
     for dt in dl.keys():
         result[dt] = {'type': 'string'}
+    result['AllowedValues']['type'] = 'array'
+    result['NoEcho']['type'] = ['string', 'boolean']
     return result
 
 

@@ -126,14 +126,15 @@
                         "List<AWS::EC2::Subnet::Id>",
                         "List<AWS::EC2::Volume::Id>",
                         "List<AWS::EC2::VPC::Id>",
-                        "List<AWS::Route53::HostedZone::Id>"
+                        "List<AWS::Route53::HostedZone::Id>",
+                        "List<String>"
                     ]
                 },
                 "AllowedPattern": {
                     "type": "string"
                 },
                 "AllowedValues": {
-                    "type": "string"
+                    "type": "array"
                 },
                 "ConstraintDescription": {
                     "type": "string"
@@ -157,7 +158,10 @@
                     "type": "string"
                 },
                 "NoEcho": {
-                    "type": "string"
+                    "type": [
+                        "string",
+                        "boolean"
+                    ]
                 }
             },
             "additionalProperties": false,
