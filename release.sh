@@ -18,5 +18,5 @@ for f in $SCHEMA_FILES; do
 	SEDSCRIPT
 done
 mkdir -p $VERSION
-mv $SCHEMA_FILES $VERSION
+git mv $SCHEMA_FILES $VERSION
 git add $VERSION
