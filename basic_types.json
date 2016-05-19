@@ -44,6 +44,13 @@
                 }
             ]
         },
+        "primitive": {
+            "anyOf": [
+                { "$ref": "#/definitions/string" },
+                { "$ref": "#/definitions/integer" },
+                { "$ref": "#/definitions/boolean" }
+            ]
+        },
         "list<string>": {
             "oneOf": [
                 {
@@ -191,7 +198,7 @@
                                     {
                                         "type": "array",
                                         "items": {
-                                            "$ref": "#/definitions/string"
+                                            "$ref": "#/definitions/primitive"
                                         }
                                     },
                                     {
@@ -200,7 +207,6 @@
                                 ]
                             }
                         ]
-
                     }
                 },
                 "required": ["Fn::Join"]

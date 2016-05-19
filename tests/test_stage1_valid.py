@@ -98,6 +98,7 @@ def test_fn_getazs_valid(instance):
     {'Fn::Join': [', ', ['a', 'b']]},
     {'Fn::Join': [', ', [{'Ref': 'p1'}, 'b']]},
     {'Fn::Join': [', ', {'Fn::GetAtt': ['AllSecurityGroups', 'Value']}]},
+    {'Fn::Join': ['', ['traffic-analyzer', 1, '.', 'prod', '.', {'Ref': 'AWS::Region'}, '.', 'aws.server.com', '.']]},
 ])
 def test_fn_join_valid(instance):
     val.val(instance, basic_types_schema,
