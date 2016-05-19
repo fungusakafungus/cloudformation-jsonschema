@@ -8,6 +8,8 @@ This is not your glossy software.
 Many things are validated, but some are not: attributes and resource property types are not validated yet.
 Some resource properties are not parsed properly.
 
+Preliminary hosted version of schema can be found at http://fungusakafungus.github.io/cloudformation-jsonschema/v0.1/schema.json
+
 [![Build Status](https://travis-ci.org/fungusakafungus/cloudformation-jsonschema.svg?branch=master)](https://travis-ci.org/fungusakafungus/cloudformation-jsonschema)
 
 ### how to use
@@ -19,7 +21,23 @@ Use `resource.json` to validate one resource.
 
 The schema consists of multiple files, `schema.json`, `resource.json` and `basic_types.json`. To resolve JSON pointers (`{"$ref": "basic_types.json#/definitions/string"}`) to files on local filesystem, you'll have to use a special resolver. See `val.py` for the example.
 
+Use released hosted version with [python-jsonschema](http://python-jsonschema.readthedocs.io/en/latest/):
+```python
+import jsonschema, requests
+
+schema = requests.get('http://fungusakafungus.github.io/cloudformation-jsonschema/v0.1/schema.json').json()
+jsonschema.validate(
+  {'Resources':{}, 'Outputs':{'o':{'Value':'test'}}},
+  schema
+)
+```
+
+
 ### how to contribute
+Submit false positive/negative issues with valid and invalid templates.
+
+#### Hack the schema:
+
 Create a virtualenv (`virtualenv venv; pip install -r requirements.txt`)
 
 You can then scrape AWS documentation for cloudformation resource types and save it as jsonschema:
@@ -47,7 +65,3 @@ You can then scrape AWS documentation for cloudformation resource types and save
  - [ ] validate resource property types (listed here: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-property-reference.html)
  - [ ] validate attributes (`Metadata`, `UpdatePolicy` and others)
  - [ ] make json objects more stable (use more OrderedDict)
-
-cloudformation reference url
- - list of all things, url
- - html for one resource type/property type
