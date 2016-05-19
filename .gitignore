@@ -1,8 +1,9 @@
 *.pyc
-*.cache
+.cache/
 .web_cache/
 .ropeproject
 .*.sw[op]
 Gemfile.lock
 tags
 venv/
+_site/
