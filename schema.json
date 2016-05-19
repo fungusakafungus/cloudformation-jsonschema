@@ -54,7 +54,7 @@
                     "type": "object",
                     "properties": {
                         "Value": {
-                            "type": "object"
+                            "$ref": "basic_types.json#/definitions/string"
                         },
                         "Description": {
                             "type": "string"
