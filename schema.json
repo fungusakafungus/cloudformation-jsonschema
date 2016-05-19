@@ -6,7 +6,9 @@
     "properties": {
         "AWSTemplateFormatVersion": {
             "type": "string",
-            "enum": [ "2010-09-09" ]
+            "enum": [
+                "2010-09-09"
+            ]
         },
         "Description": {
             "description": "Template description",
@@ -16,7 +18,9 @@
         "Parameters": {
             "type": "object",
             "patternProperties": {
-                "^[a-zA-Z0-9]+$": {"$ref": "#/definitions/Parameter"}
+                "^[a-zA-Z0-9]+$": {
+                    "$ref": "#/definitions/Parameter"
+                }
             },
             "maxProperties": 50,
             "additionalProperties": false
@@ -43,7 +47,9 @@
             "description": "Template resources",
             "type": "object",
             "patternProperties": {
-                "^[a-zA-Z0-9]+$": {"$ref": "resource.json#/"}
+                "^[a-zA-Z0-9]+$": {
+                    "$ref": "resource.json#/"
+                }
             },
             "additionalProperties": false
         },
@@ -60,7 +66,9 @@
                             "type": "string"
                         }
                     },
-                    "required": ["Value"]
+                    "required": [
+                        "Value"
+                    ]
                 }
             },
             "minProperties": 1,
@@ -71,7 +79,9 @@
             "type": "object"
         }
     },
-    "required": ["Resources"],
+    "required": [
+        "Resources"
+    ],
     "additionalProperties": false,
     "definitions": {
         "Resource": {
@@ -84,35 +94,76 @@
                     "type": "string"
                 }
             },
-            "required": ["Type"]
+            "required": [
+                "Type"
+            ]
         },
         "Parameter": {
             "type": "object",
             "properties": {
                 "Type": {
-                    "description": "A parameter of type String is simply a literal string.\\nA parameter of type Number can be an integer or float. Note that AWS CloudFormation validates the parameter as a number but uses the parameter value within the template as a string.\\nA parameter of type CommaDelimitedList is an array of literal strings separated by commas. The member strings are space trimmed and there is one more string than there are commas in the specified value.",
+                    "type": "string",
                     "enum": [
                         "String",
                         "Number",
+                        "List<Number>",
                         "CommaDelimitedList",
-                        "AWS::EC2::KeyPair::KeyName"
+                        "AWS::EC2::AvailabilityZone::Name",
+                        "AWS::EC2::Image::Id",
+                        "AWS::EC2::Instance::Id",
+                        "AWS::EC2::KeyPair::KeyName",
+                        "AWS::EC2::SecurityGroup::GroupName",
+                        "AWS::EC2::SecurityGroup::Id",
+                        "AWS::EC2::Subnet::Id",
+                        "AWS::EC2::Volume::Id",
+                        "AWS::EC2::VPC::Id",
+                        "AWS::Route53::HostedZone::Id",
+                        "List<AWS::EC2::AvailabilityZone::Name>",
+                        "List<AWS::EC2::Image::Id>",
+                        "List<AWS::EC2::Instance::Id>",
+                        "List<AWS::EC2::SecurityGroup::GroupName>",
+                        "List<AWS::EC2::SecurityGroup::Id>",
+                        "List<AWS::EC2::Subnet::Id>",
+                        "List<AWS::EC2::Volume::Id>",
+                        "List<AWS::EC2::VPC::Id>",
+                        "List<AWS::Route53::HostedZone::Id>"
                     ]
                 },
-                "Default": {
-                    "type": "string",
-                    "description": "A value of the appropriate type for the template to use if no value is specified at stack creation. If the parameter has constraints defined, this value must adhere to those constraints."
+                "AllowedPattern": {
+                    "type": "string"
                 },
                 "AllowedValues": {
-                    "type": "array",
-                    "description": "An array containing the list of values allowed for the parameter."
+                    "type": "string"
+                },
+                "ConstraintDescription": {
+                    "type": "string"
+                },
+                "Default": {
+                    "type": "string"
+                },
+                "Description": {
+                    "type": "string"
+                },
+                "MaxLength": {
+                    "type": "string"
+                },
+                "MaxValue": {
+                    "type": "string"
+                },
+                "MinLength": {
+                    "type": "string"
+                },
+                "MinValue": {
+                    "type": "string"
                 },
                 "NoEcho": {
-                    "type": ["string", "boolean"],
-                    "description": "If TRUE, the value of the parameter is masked with asterisks (*****) with aws cloudformation describe-stacks."
+                    "type": "string"
                 }
             },
-            "additionalProperties": true,
-            "required": ["Type"]
+            "additionalProperties": false,
+            "required": [
+                "Type"
+            ]
         }
     }
 }
