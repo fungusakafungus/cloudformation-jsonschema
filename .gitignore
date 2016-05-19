@@ -4,3 +4,7 @@
 .*.swp
 tags
 venv/
+Gemfile.lock
+.ruby-version
+_site/
+.cache/
