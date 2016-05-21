@@ -80,7 +80,6 @@ def set_resource_properties(schema, res_type):
     pairs = zip(dl('dt'), dl('dd'))
     pairs = [(q(dt), q(dd)) for dt, dd in pairs]
     shortcut = resources[res_type]['properties']
-    shortcut['Properties'] = OrderedDict()
     shortcut['Properties']['properties'] = OrderedDict(
         (dt.text(), get_type(dd))
         for dt, dd in pairs
