@@ -67,3 +67,4 @@ You can then scrape AWS documentation for cloudformation resource types and save
  - [ ] validate resource property types (listed here: http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-product-property-reference.html)
  - [x] validate attributes (`Metadata`, `UpdatePolicy` and others)
  - [ ] make json objects more stable (use more OrderedDict)
+ - [ ] reject unknown resource properties: https://github.com/fungusakafungus/cloudformation-jsonschema/pull/9
