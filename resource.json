@@ -1181,6 +1181,9 @@
                             },
                             "VPCZoneIdentifier": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
+                            },
+                            "NotificationConfiguration": {
+                                "$ref": "#/definitions/property_types/aws-properties-as-notificationconfigurations"
                             }
                         },
                         "required": [

@@ -2,10 +2,11 @@
 
 import tools
 
-
 import requests
 from cachecontrol import CacheControl
 from cachecontrol.caches import FileCache
+
+import logging
 
 
 this = None
@@ -46,7 +47,7 @@ def fix_RecordSetGroup(resource_schema):
             }
         }
     except KeyError:
-        pass
+        logging.warning('Failed to apply a tweak')
 
 
 def add_CreationPolicy(resource_schema):
@@ -62,7 +63,7 @@ def add_CreationPolicy(resource_schema):
                 "$ref": "#/definitions/attributes/CreationPolicy"
             }
         except KeyError:
-            pass
+            logging.warning('Failed to apply a tweak')
 
 
 def add_UpdatePolicy(resource_schema):
@@ -74,7 +75,30 @@ def add_UpdatePolicy(resource_schema):
             "$ref": "#/definitions/attributes/UpdatePolicy"
         }
     except KeyError:
-        pass
+        logging.warning('Failed to apply a tweak')
+
+
+def add_AutoScalingGroup_NotificationConfiguration(resource_schema):
+    try:
+        (
+            resource_schema['definitions']['resource_types']
+            ['AWS::AutoScaling::AutoScalingGroup']['properties']
+            ['Properties']['properties']
+        )['NotificationConfiguration'] = (
+            resource_schema['definitions']['resource_types']
+            ['AWS::AutoScaling::AutoScalingGroup']['properties']
+            ['Properties']['properties']
+        )['NotificationConfigurations']
+    except KeyError:
+        logging.warning('Failed to apply a tweak')
+
+
+def apply_all_tweaks(resource_schema):
+    fix_RecordSetGroup(resource_schema)
+    add_Custom(resource_schema)
+    add_CreationPolicy(resource_schema)
+    add_UpdatePolicy(resource_schema)
+    add_AutoScalingGroup_NotificationConfiguration(resource_schema)
 
 
 def main(argv):
@@ -83,10 +107,7 @@ def main(argv):
     requests.get = sess.get
     resource_schema = tools.load(sys.argv[1])
 
-    fix_RecordSetGroup(resource_schema)
-    add_Custom(resource_schema)
-    add_CreationPolicy(resource_schema)
-    add_UpdatePolicy(resource_schema)
+    apply_all_tweaks(resource_schema)
 
     if len(argv) == 3 and argv[2].endswith('json'):
         tools.write(resource_schema, argv[1])

@@ -48,10 +48,7 @@ def main(argv):
     all_properties = resource_properties.all_res_properties()
     resource_schema['definitions']['property_types'] = all_properties
 
-    tweak_resource_schema.fix_RecordSetGroup(resource_schema)
-    tweak_resource_schema.add_Custom(resource_schema)
-    tweak_resource_schema.add_CreationPolicy(resource_schema)
-    tweak_resource_schema.add_UpdatePolicy(resource_schema)
+    tweak_resource_schema.apply_all_tweaks(resource_schema)
 
     if args.dest:
         tools.write(resource_schema, args.dest)

@@ -1,6 +1,8 @@
 import jsonschema
 import os.path
 
+import tools
+
 
 def resolve_and_validate(instance, schema):
     resolver = jsonschema.RefResolver(
@@ -33,10 +35,9 @@ def val(instance, schema, definition=None):
         resolve_and_validate(instance, schema)
     except jsonschema.ValidationError as e:
         schema_path = '/'.join(str(p) for p in e.absolute_schema_path)
-        if schema_path == 'properties/Resources/patternProperties/^[a-zA-Z0-9]+$/oneOf':
-            validate_resource(e.instance, e.schema)
-        if schema_path == 'properties/Resources/patternProperties/^[a-zA-Z0-9]+$/additionalProperties':
-            validate_resource(e.instance, e.schema)
+        if schema_path in ['properties/Resources/patternProperties/^[a-zA-Z0-9]+$/oneOf',
+                           'properties/Resources/patternProperties/^[a-zA-Z0-9]+$/additionalProperties']:
+            validate_resource(tools.OD(e.instance), tools.OD(e.schema))
         raise
 
 
