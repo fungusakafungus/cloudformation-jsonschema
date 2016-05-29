@@ -4,7 +4,7 @@ import os.path
 
 def resolve_and_validate(instance, schema):
     resolver = jsonschema.RefResolver(
-        'file:' + os.path.dirname(__file__) + '/',
+        'file:' + os.path.abspath(os.path.dirname(__file__)) + '/',
         schema
     )
     jsonschema.validate(instance, schema,
@@ -14,6 +14,8 @@ def resolve_and_validate(instance, schema):
 def validate_resource(resource, schema):
     resource_types = schema['definitions']['resource_types']
     resource_type = resource['Type']
+    if resource_type.startswith('Custom::'):
+        resource_type = 'AWS::CloudFormation::CustomResource'
     if resource_type not in resource_types.keys():
         raise ValueError('Resource type "{}" unknown'.format(resource_type))
     resource_schema = resource_types[resource_type].copy()

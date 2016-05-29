@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 import sys
 import val
-import json
+import tools
 
-schema = json.load(open('schema.json'))
-template = json.load(open(sys.argv[1]))
+schema = tools.load('schema.json')
+template = tools.load(sys.argv[1])
 val.val(template, schema)

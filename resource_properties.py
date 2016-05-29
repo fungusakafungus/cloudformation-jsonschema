@@ -70,12 +70,25 @@ all_properties = tools.all_resource_properties_hrefs()
 all_resource_hrefs = tools.all_resource_hrefs()
 
 
+def pretty_print_element(el):
+    from pygments import highlight
+    from pygments.lexers import HtmlLexer
+    from pygments.formatters import TerminalFormatter
+
+    code = el.html(pretty_print=True)
+    print highlight(code, HtmlLexer(), TerminalFormatter())
+
+
 def set_resource_properties(schema, res_type):
     log.extra['type'] = res_type
     type_href = all_resource_hrefs[res_type]
     log.extra['href'] = type_href
     h = tools.get_pq(type_href)
-    dl = h('#main-col-body .variablelist dl').eq(0)
+    dl = h('#main-col-body .variablelist dl').filter(
+        lambda i: 'Type :' in q(this).text()
+    )
+    #pretty_print_element(dl)
+    #import pdb; pdb.set_trace()
     resources = tools.get_resource_types(schema)
     pairs = zip(dl('dt'), dl('dd'))
     pairs = [(q(dt), q(dd)) for dt, dd in pairs]
@@ -95,7 +108,7 @@ def set_resource_properties(schema, res_type):
     ]
     if required:
         shortcut['Properties']['required'] = required
-        resources[res_type]['required'] = ['Properties']
+        resources[res_type]['required'] += ['Properties']
     resources[res_type]['additionalProperties'] = False
     return schema
 

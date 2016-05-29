@@ -14,7 +14,9 @@ this = None
 def add_Custom(resource_schema):
     # add Custom::* resource
     try:
-        resource_schema['definitions']['resource_types']['AWS::CloudFormation::CustomResource']['properties']['Type'] = {
+        (resource_schema['definitions']['resource_types']
+         ['AWS::CloudFormation::CustomResource']
+         ['properties'])['Type'] = {
             "oneOf": [
                 {
                     "enum": [
@@ -26,6 +28,9 @@ def add_Custom(resource_schema):
                 }
             ]
         }
+        (resource_schema['definitions']['resource_types']
+         ['AWS::CloudFormation::CustomResource']['properties']
+         ['Properties'])['additionalProperties'] = True
     except KeyError:
         pass
 
@@ -33,8 +38,8 @@ def add_Custom(resource_schema):
 def fix_RecordSetGroup(resource_schema):
     try:
         (resource_schema['definitions']['resource_types']
-        ['AWS::Route53::RecordSetGroup']['properties']['Properties']
-        ['properties'])['RecordSets'] = {
+         ['AWS::Route53::RecordSetGroup']['properties']['Properties']
+         ['properties'])['RecordSets'] = {
             "type": "array",
             "items": {
                 "$ref": "#/definitions/resource_types/AWS::Route53::RecordSet/properties/Properties"
