@@ -9,6 +9,8 @@ schema = json.load(open('schema.json'))
 
 @pytest.mark.parametrize("template", glob.glob('tests/examples-*/*.template'))
 def test_template(template):
+    if 'troposphere/EMR_Cluster' in template:
+        pytest.skip('troposphere/EMR_Cluster uses undocumented AWS::EMR::Cluster.EbsConfiguration')
     if 'OpenStack' in template:
         pytest.skip('OpenStack is not supported')
     instance = json.load(open(template))
