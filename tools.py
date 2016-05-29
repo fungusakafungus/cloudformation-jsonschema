@@ -10,8 +10,6 @@ BASE = 'http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/'
 
 class OD(OrderedDict):
     def __repr__(self):
-        import logging
-        logging.warning('Called __repr__')
         return print_(self)
 
 
