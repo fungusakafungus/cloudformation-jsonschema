@@ -556,6 +556,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "CloudWatchRoleArn": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -590,6 +592,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Description": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -633,6 +637,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AuthorizerCredentials": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -686,6 +692,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -694,6 +701,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "BasePath": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -733,6 +742,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -741,6 +751,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Description": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -775,6 +787,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Description": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -814,6 +828,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -822,6 +837,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ApiKeyRequired": {
                                 "$ref": "basic_types.json#/definitions/boolean"
@@ -881,6 +898,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -889,6 +907,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ContentType": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -930,6 +950,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -938,6 +959,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ParentId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -975,6 +998,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -983,14 +1007,34 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Body": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "BodyS3Location": {
                                 "$ref": "#/definitions/property_types/aws-properties-apitgateway-restapi-bodys3location"
+                            },
+                            "CloneFrom": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "Description": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "FailOnWarnings": {
+                                "$ref": "basic_types.json#/definitions/boolean"
+                            },
+                            "Name": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "Parameters": {
+                                "$ref": "basic_types.json#/definitions/list<string>"
                             }
-                        }
+                        },
+                        "required": [
+                            "Name"
+                        ]
                     },
                     "Type": {
                         "type": "string",
@@ -1012,7 +1056,8 @@
                     }
                 },
                 "required": [
-                    "Type"
+                    "Type",
+                    "Properties"
                 ],
                 "additionalProperties": false
             },
@@ -1020,6 +1065,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "CacheClusterEnabled": {
                                 "$ref": "basic_types.json#/definitions/boolean"
@@ -1075,6 +1122,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -1083,6 +1131,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AvailabilityZones": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
@@ -1131,6 +1181,9 @@
                             },
                             "VPCZoneIdentifier": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
+                            },
+                            "NotificationConfiguration": {
+                                "$ref": "#/definitions/property_types/aws-properties-as-notificationconfigurations"
                             }
                         },
                         "required": [
@@ -1164,6 +1217,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -1172,6 +1226,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AssociatePublicIpAddress": {
                                 "$ref": "basic_types.json#/definitions/boolean"
@@ -1250,6 +1306,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -1258,6 +1315,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AutoScalingGroupName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -1308,6 +1367,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -1316,6 +1376,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AdjustmentType": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -1370,6 +1432,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -1378,6 +1441,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AutoScalingGroupName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -1425,6 +1490,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -1433,6 +1499,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "accessKeyId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -1483,6 +1551,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -1491,6 +1560,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": true,
                         "properties": {
                             "ServiceToken": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -1526,6 +1597,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -1534,6 +1606,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {}
                     },
                     "Type": {
@@ -1564,6 +1638,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ParameterGroups": {
                                 "$ref": "#/definitions/property_types/aws-properties-cloudformation-interface-parametergroup"
@@ -1601,6 +1677,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "NotificationARNs": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
@@ -1642,6 +1720,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -1650,6 +1729,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Count": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -1689,6 +1770,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -1697,6 +1779,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {}
                     },
                     "Type": {
@@ -1727,6 +1811,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "DistributionConfig": {
                                 "$ref": "#/definitions/property_types/aws-properties-cloudfront-distributionconfig"
@@ -1756,6 +1842,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -1764,6 +1851,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "CloudWatchLogsLogGroupArn": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -1773,8 +1862,36 @@
                             },
                             "EnableLogFileValidation": {
                                 "$ref": "basic_types.json#/definitions/boolean"
+                            },
+                            "IncludeGlobalServiceEvents": {
+                                "$ref": "basic_types.json#/definitions/boolean"
+                            },
+                            "IsLogging": {
+                                "$ref": "basic_types.json#/definitions/boolean"
+                            },
+                            "IsMultiRegionTrail": {
+                                "$ref": "basic_types.json#/definitions/boolean"
+                            },
+                            "KMSKeyId": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "S3BucketName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "S3KeyPrefix": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "SnsTopicName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "Tags": {
+                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
                             }
-                        }
+                        },
+                        "required": [
+                            "IsLogging",
+                            "S3BucketName"
+                        ]
                     },
                     "Type": {
                         "type": "string",
@@ -1796,7 +1913,8 @@
                     }
                 },
                 "required": [
-                    "Type"
+                    "Type",
+                    "Properties"
                 ],
                 "additionalProperties": false
             },
@@ -1804,6 +1922,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ActionsEnabled": {
                                 "$ref": "basic_types.json#/definitions/boolean"
@@ -1881,6 +2001,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -1889,6 +2010,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ApplicationName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -1923,6 +2046,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "DeploymentConfigName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -1960,6 +2085,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ApplicationName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -2011,6 +2138,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -2019,6 +2147,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Category": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -2069,6 +2199,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -2077,6 +2208,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ArtifactStore": {
                                 "$ref": "#/definitions/property_types/aws-properties-codepipeline-pipeline-artifactstore"
@@ -2123,6 +2256,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -2131,6 +2265,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ConfigRuleName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -2175,6 +2311,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -2183,6 +2320,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Name": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -2218,6 +2357,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -2226,6 +2366,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ConfigSnapshotDeliveryProperties": {
                                 "$ref": "#/definitions/property_types/aws-properties-config-deliverychannel-configsnapshotdeliveryproperties"
@@ -2267,6 +2409,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -2275,6 +2418,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Activate": {
                                 "$ref": "basic_types.json#/definitions/boolean"
@@ -2323,6 +2468,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -2331,6 +2477,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "CreateAlias": {
                                 "$ref": "basic_types.json#/definitions/boolean"
@@ -2377,6 +2525,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -2385,6 +2534,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "CreateAlias": {
                                 "$ref": "basic_types.json#/definitions/boolean"
@@ -2438,6 +2589,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -2446,6 +2598,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AttributeDefinitions": {
                                 "$ref": "#/definitions/property_types/aws-properties-dynamodb-attributedef"
@@ -2495,6 +2649,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -2503,6 +2658,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "BgpAsn": {
                                 "$ref": "basic_types.json#/definitions/integer"
@@ -2543,6 +2700,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -2551,6 +2709,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "DomainName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -2600,6 +2760,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "InstanceId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -2637,6 +2799,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AllocationId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -2683,6 +2847,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AutoPlacement": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -2719,6 +2885,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -2727,6 +2894,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Affinity": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -2837,6 +3006,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -2845,6 +3015,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
@@ -2879,6 +3051,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AllocationId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -2912,6 +3086,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -2920,6 +3095,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-resource-tags"
@@ -2952,6 +3129,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -2960,6 +3138,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "CidrBlock": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3014,6 +3194,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3022,6 +3203,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Description": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3072,6 +3255,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3080,6 +3264,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "DeleteOnTermination": {
                                 "$ref": "basic_types.json#/definitions/boolean"
@@ -3120,6 +3306,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3128,6 +3315,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Strategy": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3162,6 +3351,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "DestinationCidrBlock": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3179,6 +3370,9 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "RouteTableId": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "VpcPeeringConnectionId": {
                                 "$ref": "basic_types.json#/definitions/string"
                             }
                         },
@@ -3207,6 +3401,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3215,6 +3410,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "VpcId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3247,6 +3444,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3255,6 +3453,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "GroupDescription": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3296,6 +3496,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3304,6 +3505,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "CidrIp": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3351,6 +3554,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3359,6 +3563,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "CidrIp": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3414,6 +3620,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3422,6 +3629,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "SpotFleetRequestConfigData": {
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata"
@@ -3451,6 +3660,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3459,6 +3669,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AvailabilityZone": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3501,6 +3713,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3509,6 +3722,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "SubnetId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3542,6 +3757,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3550,6 +3766,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "RouteTableId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3583,6 +3801,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3591,6 +3810,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AutoEnableIO": {
                                 "$ref": "basic_types.json#/definitions/boolean"
@@ -3644,6 +3865,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3652,6 +3874,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Device": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3689,6 +3913,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3697,6 +3922,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "CidrBlock": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3738,6 +3965,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3746,6 +3974,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "DhcpOptionsId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3779,6 +4009,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3787,6 +4018,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "PolicyDocument": {
                                 "type": "object"
@@ -3826,6 +4059,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3834,6 +4068,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "InternetGatewayId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3869,6 +4105,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3877,6 +4114,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "PeerVpcId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3913,6 +4152,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3921,6 +4161,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Type": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3964,6 +4206,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -3972,6 +4215,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "DestinationCidrBlock": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4005,6 +4250,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -4013,6 +4259,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Type": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4045,6 +4293,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -4053,6 +4302,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "RouteTableIds": {
                                 "description": "<p class=\"simpara\">A list of routing table IDs that are associated with a VPC. The routing\n                  tables must be associated with the same VPC that the virtual private gateway is\n                  attached to.</p><p><span class=\"emphasis\"><em>Required</em></span>: Yes</p><p><span class=\"emphasis\"><em>Type</em></span>: List of route table IDs</p><p><span class=\"emphasis\"><em>Update requires</em></span>: <a class=\"link\" href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt\">No interruption</a></p>"
@@ -4086,6 +4337,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -4094,6 +4346,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "RepositoryName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4131,6 +4385,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {}
                     },
                     "Type": {
@@ -4161,6 +4417,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Cluster": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4206,6 +4464,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -4214,6 +4473,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ContainerDefinitions": {
                                 "$ref": "#/definitions/property_types/aws-properties-ecs-taskdefinition-containerdefinitions"
@@ -4247,6 +4508,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -4255,6 +4517,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "FileSystemTags": {
                                 "$ref": "#/definitions/property_types/aws-properties-efs-filesystem-filesystemtags"
@@ -4289,6 +4553,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "FileSystemId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4329,6 +4595,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -4337,6 +4604,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AutoMinorVersionUpgrade": {
                                 "$ref": "basic_types.json#/definitions/boolean"
@@ -4428,6 +4697,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -4436,6 +4706,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "CacheParameterGroupFamily": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4473,6 +4745,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -4481,6 +4754,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AutomaticFailoverEnabled": {
                                 "$ref": "basic_types.json#/definitions/boolean"
@@ -4564,6 +4839,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -4572,6 +4848,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Description": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4606,6 +4884,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "CacheSecurityGroupName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4642,6 +4922,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -4650,6 +4931,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Description": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4683,6 +4966,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -4691,6 +4975,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ApplicationName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4728,6 +5014,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ApplicationName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4764,6 +5052,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -4772,6 +5061,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ApplicationName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4816,6 +5107,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -4824,6 +5116,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ApplicationName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4880,6 +5174,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -4888,6 +5183,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AccessLoggingPolicy": {
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-elb-accessloggingpolicy"
@@ -4962,6 +5259,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -4970,6 +5268,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AccessPolicies": {
                                 "type": "object"
@@ -5022,6 +5322,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AdditionalInfo": {
                                 "type": "object"
@@ -5087,6 +5389,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -5095,6 +5398,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "BidPrice": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5151,6 +5456,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -5159,6 +5465,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ActionOnFailure": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5200,6 +5508,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -5208,6 +5517,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Description": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5260,6 +5571,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Description": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5296,6 +5609,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -5304,6 +5618,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Name": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5344,6 +5660,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "BuildId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5407,6 +5725,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -5415,6 +5734,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Serial": {
                                 "$ref": "basic_types.json#/definitions/integer"
@@ -5450,6 +5771,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -5458,6 +5780,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ManagedPolicyArns": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
@@ -5498,6 +5822,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Path": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5531,6 +5857,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -5539,6 +5866,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Description": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5583,6 +5912,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -5591,6 +5921,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Groups": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
@@ -5633,6 +5965,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -5641,6 +5974,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AssumeRolePolicyDocument": {
                                 "description": "<p>The IAM assume role policy that is associated with this role.</p><p><span class=\"emphasis\"><em>Required</em></span>: Yes</p><p><span class=\"emphasis\"><em>Type</em></span>: A JSON policy document.</p><p><span class=\"emphasis\"><em>Update requires</em></span>: <a class=\"link\" href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt\">No interruption</a></p><div class=\"aws-note\"><p class=\"aws-note\">Note</p><p>You can associate only one assume role policy with a role. For an example of\n                     an assume role policy, see <a class=\"link\" href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html#cfn-iam-role-templateexamples\" title=\"Template Examples\">Template Examples</a>.</p></div>"
@@ -5679,6 +6014,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -5687,6 +6023,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Groups": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
@@ -5733,6 +6071,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "GroupName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5766,6 +6106,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -5774,6 +6115,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ShardCount": {
                                 "$ref": "basic_types.json#/definitions/integer"
@@ -5806,6 +6149,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -5814,6 +6158,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Description": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5852,6 +6198,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -5860,6 +6207,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "BatchSize": {
                                 "$ref": "basic_types.json#/definitions/integer"
@@ -5903,6 +6252,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -5911,6 +6261,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Description": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5951,6 +6303,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -5959,6 +6312,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Code": {
                                 "$ref": "#/definitions/property_types/aws-properties-lambda-function-code"
@@ -6015,6 +6370,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -6023,6 +6379,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Action": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -6066,6 +6424,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -6074,6 +6433,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "CodeSha256": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -6109,6 +6470,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -6117,6 +6479,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "DestinationName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -6158,6 +6522,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -6166,6 +6531,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "RetentionInDays": {
                                 "$ref": "basic_types.json#/definitions/integer"
@@ -6200,6 +6567,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "LogGroupName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -6232,6 +6601,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -6240,6 +6610,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "FilterPattern": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
@@ -6277,6 +6649,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -6285,6 +6658,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "DestinationArn": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -6325,6 +6700,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -6333,6 +6709,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AppSource": {
                                 "$ref": "#/definitions/property_types/aws-properties-opsworks-stack-source"
@@ -6394,6 +6772,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -6402,6 +6781,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ElasticLoadBalancerName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -6435,6 +6816,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -6443,6 +6825,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AmiId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -6513,6 +6897,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -6521,6 +6906,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Attributes": {
                                 "$ref": "basic_types.json#/definitions/key-value-pairs"
@@ -6601,6 +6988,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -6609,6 +6997,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AgentVersion": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -6691,6 +7081,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -6699,6 +7090,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AvailabilityZones": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -6776,6 +7169,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -6784,6 +7178,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Description": {
                                 "description": "<p>A friendly description for this DB cluster parameter group.</p><p><span class=\"emphasis\"><em>Required</em></span>: Yes</p><p><span class=\"emphasis\"><em>Type:</em></span> String</p><p><span class=\"emphasis\"><em>Update requires</em></span>: <a class=\"link\" href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement\">Replacement</a></p>"
@@ -6824,6 +7220,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -6832,6 +7229,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AllocatedStorage": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -6954,6 +7353,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -6962,12 +7362,14 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Description": {
-                                "description": "<p>A friendly description of the RDS parameter group. For example, <code class=\"code\">\"My Parameter Group\"</code>.</p><p><span class=\"emphasis\"><em>Required</em></span>: Yes</p><p><span class=\"emphasis\"><em>Type:</em></span> String</p><p><span class=\"emphasis\"><em>Update requires</em></span>: <a class=\"link\" href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt\">No interruption</a></p>"
+                                "description": "<p>A friendly description of the RDS parameter group. For example, <code class=\"code\">\"My Parameter Group\"</code>.</p><p><span class=\"emphasis\"><em>Required</em></span>: Yes</p><p><span class=\"emphasis\"><em>Type:</em></span> String</p><p><span class=\"emphasis\"><em>Update requires</em></span>: Updates are not supported.</p>"
                             },
                             "Family": {
-                                "description": "<p>The database family of this RDS parameter group. For example, <code class=\"code\">\"MySQL5.1\"</code>.</p><p><span class=\"emphasis\"><em>Required</em></span>: Yes</p><p><span class=\"emphasis\"><em>Type:</em></span> String</p><p><span class=\"emphasis\"><em>Update requires</em></span>: <a class=\"link\" href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt\">No interruption</a></p>"
+                                "description": "<p>The database family of this RDS parameter group. For example, <code class=\"code\">\"MySQL5.1\"</code>.</p><p><span class=\"emphasis\"><em>Required</em></span>: Yes</p><p><span class=\"emphasis\"><em>Type:</em></span> String</p><p><span class=\"emphasis\"><em>Update requires</em></span>: Updates are not supported.</p>"
                             },
                             "Parameters": {
                                 "$ref": "basic_types.json#/definitions/key-value-pairs"
@@ -7001,6 +7403,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -7009,6 +7412,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "EC2VpcId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -7048,6 +7453,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -7056,6 +7462,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "CIDRIP": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -7097,6 +7505,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -7105,6 +7514,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "DBSubnetGroupDescription": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -7141,6 +7552,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -7149,6 +7561,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Enabled": {
                                 "$ref": "basic_types.json#/definitions/boolean"
@@ -7190,6 +7604,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -7198,6 +7613,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "EngineName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -7242,6 +7659,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -7250,6 +7668,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AllowVersionUpgrade": {
                                 "$ref": "basic_types.json#/definitions/boolean"
@@ -7355,6 +7775,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -7363,6 +7784,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Description": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -7399,6 +7822,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -7407,6 +7831,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Description": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -7436,6 +7862,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -7444,6 +7871,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ClusterSecurityGroupName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -7482,6 +7911,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -7490,6 +7920,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Description": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -7523,6 +7955,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -7531,6 +7964,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "HealthCheckConfig": {
                                 "$ref": "#/definitions/property_types/aws-properties-route53-healthcheck-healthcheckconfig"
@@ -7563,6 +7998,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -7571,6 +8007,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "HostedZoneConfig": {
                                 "$ref": "#/definitions/property_types/aws-properties-route53-hostedzone-hostedzoneconfig"
@@ -7609,6 +8047,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -7617,6 +8056,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AliasTarget": {
                                 "$ref": "#/definitions/property_types/aws-properties-route53-aliastarget"
@@ -7686,6 +8127,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -7694,6 +8136,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Comment": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -7735,6 +8179,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -7743,6 +8188,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "AccessControl": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -7804,6 +8251,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Bucket": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -7837,6 +8286,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -7845,6 +8295,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {}
                     },
                     "Type": {
@@ -7875,6 +8327,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "DisplayName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -7915,6 +8369,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "PolicyDocument": {
                                 "type": "object"
@@ -7948,6 +8404,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -7956,6 +8413,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "DelaySeconds": {
                                 "$ref": "basic_types.json#/definitions/integer"
@@ -8008,6 +8467,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "PolicyDocument": {
                                 "type": "object"
@@ -8041,6 +8502,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -8049,6 +8511,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Content": {
                                 "type": "object"
@@ -8078,6 +8542,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -8086,6 +8551,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "ByteMatchTuples": {
                                 "$ref": "#/definitions/property_types/aws-properties-waf-bytematchset-bytematchtuples"
@@ -8118,6 +8585,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -8126,6 +8594,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "IPSetDescriptors": {
                                 "$ref": "#/definitions/property_types/aws-properties-waf-ipset-ipsetdescriptors"
@@ -8164,6 +8634,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -8172,6 +8643,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "MetricName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -8208,6 +8681,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -8216,6 +8690,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Name": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -8249,6 +8725,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -8257,6 +8734,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Name": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -8289,6 +8768,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -8297,6 +8777,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "DefaultAction": {
                                 "$ref": "#/definitions/property_types/aws-properties-waf-webacl-action"
@@ -8337,6 +8819,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -8345,6 +8828,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "Name": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -8377,6 +8862,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false
@@ -8385,6 +8871,8 @@
                 "type": "object",
                 "properties": {
                     "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
                         "properties": {
                             "BundleId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -8431,6 +8919,7 @@
                     }
                 },
                 "required": [
+                    "Type",
                     "Properties"
                 ],
                 "additionalProperties": false

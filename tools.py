@@ -8,8 +8,13 @@ this = None
 BASE = 'http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/'
 
 
+class OD(OrderedDict):
+    def __repr__(self):
+        return print_(self)
+
+
 def load(filename='resource.json'):
-    schema = json.load(open(filename), object_pairs_hook=OrderedDict)
+    schema = json.load(open(filename), object_pairs_hook=OD)
     return schema
 
 
@@ -24,7 +29,7 @@ def get_pq(uri=BASE + 'aws-template-resource-type-ref.html'):
 
 def all_resource_properties_hrefs():
     h = get_pq(BASE + 'aws-product-property-reference.html')
-    res = OrderedDict(
+    res = OD(
         (a1.attr('href'), a1.text())
         for a1 in [q(a)
                    for a
@@ -36,7 +41,7 @@ def all_resource_properties_hrefs():
 
 def all_resource_hrefs():
     h = get_pq(BASE + 'aws-template-resource-type-ref.html')
-    all_resource_hrefs = OrderedDict(
+    all_resource_hrefs = OD(
         (a1.text().strip(), a1.attr('href'))
         for a1 in [q(a) for a in h('#main-col-body li a')])
     return all_resource_hrefs
@@ -64,9 +69,9 @@ def get_all_resource_type_names():
 
 def get_resource_types(schema):
     if 'definitions' not in schema:
-        schema['definitions'] = OrderedDict()
+        schema['definitions'] = OD()
     if 'resource_types' not in schema['definitions']:
-        schema['definitions']['resource_types'] = OrderedDict()
+        schema['definitions']['resource_types'] = OD()
 
     return schema['definitions']['resource_types']
 
