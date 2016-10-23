@@ -16,9 +16,6 @@ def main(argv):
     parser.add_argument('--type', metavar='TYPE',
                         help='Restrict parsing resource type properties only to'
                         ' type TYPE. Example: --type AWS::ApiGateway::RestApi')
-    parser.add_argument('--source', '-s', metavar='FILE',
-                        default='resource-stage1.json',
-                        help='Source/skeleton/stage1 for resource schema')
     parser.add_argument('dest', nargs='?', help='Write resulting schema into FILE'
                         ' instead of just printing it')
 
@@ -28,7 +25,18 @@ def main(argv):
                         cache=FileCache('.web_cache'))
     requests.get = sess.get
 
-    resource_schema = tools.load(args.source)
+    stage1 = 'resource-stage1.json'
+    if args.update:
+        if not args.dest:
+            print >> sys.stderr, ('Error: if --update is given, `dest` must be'
+                                  ' specified too')
+            return 2
+        stage1_schema = tools.load(stage1)
+        resource_schema = tools.load(args.dest)
+        resource_schema['definitions']['resource_template'] = \
+            stage1_schema['definitions']['resource_template']
+    else:
+        resource_schema = tools.load(stage1)
 
     resource_type_names = tools.get_all_resource_type_names()
     tools.update_all_resource_patterns_by_name(
