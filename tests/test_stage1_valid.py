@@ -146,3 +146,28 @@ long_if = {'Fn::If': [
 def test_string_function_valid(instance, definition):
     val.val(instance, basic_types_schema,
             definition=definition)
+
+
+@pytest.mark.parametrize("instance", [
+    "2014-10-01T20:30:00.000Z",
+    "2014-10-01T12:30:00.000-08:00",
+    "2014-10-01",
+    "1412195400"
+])
+def test_lenientISO8601_valid(instance):
+    val.val(instance, basic_types_schema,
+            definition="#/definitions/timestamp")
+
+
+@pytest.mark.parametrize("instance", [
+    "2014-10-0120:30",
+    "2014-10-01T12:30:00.000",
+    "2014-10-01T12:30:00",
+    "2014-10-01X12:30:00.000-08:00",
+    "XXX",
+    ""
+])
+def test_lenientISO8601_invalid(instance):
+    with pytest.raises(jsonschema.ValidationError):
+        val.val(instance, basic_types_schema,
+                definition="#/definitions/timestamp")

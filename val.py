@@ -10,7 +10,9 @@ def resolve_and_validate(instance, schema):
         schema
     )
     jsonschema.validate(instance, schema,
-                        cls=jsonschema.Draft4Validator, resolver=resolver)
+                        cls=jsonschema.Draft4Validator,
+                        format_checker=jsonschema.FormatChecker(),
+                        resolver=resolver)
 
 
 def validate_resource(resource, schema):
