@@ -92,7 +92,7 @@ def set_resource_properties(schema, res_type):
     #pretty_print_element(dl)
     #import pdb; pdb.set_trace()
     resources = tools.get_resource_types(schema)
-    pairs = zip(dl('dt'), dl('dd'))
+    pairs = zip(dl.children('dt'), dl.children('dd'))
     pairs = [(q(dt), q(dd)) for dt, dd in pairs]
     shortcut = resources[res_type]['properties']
     shortcut['Properties']['properties'] = OrderedDict(
