@@ -37,6 +37,15 @@
             "$ref": "#/definitions/resource_types/AWS::ApiGateway::Stage"
         },
         {
+            "$ref": "#/definitions/resource_types/AWS::ApiGateway::UsagePlan"
+        },
+        {
+            "$ref": "#/definitions/resource_types/AWS::ApplicationAutoScaling::ScalableTarget"
+        },
+        {
+            "$ref": "#/definitions/resource_types/AWS::ApplicationAutoScaling::ScalingPolicy"
+        },
+        {
             "$ref": "#/definitions/resource_types/AWS::AutoScaling::AutoScalingGroup"
         },
         {
@@ -50,6 +59,9 @@
         },
         {
             "$ref": "#/definitions/resource_types/AWS::AutoScaling::ScheduledAction"
+        },
+        {
+            "$ref": "#/definitions/resource_types/AWS::CertificateManager::Certificate"
         },
         {
             "$ref": "#/definitions/resource_types/AWS::CloudFormation::Authentication"
@@ -80,6 +92,9 @@
         },
         {
             "$ref": "#/definitions/resource_types/AWS::CloudWatch::Alarm"
+        },
+        {
+            "$ref": "#/definitions/resource_types/AWS::CodeCommit::Repository"
         },
         {
             "$ref": "#/definitions/resource_types/AWS::CodeDeploy::Application"
@@ -128,6 +143,9 @@
         },
         {
             "$ref": "#/definitions/resource_types/AWS::EC2::EIPAssociation"
+        },
+        {
+            "$ref": "#/definitions/resource_types/AWS::EC2::FlowLog"
         },
         {
             "$ref": "#/definitions/resource_types/AWS::EC2::Host"
@@ -268,6 +286,18 @@
             "$ref": "#/definitions/resource_types/AWS::ElasticLoadBalancing::LoadBalancer"
         },
         {
+            "$ref": "#/definitions/resource_types/AWS::ElasticLoadBalancingV2::Listener"
+        },
+        {
+            "$ref": "#/definitions/resource_types/AWS::ElasticLoadBalancingV2::ListenerRule"
+        },
+        {
+            "$ref": "#/definitions/resource_types/AWS::ElasticLoadBalancingV2::LoadBalancer"
+        },
+        {
+            "$ref": "#/definitions/resource_types/AWS::ElasticLoadBalancingV2::TargetGroup"
+        },
+        {
             "$ref": "#/definitions/resource_types/AWS::Elasticsearch::Domain"
         },
         {
@@ -316,7 +346,31 @@
             "$ref": "#/definitions/resource_types/AWS::IAM::UserToGroupAddition"
         },
         {
+            "$ref": "#/definitions/resource_types/AWS::IoT::Certificate"
+        },
+        {
+            "$ref": "#/definitions/resource_types/AWS::IoT::Policy"
+        },
+        {
+            "$ref": "#/definitions/resource_types/AWS::IoT::PolicyPrincipalAttachment"
+        },
+        {
+            "$ref": "#/definitions/resource_types/AWS::IoT::Thing"
+        },
+        {
+            "$ref": "#/definitions/resource_types/AWS::IoT::ThingPrincipalAttachment"
+        },
+        {
+            "$ref": "#/definitions/resource_types/AWS::IoT::TopicRule"
+        },
+        {
             "$ref": "#/definitions/resource_types/AWS::Kinesis::Stream"
+        },
+        {
+            "$ref": "#/definitions/resource_types/AWS::KinesisFirehose::DeliveryStream"
+        },
+        {
+            "$ref": "#/definitions/resource_types/AWS::KMS::Alias"
         },
         {
             "$ref": "#/definitions/resource_types/AWS::KMS::Key"
@@ -658,6 +712,9 @@
                             "Name": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
+                            "ProviderARNs": {
+                                "$ref": "basic_types.json#/definitions/list<string>"
+                            },
                             "RestApiId": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
@@ -666,7 +723,6 @@
                             }
                         },
                         "required": [
-                            "AuthorizerUri",
                             "IdentitySource",
                             "Name",
                             "Type"
@@ -804,8 +860,7 @@
                             }
                         },
                         "required": [
-                            "RestApiId",
-                            "StageName"
+                            "RestApiId"
                         ]
                     },
                     "Type": {
@@ -923,7 +978,7 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Schema": {
-                                "$ref": "basic_types.json#/definitions/string"
+                                "type": "object"
                             }
                         },
                         "required": [
@@ -1011,7 +1066,7 @@
                         "additionalProperties": false,
                         "properties": {
                             "Body": {
-                                "$ref": "basic_types.json#/definitions/string"
+                                "type": "object"
                             },
                             "BodyS3Location": {
                                 "$ref": "#/definitions/property_types/aws-properties-apitgateway-restapi-bodys3location"
@@ -1031,10 +1086,7 @@
                             "Parameters": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
                             }
-                        },
-                        "required": [
-                            "Name"
-                        ]
+                        }
                     },
                     "Type": {
                         "type": "string",
@@ -1056,8 +1108,7 @@
                     }
                 },
                 "required": [
-                    "Type",
-                    "Properties"
+                    "Type"
                 ],
                 "additionalProperties": false
             },
@@ -1127,6 +1178,172 @@
                 ],
                 "additionalProperties": false
             },
+            "AWS::ApiGateway::UsagePlan": {
+                "type": "object",
+                "properties": {
+                    "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "ApiStages": {
+                                "$ref": "#/definitions/property_types/aws-properties-apigateway-usageplan-apistage"
+                            },
+                            "Description": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "Quota": {
+                                "$ref": "#/definitions/property_types/aws-properties-apigateway-usageplan-quotasettings"
+                            },
+                            "Throttle": {
+                                "$ref": "#/definitions/property_types/aws-properties-apigateway-usageplan-throttlesettings"
+                            },
+                            "UsagePlanName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            }
+                        }
+                    },
+                    "Type": {
+                        "type": "string",
+                        "enum": [
+                            "AWS::ApiGateway::UsagePlan"
+                        ]
+                    },
+                    "DependsOn": {
+                        "$ref": "#/definitions/attributes/DependsOn"
+                    },
+                    "Metadata": {
+                        "type": "object"
+                    },
+                    "DeletionPolicy": {
+                        "$ref": "#/definitions/attributes/DeletionPolicy"
+                    },
+                    "Condition": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Type"
+                ],
+                "additionalProperties": false
+            },
+            "AWS::ApplicationAutoScaling::ScalableTarget": {
+                "type": "object",
+                "properties": {
+                    "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "MaxCapacity": {
+                                "$ref": "basic_types.json#/definitions/integer"
+                            },
+                            "MinCapacity": {
+                                "$ref": "basic_types.json#/definitions/integer"
+                            },
+                            "ResourceId": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "RoleARN": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "ScalableDimension": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "ServiceNamespace": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            }
+                        },
+                        "required": [
+                            "MaxCapacity",
+                            "MinCapacity",
+                            "ResourceId",
+                            "RoleARN",
+                            "ScalableDimension",
+                            "ServiceNamespace"
+                        ]
+                    },
+                    "Type": {
+                        "type": "string",
+                        "enum": [
+                            "AWS::ApplicationAutoScaling::ScalableTarget"
+                        ]
+                    },
+                    "DependsOn": {
+                        "$ref": "#/definitions/attributes/DependsOn"
+                    },
+                    "Metadata": {
+                        "type": "object"
+                    },
+                    "DeletionPolicy": {
+                        "$ref": "#/definitions/attributes/DeletionPolicy"
+                    },
+                    "Condition": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Type",
+                    "Properties"
+                ],
+                "additionalProperties": false
+            },
+            "AWS::ApplicationAutoScaling::ScalingPolicy": {
+                "type": "object",
+                "properties": {
+                    "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "PolicyName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "PolicyType": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "ResourceId": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "ScalableDimension": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "ServiceNamespace": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "ScalingTargetId": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "StepScalingPolicyConfiguration": {
+                                "$ref": "#/definitions/property_types/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration"
+                            }
+                        },
+                        "required": [
+                            "PolicyName"
+                        ]
+                    },
+                    "Type": {
+                        "type": "string",
+                        "enum": [
+                            "AWS::ApplicationAutoScaling::ScalingPolicy"
+                        ]
+                    },
+                    "DependsOn": {
+                        "$ref": "#/definitions/attributes/DependsOn"
+                    },
+                    "Metadata": {
+                        "type": "object"
+                    },
+                    "DeletionPolicy": {
+                        "$ref": "#/definitions/attributes/DeletionPolicy"
+                    },
+                    "Condition": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Type",
+                    "Properties"
+                ],
+                "additionalProperties": false
+            },
             "AWS::AutoScaling::AutoScalingGroup": {
                 "type": "object",
                 "properties": {
@@ -1175,6 +1392,9 @@
                             },
                             "Tags": {
                                 "$ref": "#/definitions/property_types/aws-properties-as-tags"
+                            },
+                            "TargetGroupARNs": {
+                                "$ref": "basic_types.json#/definitions/list<string>"
                             },
                             "TerminationPolicies": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
@@ -1451,7 +1671,7 @@
                                 "$ref": "basic_types.json#/definitions/integer"
                             },
                             "EndTime": {
-                                "description": "<p>The time in UTC for this schedule to end. For example,\n                     <code class=\"code\">2010-06-01T00:00:00Z</code>.</p><p><span class=\"emphasis\"><em>Required</em></span>: No</p><p><span class=\"emphasis\"><em>Type</em></span>: Time stamp</p><p><span class=\"emphasis\"><em>Update requires</em></span>: <a class=\"link\" href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt\">No interruption</a></p>"
+                                "$ref": "basic_types.json#/definitions/timestamp"
                             },
                             "MaxSize": {
                                 "$ref": "basic_types.json#/definitions/integer"
@@ -1463,7 +1683,7 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "StartTime": {
-                                "description": "<p>The time in UTC for this schedule to start. For example,\n                     <code class=\"code\">2010-06-01T00:00:00Z</code>.</p><p><span class=\"emphasis\"><em>Required</em></span>: No</p><p><span class=\"emphasis\"><em>Type</em></span>: Time stamp</p><p><span class=\"emphasis\"><em>Update requires</em></span>: <a class=\"link\" href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt\">No interruption</a></p>"
+                                "$ref": "basic_types.json#/definitions/timestamp"
                             }
                         },
                         "required": [
@@ -1474,6 +1694,55 @@
                         "type": "string",
                         "enum": [
                             "AWS::AutoScaling::ScheduledAction"
+                        ]
+                    },
+                    "DependsOn": {
+                        "$ref": "#/definitions/attributes/DependsOn"
+                    },
+                    "Metadata": {
+                        "type": "object"
+                    },
+                    "DeletionPolicy": {
+                        "$ref": "#/definitions/attributes/DeletionPolicy"
+                    },
+                    "Condition": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Type",
+                    "Properties"
+                ],
+                "additionalProperties": false
+            },
+            "AWS::CertificateManager::Certificate": {
+                "type": "object",
+                "properties": {
+                    "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "DomainName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "DomainValidationOptions": {
+                                "$ref": "#/definitions/property_types/aws-properties-certificatemanager-certificate-domainvalidationoption"
+                            },
+                            "SubjectAlternativeNames": {
+                                "$ref": "basic_types.json#/definitions/list<string>"
+                            },
+                            "Tags": {
+                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                            }
+                        },
+                        "required": [
+                            "DomainName"
+                        ]
+                    },
+                    "Type": {
+                        "type": "string",
+                        "enum": [
+                            "AWS::CertificateManager::Certificate"
                         ]
                     },
                     "DependsOn": {
@@ -1985,6 +2254,52 @@
                         "type": "string",
                         "enum": [
                             "AWS::CloudWatch::Alarm"
+                        ]
+                    },
+                    "DependsOn": {
+                        "$ref": "#/definitions/attributes/DependsOn"
+                    },
+                    "Metadata": {
+                        "type": "object"
+                    },
+                    "DeletionPolicy": {
+                        "$ref": "#/definitions/attributes/DeletionPolicy"
+                    },
+                    "Condition": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Type",
+                    "Properties"
+                ],
+                "additionalProperties": false
+            },
+            "AWS::CodeCommit::Repository": {
+                "type": "object",
+                "properties": {
+                    "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "RepositoryDescription": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "RepositoryName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "Triggers": {
+                                "$ref": "#/definitions/property_types/aws-properties-codecommit-repository-triggers"
+                            }
+                        },
+                        "required": [
+                            "RepositoryName"
+                        ]
+                    },
+                    "Type": {
+                        "type": "string",
+                        "enum": [
+                            "AWS::CodeCommit::Repository"
                         ]
                     },
                     "DependsOn": {
@@ -2843,6 +3158,62 @@
                 ],
                 "additionalProperties": false
             },
+            "AWS::EC2::FlowLog": {
+                "type": "object",
+                "properties": {
+                    "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "DeliverLogsPermissionArn": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "LogGroupName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "ResourceId": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "ResourceType": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "TrafficType": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            }
+                        },
+                        "required": [
+                            "DeliverLogsPermissionArn",
+                            "LogGroupName",
+                            "ResourceId",
+                            "ResourceType",
+                            "TrafficType"
+                        ]
+                    },
+                    "Type": {
+                        "type": "string",
+                        "enum": [
+                            "AWS::EC2::FlowLog"
+                        ]
+                    },
+                    "DependsOn": {
+                        "$ref": "#/definitions/attributes/DependsOn"
+                    },
+                    "Metadata": {
+                        "type": "object"
+                    },
+                    "DeletionPolicy": {
+                        "$ref": "#/definitions/attributes/DeletionPolicy"
+                    },
+                    "Condition": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Type",
+                    "Properties"
+                ],
+                "additionalProperties": false
+            },
             "AWS::EC2::Host": {
                 "type": "object",
                 "properties": {
@@ -3148,13 +3519,13 @@
                                 "$ref": "basic_types.json#/definitions/boolean"
                             },
                             "Icmp": {
-                                "$ref": "#/definitions/property_types/aws-properties-ec2-icmp"
+                                "$ref": "#/definitions/property_types/aws-properties-ec2-networkaclentry-icmp"
                             },
                             "NetworkAclId": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "PortRange": {
-                                "$ref": "#/definitions/property_types/aws-properties-ec2-port-range"
+                                "$ref": "#/definitions/property_types/aws-properties-ec2-networkaclentry-portrange"
                             },
                             "Protocol": {
                                 "$ref": "basic_types.json#/definitions/integer"
@@ -3509,6 +3880,9 @@
                         "additionalProperties": false,
                         "properties": {
                             "CidrIp": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "DestinationPrefixListId": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "DestinationSecurityGroupId": {
@@ -4387,7 +4761,11 @@
                     "Properties": {
                         "type": "object",
                         "additionalProperties": false,
-                        "properties": {}
+                        "properties": {
+                            "ClusterName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            }
+                        }
                     },
                     "Type": {
                         "type": "string",
@@ -4427,7 +4805,7 @@
                                 "$ref": "#/definitions/property_types/aws-properties-ecs-service-deploymentconfiguration"
                             },
                             "DesiredCount": {
-                                "$ref": "basic_types.json#/definitions/string"
+                                "$ref": "basic_types.json#/definitions/integer"
                             },
                             "LoadBalancers": {
                                 "$ref": "#/definitions/property_types/aws-properties-ecs-service-loadbalancers"
@@ -4479,6 +4857,12 @@
                             "ContainerDefinitions": {
                                 "$ref": "#/definitions/property_types/aws-properties-ecs-taskdefinition-containerdefinitions"
                             },
+                            "Family": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "TaskRoleArn": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
                             "Volumes": {
                                 "$ref": "#/definitions/property_types/aws-properties-ecs-taskdefinition-volumes"
                             }
@@ -4522,6 +4906,9 @@
                         "properties": {
                             "FileSystemTags": {
                                 "$ref": "#/definitions/property_types/aws-properties-efs-filesystem-filesystemtags"
+                            },
+                            "PerformanceMode": {
+                                "$ref": "basic_types.json#/definitions/string"
                             }
                         }
                     },
@@ -4716,13 +5103,12 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Properties": {
-                                "type": "object"
+                                "$ref": "basic_types.json#/definitions/key-value-pairs"
                             }
                         },
                         "required": [
                             "CacheParameterGroupFamily",
-                            "Description",
-                            "Properties"
+                            "Description"
                         ]
                     },
                     "Type": {
@@ -4781,10 +5167,16 @@
                             "EngineVersion": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
+                            "NodeGroupConfiguration": {
+                                "$ref": "#/definitions/property_types/aws-properties-elasticache-replicationgroup-nodegroupconfiguration"
+                            },
                             "NotificationTopicArn": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "NumCacheClusters": {
+                                "$ref": "basic_types.json#/definitions/integer"
+                            },
+                            "NumNodeGroups": {
                                 "$ref": "basic_types.json#/definitions/integer"
                             },
                             "Port": {
@@ -4796,7 +5188,16 @@
                             "PreferredMaintenanceWindow": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
+                            "PrimaryClusterId": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "ReplicasPerNodeGroup": {
+                                "$ref": "basic_types.json#/definitions/integer"
+                            },
                             "ReplicationGroupDescription": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "ReplicationGroupId": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "SecurityGroupIds": {
@@ -4805,17 +5206,23 @@
                             "SnapshotArns": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
                             },
+                            "SnapshotName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
                             "SnapshotRetentionLimit": {
                                 "$ref": "basic_types.json#/definitions/integer"
                             },
+                            "SnapshottingClusterId": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
                             "SnapshotWindow": {
                                 "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "Tags": {
+                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
                             }
                         },
                         "required": [
-                            "CacheNodeType",
-                            "Engine",
-                            "NumCacheClusters",
                             "ReplicationGroupDescription"
                         ]
                     },
@@ -4934,6 +5341,9 @@
                         "type": "object",
                         "additionalProperties": false,
                         "properties": {
+                            "CacheSubnetGroupName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
                             "Description": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
@@ -5264,6 +5674,255 @@
                 ],
                 "additionalProperties": false
             },
+            "AWS::ElasticLoadBalancingV2::Listener": {
+                "type": "object",
+                "properties": {
+                    "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Certificates": {
+                                "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-listener-certificates"
+                            },
+                            "DefaultActions": {
+                                "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-listener-defaultactions"
+                            },
+                            "LoadBalancerArn": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "Port": {
+                                "$ref": "basic_types.json#/definitions/integer"
+                            },
+                            "Protocol": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "SslPolicy": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            }
+                        },
+                        "required": [
+                            "DefaultActions",
+                            "LoadBalancerArn",
+                            "Port",
+                            "Protocol"
+                        ]
+                    },
+                    "Type": {
+                        "type": "string",
+                        "enum": [
+                            "AWS::ElasticLoadBalancingV2::Listener"
+                        ]
+                    },
+                    "DependsOn": {
+                        "$ref": "#/definitions/attributes/DependsOn"
+                    },
+                    "Metadata": {
+                        "type": "object"
+                    },
+                    "DeletionPolicy": {
+                        "$ref": "#/definitions/attributes/DeletionPolicy"
+                    },
+                    "Condition": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Type",
+                    "Properties"
+                ],
+                "additionalProperties": false
+            },
+            "AWS::ElasticLoadBalancingV2::ListenerRule": {
+                "type": "object",
+                "properties": {
+                    "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Actions": {
+                                "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-listenerrule-actions"
+                            },
+                            "Conditions": {
+                                "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-listenerrule-conditions"
+                            },
+                            "ListenerArn": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "Priority": {
+                                "$ref": "basic_types.json#/definitions/integer"
+                            }
+                        },
+                        "required": [
+                            "Actions",
+                            "Conditions",
+                            "ListenerArn",
+                            "Priority"
+                        ]
+                    },
+                    "Type": {
+                        "type": "string",
+                        "enum": [
+                            "AWS::ElasticLoadBalancingV2::ListenerRule"
+                        ]
+                    },
+                    "DependsOn": {
+                        "$ref": "#/definitions/attributes/DependsOn"
+                    },
+                    "Metadata": {
+                        "type": "object"
+                    },
+                    "DeletionPolicy": {
+                        "$ref": "#/definitions/attributes/DeletionPolicy"
+                    },
+                    "Condition": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Type",
+                    "Properties"
+                ],
+                "additionalProperties": false
+            },
+            "AWS::ElasticLoadBalancingV2::LoadBalancer": {
+                "type": "object",
+                "properties": {
+                    "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "LoadBalancerAttributes": {
+                                "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes"
+                            },
+                            "Name": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "Scheme": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "SecurityGroups": {
+                                "$ref": "basic_types.json#/definitions/list<string>"
+                            },
+                            "Subnets": {
+                                "$ref": "basic_types.json#/definitions/list<string>"
+                            },
+                            "Tags": {
+                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                            }
+                        },
+                        "required": [
+                            "Subnets"
+                        ]
+                    },
+                    "Type": {
+                        "type": "string",
+                        "enum": [
+                            "AWS::ElasticLoadBalancingV2::LoadBalancer"
+                        ]
+                    },
+                    "DependsOn": {
+                        "$ref": "#/definitions/attributes/DependsOn"
+                    },
+                    "Metadata": {
+                        "type": "object"
+                    },
+                    "DeletionPolicy": {
+                        "$ref": "#/definitions/attributes/DeletionPolicy"
+                    },
+                    "Condition": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Type",
+                    "Properties"
+                ],
+                "additionalProperties": false
+            },
+            "AWS::ElasticLoadBalancingV2::TargetGroup": {
+                "type": "object",
+                "properties": {
+                    "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "HealthCheckIntervalSeconds": {
+                                "$ref": "basic_types.json#/definitions/integer"
+                            },
+                            "HealthCheckPath": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "HealthCheckPort": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "HealthCheckProtocol": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "HealthCheckTimeoutSeconds": {
+                                "$ref": "basic_types.json#/definitions/integer"
+                            },
+                            "HealthyThresholdCount": {
+                                "$ref": "basic_types.json#/definitions/integer"
+                            },
+                            "Matcher": {
+                                "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-targetgroup-matcher"
+                            },
+                            "Name": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "Port": {
+                                "$ref": "basic_types.json#/definitions/integer"
+                            },
+                            "Protocol": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "Tags": {
+                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                            },
+                            "TargetGroupAttributes": {
+                                "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattributes"
+                            },
+                            "Targets": {
+                                "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-targetgroup-targetdescription"
+                            },
+                            "UnhealthyThresholdCount": {
+                                "$ref": "basic_types.json#/definitions/integer"
+                            },
+                            "VpcId": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            }
+                        },
+                        "required": [
+                            "Port",
+                            "Protocol",
+                            "VpcId"
+                        ]
+                    },
+                    "Type": {
+                        "type": "string",
+                        "enum": [
+                            "AWS::ElasticLoadBalancingV2::TargetGroup"
+                        ]
+                    },
+                    "DependsOn": {
+                        "$ref": "#/definitions/attributes/DependsOn"
+                    },
+                    "Metadata": {
+                        "type": "object"
+                    },
+                    "DeletionPolicy": {
+                        "$ref": "#/definitions/attributes/DeletionPolicy"
+                    },
+                    "Condition": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Type",
+                    "Properties"
+                ],
+                "additionalProperties": false
+            },
             "AWS::Elasticsearch::Domain": {
                 "type": "object",
                 "properties": {
@@ -5285,6 +5944,9 @@
                             },
                             "ElasticsearchClusterConfig": {
                                 "$ref": "#/definitions/property_types/aws-properties-elasticsearch-domain-elasticsearchclusterconfig"
+                            },
+                            "ElasticsearchVersion": {
+                                "$ref": "basic_types.json#/definitions/string"
                             },
                             "SnapshotOptions": {
                                 "$ref": "#/definitions/property_types/aws-properties-elasticsearch-domain-snapshotoptions"
@@ -5533,7 +6195,7 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "ScheduleExpression": {
-                                "description": "<p>The schedule or rate (frequency) that determines when CloudWatch Events runs the rule. For more information, see <a class=\"ulink\" href=\"http://docs.aws.amazon.com/AmazonCloudWatch/latest/DeveloperGuide/ScheduledEvents.html\" target=\"_blank\">Schedule Expression Syntax for Rules</a> in the <em class=\"citetitle\">Amazon CloudWatch Developer Guide</em>.</p><p><span class=\"emphasis\"><em>Required</em></span>: No</p><p><span class=\"emphasis\"><em>Required</em></span>: Conditional. You must specify this property, the <code class=\"code\">EventPattern</code> property, or both.</p><p><span class=\"emphasis\"><em>Update requires</em></span>: <a class=\"link\" href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt\">No interruption</a></p>"
+                                "$ref": "basic_types.json#/definitions/string"
                             },
                             "State": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5783,6 +6445,9 @@
                         "type": "object",
                         "additionalProperties": false,
                         "properties": {
+                            "GroupName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
                             "ManagedPolicyArns": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
                             },
@@ -5978,7 +6643,7 @@
                         "additionalProperties": false,
                         "properties": {
                             "AssumeRolePolicyDocument": {
-                                "description": "<p>The IAM assume role policy that is associated with this role.</p><p><span class=\"emphasis\"><em>Required</em></span>: Yes</p><p><span class=\"emphasis\"><em>Type</em></span>: A JSON policy document.</p><p><span class=\"emphasis\"><em>Update requires</em></span>: <a class=\"link\" href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt\">No interruption</a></p><div class=\"aws-note\"><p class=\"aws-note\">Note</p><p>You can associate only one assume role policy with a role. For an example of\n                     an assume role policy, see <a class=\"link\" href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html#cfn-iam-role-templateexamples\" title=\"Template Examples\">Template Examples</a>.</p></div>"
+                                "description": "<p>The trust policy that is associated with this role.</p><p><span class=\"emphasis\"><em>Required</em></span>: Yes</p><p><span class=\"emphasis\"><em>Type</em></span>: A JSON policy document</p><div class=\"aws-note\"><p class=\"aws-note\">Note</p><p>AWS Identity and Access Management (IAM) requires that policies be in JSON format.\nHowever, for templates formatted in YAML, you can create an IAM policy in either JSON or YAML format. AWS CloudFormation always converts a policy to JSON format before submitting it to IAM.</p></div><p><span class=\"emphasis\"><em>Update requires</em></span>: <a class=\"link\" href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt\">No interruption</a></p><div class=\"aws-note\"><p class=\"aws-note\">Note</p><p>You can associate only one assume role policy with a role. For an example of\n                     an assume role policy, see <a class=\"link\" href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html#cfn-iam-role-templateexamples\" title=\"Template Examples\">Template Examples</a>.</p></div>"
                             },
                             "ManagedPolicyArns": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
@@ -5988,6 +6653,9 @@
                             },
                             "Policies": {
                                 "$ref": "#/definitions/property_types/aws-properties-iam-policy"
+                            },
+                            "RoleName": {
+                                "$ref": "basic_types.json#/definitions/string"
                             }
                         },
                         "required": [
@@ -6040,6 +6708,9 @@
                             },
                             "Policies": {
                                 "$ref": "#/definitions/property_types/aws-properties-iam-policy"
+                            },
+                            "UserName": {
+                                "$ref": "basic_types.json#/definitions/string"
                             }
                         }
                     },
@@ -6111,6 +6782,263 @@
                 ],
                 "additionalProperties": false
             },
+            "AWS::IoT::Certificate": {
+                "type": "object",
+                "properties": {
+                    "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "CertificateSigningRequest": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "Status": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            }
+                        },
+                        "required": [
+                            "CertificateSigningRequest",
+                            "Status"
+                        ]
+                    },
+                    "Type": {
+                        "type": "string",
+                        "enum": [
+                            "AWS::IoT::Certificate"
+                        ]
+                    },
+                    "DependsOn": {
+                        "$ref": "#/definitions/attributes/DependsOn"
+                    },
+                    "Metadata": {
+                        "type": "object"
+                    },
+                    "DeletionPolicy": {
+                        "$ref": "#/definitions/attributes/DeletionPolicy"
+                    },
+                    "Condition": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Type",
+                    "Properties"
+                ],
+                "additionalProperties": false
+            },
+            "AWS::IoT::Policy": {
+                "type": "object",
+                "properties": {
+                    "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "PolicyDocument": {
+                                "type": "object"
+                            },
+                            "PolicyName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            }
+                        },
+                        "required": [
+                            "PolicyDocument"
+                        ]
+                    },
+                    "Type": {
+                        "type": "string",
+                        "enum": [
+                            "AWS::IoT::Policy"
+                        ]
+                    },
+                    "DependsOn": {
+                        "$ref": "#/definitions/attributes/DependsOn"
+                    },
+                    "Metadata": {
+                        "type": "object"
+                    },
+                    "DeletionPolicy": {
+                        "$ref": "#/definitions/attributes/DeletionPolicy"
+                    },
+                    "Condition": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Type",
+                    "Properties"
+                ],
+                "additionalProperties": false
+            },
+            "AWS::IoT::PolicyPrincipalAttachment": {
+                "type": "object",
+                "properties": {
+                    "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "PolicyName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "Principal": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            }
+                        },
+                        "required": [
+                            "PolicyName",
+                            "Principal"
+                        ]
+                    },
+                    "Type": {
+                        "type": "string",
+                        "enum": [
+                            "AWS::IoT::PolicyPrincipalAttachment"
+                        ]
+                    },
+                    "DependsOn": {
+                        "$ref": "#/definitions/attributes/DependsOn"
+                    },
+                    "Metadata": {
+                        "type": "object"
+                    },
+                    "DeletionPolicy": {
+                        "$ref": "#/definitions/attributes/DeletionPolicy"
+                    },
+                    "Condition": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Type",
+                    "Properties"
+                ],
+                "additionalProperties": false
+            },
+            "AWS::IoT::Thing": {
+                "type": "object",
+                "properties": {
+                    "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "AttributePayload": {
+                                "description": "<p>A JSON string that contains up to three key-value pairs, for example: <code class=\"code\">{\n                     \"attributes\": { \"string1\":\"string2\" } }</code>.</p><p><span class=\"emphasis\"><em>Required</em></span>: No</p><p><span class=\"emphasis\"><em>Type:</em></span> String to string map</p><p><span class=\"emphasis\"><em>Update requires</em></span>: <a class=\"link\" href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt\">No interruption</a></p>"
+                            },
+                            "ThingName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            }
+                        }
+                    },
+                    "Type": {
+                        "type": "string",
+                        "enum": [
+                            "AWS::IoT::Thing"
+                        ]
+                    },
+                    "DependsOn": {
+                        "$ref": "#/definitions/attributes/DependsOn"
+                    },
+                    "Metadata": {
+                        "type": "object"
+                    },
+                    "DeletionPolicy": {
+                        "$ref": "#/definitions/attributes/DeletionPolicy"
+                    },
+                    "Condition": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Type"
+                ],
+                "additionalProperties": false
+            },
+            "AWS::IoT::ThingPrincipalAttachment": {
+                "type": "object",
+                "properties": {
+                    "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Principal": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "ThingName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            }
+                        },
+                        "required": [
+                            "Principal",
+                            "ThingName"
+                        ]
+                    },
+                    "Type": {
+                        "type": "string",
+                        "enum": [
+                            "AWS::IoT::ThingPrincipalAttachment"
+                        ]
+                    },
+                    "DependsOn": {
+                        "$ref": "#/definitions/attributes/DependsOn"
+                    },
+                    "Metadata": {
+                        "type": "object"
+                    },
+                    "DeletionPolicy": {
+                        "$ref": "#/definitions/attributes/DeletionPolicy"
+                    },
+                    "Condition": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Type",
+                    "Properties"
+                ],
+                "additionalProperties": false
+            },
+            "AWS::IoT::TopicRule": {
+                "type": "object",
+                "properties": {
+                    "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "RuleName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "TopicRulePayload": {
+                                "$ref": "#/definitions/property_types/aws-properties-iot-topicrulepayload"
+                            }
+                        },
+                        "required": [
+                            "TopicRulePayload"
+                        ]
+                    },
+                    "Type": {
+                        "type": "string",
+                        "enum": [
+                            "AWS::IoT::TopicRule"
+                        ]
+                    },
+                    "DependsOn": {
+                        "$ref": "#/definitions/attributes/DependsOn"
+                    },
+                    "Metadata": {
+                        "type": "object"
+                    },
+                    "DeletionPolicy": {
+                        "$ref": "#/definitions/attributes/DeletionPolicy"
+                    },
+                    "Condition": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Type",
+                    "Properties"
+                ],
+                "additionalProperties": false
+            },
             "AWS::Kinesis::Stream": {
                 "type": "object",
                 "properties": {
@@ -6118,6 +7046,9 @@
                         "type": "object",
                         "additionalProperties": false,
                         "properties": {
+                            "Name": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
                             "ShardCount": {
                                 "$ref": "basic_types.json#/definitions/integer"
                             },
@@ -6133,6 +7064,95 @@
                         "type": "string",
                         "enum": [
                             "AWS::Kinesis::Stream"
+                        ]
+                    },
+                    "DependsOn": {
+                        "$ref": "#/definitions/attributes/DependsOn"
+                    },
+                    "Metadata": {
+                        "type": "object"
+                    },
+                    "DeletionPolicy": {
+                        "$ref": "#/definitions/attributes/DeletionPolicy"
+                    },
+                    "Condition": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Type",
+                    "Properties"
+                ],
+                "additionalProperties": false
+            },
+            "AWS::KinesisFirehose::DeliveryStream": {
+                "type": "object",
+                "properties": {
+                    "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "DeliveryStreamName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "ElasticsearchDestinationConfiguration": {
+                                "$ref": "#/definitions/property_types/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration"
+                            },
+                            "RedshiftDestinationConfiguration": {
+                                "$ref": "#/definitions/property_types/aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration"
+                            },
+                            "S3DestinationConfiguration": {
+                                "$ref": "#/definitions/property_types/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration"
+                            }
+                        }
+                    },
+                    "Type": {
+                        "type": "string",
+                        "enum": [
+                            "AWS::KinesisFirehose::DeliveryStream"
+                        ]
+                    },
+                    "DependsOn": {
+                        "$ref": "#/definitions/attributes/DependsOn"
+                    },
+                    "Metadata": {
+                        "type": "object"
+                    },
+                    "DeletionPolicy": {
+                        "$ref": "#/definitions/attributes/DeletionPolicy"
+                    },
+                    "Condition": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Type"
+                ],
+                "additionalProperties": false
+            },
+            "AWS::KMS::Alias": {
+                "type": "object",
+                "properties": {
+                    "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "AliasName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "TargetKeyId": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            }
+                        },
+                        "required": [
+                            "AliasName",
+                            "TargetKeyId"
+                        ]
+                    },
+                    "Type": {
+                        "type": "string",
+                        "enum": [
+                            "AWS::KMS::Alias"
                         ]
                     },
                     "DependsOn": {
@@ -6534,6 +7554,9 @@
                         "type": "object",
                         "additionalProperties": false,
                         "properties": {
+                            "LogGroupName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
                             "RetentionInDays": {
                                 "$ref": "basic_types.json#/definitions/integer"
                             }
@@ -6614,7 +7637,7 @@
                         "additionalProperties": false,
                         "properties": {
                             "FilterPattern": {
-                                "$ref": "basic_types.json#/definitions/list<string>"
+                                "$ref": "basic_types.json#/definitions/string"
                             },
                             "LogGroupName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -7274,6 +8297,12 @@
                             "DBSubnetGroupName": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
+                            "Domain": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "DomainIAMRoleName": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
                             "Engine": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
@@ -7293,6 +8322,12 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "MasterUserPassword": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "MonitoringInterval": {
+                                "$ref": "basic_types.json#/definitions/integer"
+                            },
+                            "MonitoringRoleArn": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "MultiAZ": {
@@ -7738,7 +8773,7 @@
                                 "$ref": "basic_types.json#/definitions/boolean"
                             },
                             "SnapshotClusterIdentifier": {
-                                "description": "<p>The name of the cluster the source snapshot was created from.</p><p><span class=\"emphasis\"><em>Required</em></span>: No</p><p><span class=\"emphasis\"><em>Required</em></span>: Conditional. This property is required if your IAM policy includes\n                  a restriction on the cluster name, where the resource element specifies anything\n                  other than the wildcard character (<code class=\"code\">*</code>) for the cluster name.</p><p><span class=\"emphasis\"><em>Update requires</em></span>: <a class=\"link\" href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement\">Replacement</a></p>"
+                                "description": "<p>The name of the cluster the source snapshot was created from. For more information about restoring from a snapshot, see the <a class=\"ulink\" href=\"http://docs.aws.amazon.com/redshift/latest/APIReference/API_RestoreFromClusterSnapshot.html\" target=\"_blank\">RestoreFromClusterSnapshot</a> action in the <em class=\"citetitle\">Amazon Redshift API Reference</em>.</p><p><span class=\"emphasis\"><em>Required</em></span>: No</p><p><span class=\"emphasis\"><em>Required</em></span>: Conditional. This property is required if your IAM policy includes\n                  a restriction on the cluster name, where the resource element specifies anything\n                  other than the wildcard character (<code class=\"code\">*</code>) for the cluster name.</p><p><span class=\"emphasis\"><em>Update requires</em></span>: <a class=\"link\" href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-replacement\">Replacement</a></p>"
                             },
                             "SnapshotIdentifier": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -8297,7 +9332,11 @@
                     "Properties": {
                         "type": "object",
                         "additionalProperties": false,
-                        "properties": {}
+                        "properties": {
+                            "Description": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            }
+                        }
                     },
                     "Type": {
                         "type": "string",
@@ -8958,6 +9997,26 @@
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apitgateway-stage-methodsetting.html",
                 "title": "Amazon API Gateway Stage MethodSetting"
             },
+            "aws-properties-apigateway-usageplan-apistage": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-apistage.html",
+                "title": "Amazon API Gateway UsagePlan ApiStage"
+            },
+            "aws-properties-apigateway-usageplan-quotasettings": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-quotasettings.html",
+                "title": "Amazon API Gateway UsagePlan QuotaSettings"
+            },
+            "aws-properties-apigateway-usageplan-throttlesettings": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-apigateway-usageplan-throttlesettings.html",
+                "title": "Amazon API Gateway UsagePlan ThrottleSettings"
+            },
+            "aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration.html",
+                "title": "Application Auto Scaling ScalingPolicy StepScalingPolicyConfiguration"
+            },
+            "aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment.html",
+                "title": "Application Auto Scaling ScalingPolicy StepScalingPolicyConfiguration StepAdjustment"
+            },
             "aws-properties-as-launchconfig-blockdev-mapping": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-launchconfig-blockdev-mapping.html",
                 "title": "AWS CloudFormation AutoScaling Block Device Mapping Property Type"
@@ -8981,6 +10040,10 @@
             "aws-properties-as-tags": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-as-tags.html",
                 "title": "Auto Scaling Tags Property Type"
+            },
+            "aws-properties-certificatemanager-certificate-domainvalidationoption": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-certificatemanager-certificate-domainvalidationoption.html",
+                "title": "AWS Certificate Manager Certificate DomainValidationOption"
             },
             "aws-properties-stack-parameters": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-stack-parameters.html",
@@ -9026,6 +10089,10 @@
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-customorigin.html",
                 "title": "CloudFront DistributionConfig Origin CustomOrigin"
             },
+            "aws-properties-cloudfront-origin-origincustomheader": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-origin-origincustomheader.html",
+                "title": "CloudFront DistributionConfig Origin OriginCustomHeader"
+            },
             "aws-properties-cloudfront-s3origin": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-cloudfront-s3origin.html",
                 "title": "CloudFront DistributionConfig Origin S3Origin"
@@ -9061,6 +10128,10 @@
             "aws-properties-logs-metricfilter-metrictransformation": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-logs-metricfilter-metrictransformation.html",
                 "title": "CloudWatch Logs MetricFilter MetricTransformation Property"
+            },
+            "aws-properties-codecommit-repository-triggers": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codecommit-repository-triggers.html",
+                "title": "AWS CodeCommit Repository Trigger"
             },
             "aws-properties-codedeploy-deploymentconfig-minimumhealthyhosts": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-codedeploy-deploymentconfig-minimumhealthyhosts.html",
@@ -9226,10 +10297,6 @@
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-blockdev-template.html",
                 "title": "Amazon Elastic Block Store Block Device Property"
             },
-            "aws-properties-ec2-icmp": {
-                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-icmp.html",
-                "title": "EC2 ICMP Property Type"
-            },
             "aws-properties-ec2-instance-ssmassociations": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance-ssmassociations.html",
                 "title": "Amazon EC2 Instance SsmAssociations"
@@ -9246,25 +10313,17 @@
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-iface-embedded.html",
                 "title": "EC2 NetworkInterface Embedded Property Type"
             },
-            "aws-properties-ec2-network-interface-association": {
-                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-interface-association.html",
-                "title": "EC2 Network Interface Association"
+            "aws-properties-ec2-networkaclentry-icmp": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-icmp.html",
+                "title": "EC2 NetworkAclEntry Icmp"
             },
-            "aws-properties-ec2-network-interface-attachment": {
-                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-interface-attachment.html",
-                "title": "EC2 Network Interface Attachment"
-            },
-            "aws-properties-ec2-network-interface-groupitem": {
-                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-interface-groupitem.html",
-                "title": "EC2 Network Interface Group Item"
+            "aws-properties-ec2-networkaclentry-portrange": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-networkaclentry-portrange.html",
+                "title": "EC2 NetworkAclEntry PortRange"
             },
             "aws-properties-ec2-network-interface-privateipspec": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-network-interface-privateipspec.html",
                 "title": "EC2 Network Interface Private IP Specification"
-            },
-            "aws-properties-ec2-port-range": {
-                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-port-range.html",
-                "title": "EC2 PortRange Property Type"
             },
             "aws-properties-ec2-security-group-rule": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-rule.html",
@@ -9378,6 +10437,10 @@
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-beanstalk-configurationtemplate-sourceconfiguration.html",
                 "title": "Elastic Beanstalk SourceConfiguration Property Type"
             },
+            "aws-properties-elasticache-replicationgroup-nodegroupconfiguration": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticache-replicationgroup-nodegroupconfiguration.html",
+                "title": "Amazon ElastiCache ReplicationGroup NodeGroupConfiguration"
+            },
             "aws-properties-ec2-elb-accessloggingpolicy": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-accessloggingpolicy.html",
                 "title": "Elastic Load Balancing AccessLoggingPolicy"
@@ -9410,6 +10473,38 @@
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-elb-policy.html",
                 "title": "ElasticLoadBalancing Policy Type"
             },
+            "aws-properties-elasticloadbalancingv2-listener-certificates": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-certificates.html",
+                "title": "Elastic Load Balancing Listener Certificates"
+            },
+            "aws-properties-elasticloadbalancingv2-listener-defaultactions": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listener-defaultactions.html",
+                "title": "Elastic Load Balancing Listener DefaultActions"
+            },
+            "aws-properties-elasticloadbalancingv2-listenerrule-actions": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-actions.html",
+                "title": "Elastic Load Balancing ListenerRule Actions"
+            },
+            "aws-properties-elasticloadbalancingv2-listenerrule-conditions": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-listenerrule-conditions.html",
+                "title": "Elastic Load Balancing ListenerRule Conditions"
+            },
+            "aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes.html",
+                "title": "Elastic Load Balancing LoadBalancer LoadBalancerAttributes"
+            },
+            "aws-properties-elasticloadbalancingv2-targetgroup-matcher": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-matcher.html",
+                "title": "Elastic Load Balancing TargetGroup Matcher"
+            },
+            "aws-properties-elasticloadbalancingv2-targetgroup-targetdescription": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetdescription.html",
+                "title": "Elastic Load Balancing TargetGroup TargetDescription"
+            },
+            "aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattributes": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattributes.html",
+                "title": "Elastic Load Balancing TargetGroup TargetGroupAttributes"
+            },
             "aws-properties-elasticsearch-domain-ebsoptions": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-elasticsearch-domain-ebsoptions.html",
                 "title": "Amazon Elasticsearch Service Domain EBSOptions"
@@ -9424,51 +10519,51 @@
             },
             "aws-properties-emr-cluster-application": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-application.html",
-                "title": "Amazon Elastic MapReduce Cluster Application"
+                "title": "Amazon EMR Cluster Application"
             },
             "aws-properties-emr-cluster-bootstrapactionconfig": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-bootstrapactionconfig.html",
-                "title": "Amazon Elastic MapReduce Cluster BootstrapActionConfig"
+                "title": "Amazon EMR Cluster BootstrapActionConfig"
             },
             "aws-properties-emr-cluster-bootstrapactionconfig-scriptbootstrapactionconfig": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-bootstrapactionconfig-scriptbootstrapactionconfig.html",
-                "title": "Amazon Elastic MapReduce Cluster BootstrapActionConfig ScriptBootstrapActionConfig"
+                "title": "Amazon EMR Cluster BootstrapActionConfig ScriptBootstrapActionConfig"
             },
             "aws-properties-emr-cluster-configuration": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-configuration.html",
-                "title": "Amazon Elastic MapReduce Cluster Configuration"
+                "title": "Amazon EMR Cluster Configuration"
             },
             "aws-properties-emr-cluster-jobflowinstancesconfig": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-jobflowinstancesconfig.html",
-                "title": "Amazon Elastic MapReduce Cluster JobFlowInstancesConfig"
+                "title": "Amazon EMR Cluster JobFlowInstancesConfig"
             },
             "aws-properties-emr-cluster-jobflowinstancesconfig-instancegroupconfig": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-jobflowinstancesconfig-instancegroupconfig.html",
-                "title": "Amazon Elastic MapReduce Cluster JobFlowInstancesConfig InstanceGroupConfig"
+                "title": "Amazon EMR Cluster JobFlowInstancesConfig InstanceGroupConfig"
             },
             "aws-properties-emr-cluster-jobflowinstancesconfig-placementtype": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-cluster-jobflowinstancesconfig-placementtype.html",
-                "title": "Amazon Elastic MapReduce Cluster JobFlowInstancesConfig PlacementType"
+                "title": "Amazon EMR Cluster JobFlowInstancesConfig PlacementType"
             },
             "aws-properties-emr-ebsconfiguration": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration.html",
-                "title": "Amazon Elastic MapReduce EbsConfiguration"
+                "title": "Amazon EMR EbsConfiguration"
             },
             "aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig.html",
-                "title": "Amazon Elastic MapReduce EbsConfiguration EbsBlockDeviceConfigs"
+                "title": "Amazon EMR EbsConfiguration EbsBlockDeviceConfigs"
             },
             "aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig-volumespecification.html",
-                "title": "Amazon Elastic MapReduce EbsConfiguration EbsBlockDeviceConfig VolumeSpecification"
+                "title": "Amazon EMR EbsConfiguration EbsBlockDeviceConfig VolumeSpecification"
             },
             "aws-properties-emr-step-hadoopjarstepconfig": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-step-hadoopjarstepconfig.html",
-                "title": "Amazon Elastic MapReduce Step HadoopJarStepConfig"
+                "title": "Amazon EMR Step HadoopJarStepConfig"
             },
             "aws-properties-emr-step-hadoopjarstepconfig-keyvalue": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-emr-step-hadoopjarstepconfig-keyvalue.html",
-                "title": "Amazon Elastic MapReduce Step HadoopJarStepConfig KeyValue"
+                "title": "Amazon EMR Step HadoopJarStepConfig KeyValue"
             },
             "aws-properties-gamelift-alias-routingstrategy": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-gamelift-alias-routingstrategy.html",
@@ -9489,6 +10584,98 @@
             "aws-properties-iam-user-loginprofile": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iam-user-loginprofile.html",
                 "title": "IAM User LoginProfile"
+            },
+            "aws-properties-iot-actions": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-actions.html",
+                "title": "AWS IoT Actions"
+            },
+            "aws-properties-iot-cloudwatchalarm": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cloudwatchalarm.html",
+                "title": "AWS IoT CloudwatchAlarm Action"
+            },
+            "aws-properties-iot-cloudwatchmetric": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-cloudwatchmetric.html",
+                "title": "AWS IoT CloudwatchMetric Action"
+            },
+            "aws-properties-iot-dynamodb": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-dynamodb.html",
+                "title": "AWS IoT DynamoDB Action"
+            },
+            "aws-properties-iot-elasticsearch": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-elasticsearch.html",
+                "title": "AWS IoT Elasticsearch Action"
+            },
+            "aws-properties-iot-firehose": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-firehose.html",
+                "title": "AWS IoT Firehose Action"
+            },
+            "aws-properties-iot-kinesis": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-kinesis.html",
+                "title": "AWS IoT Kinesis Action"
+            },
+            "aws-properties-iot-lambda": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-lambda.html",
+                "title": "AWS IoT Lambda Action"
+            },
+            "aws-properties-iot-republish": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-republish.html",
+                "title": "AWS IoT Republish Action"
+            },
+            "aws-properties-iot-s3": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-s3.html",
+                "title": "AWS IoT S3 Action"
+            },
+            "aws-properties-iot-sns": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-sns.html",
+                "title": "AWS IoT Sns Action"
+            },
+            "aws-properties-iot-sqs": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-sqs.html",
+                "title": "AWS IoT Sqs Action"
+            },
+            "aws-properties-iot-topicrulepayload": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-iot-topicrulepayload.html",
+                "title": "AWS IoT TopicRulePayload"
+            },
+            "aws-properties-kinesisfirehose-kinesisdeliverystream-destination-cloudwatchloggingoptions": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-destination-cloudwatchloggingoptions.html",
+                "title": "Amazon Kinesis Firehose DeliveryStream Destination CloudWatchLoggingOptions"
+            },
+            "aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration.html",
+                "title": "Amazon Kinesis Firehose DeliveryStream ElasticsearchDestinationConfiguration"
+            },
+            "aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-bufferinghints": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-bufferinghints.html",
+                "title": "Amazon Kinesis Firehose DeliveryStream ElasticsearchDestinationConfiguration BufferingHints"
+            },
+            "aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-retryoptions": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-elasticsearchdestinationconfiguration-retryoptions.html",
+                "title": "Amazon Kinesis Firehose DeliveryStream ElasticsearchDestinationConfiguration RetryOptions"
+            },
+            "aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration.html",
+                "title": "Amazon Kinesis Firehose DeliveryStream RedshiftDestinationConfiguration"
+            },
+            "aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration-copycommand": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-redshiftdestinationconfiguration-copycommand.html",
+                "title": "Amazon Kinesis Firehose DeliveryStream RedshiftDestinationConfiguration CopyCommand"
+            },
+            "aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration.html",
+                "title": "Amazon Kinesis Firehose DeliveryStream S3DestinationConfiguration"
+            },
+            "aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-bufferinghints": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-bufferinghints.html",
+                "title": "Amazon Kinesis Firehose DeliveryStream S3DestinationConfiguration BufferingHints"
+            },
+            "aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration-kmsencryptionconfig": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration-kmsencryptionconfig.html",
+                "title": "Amazon Kinesis Firehose DeliveryStream S3DestinationConfiguration EncryptionConfiguration KMSEncryptionConfig"
+            },
+            "aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration": {
+                "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-kinesisfirehose-kinesisdeliverystream-s3destinationconfiguration-encryptionconfiguration.html",
+                "title": "Amazon Kinesis Firehose DeliveryStream S3DestinationConfiguration EncryptionConfiguration"
             },
             "aws-properties-lambda-function-code": {
                 "description": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-code.html",

@@ -44,6 +44,25 @@
                 }
             ]
         },
+        "timestamp": {
+            "oneOf": [
+                {
+                    "type": "string",
+                    "pattern": "^[0-9]{10}$"
+                },
+                {
+                    "type": "string",
+                    "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+                },
+                {
+                    "type": "string",
+                    "format": "date-time"
+                },
+                {
+                    "$ref": "#/definitions/function"
+                }
+            ]
+        },
         "primitive": {
             "anyOf": [
                 { "$ref": "#/definitions/string" },

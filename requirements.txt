@@ -3,3 +3,4 @@ pyquery
 requests
 cachecontrol[filecache]
 pytest
+strict-rfc3339

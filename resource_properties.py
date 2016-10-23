@@ -45,6 +45,8 @@ type_patterns = (
      {"$ref": "basic_types.json#/definitions/list<string>"}),
     ('key-value pairs',
      {"$ref": "basic_types.json#/definitions/key-value-pairs"}),
+    ('type : time stamp',
+     {"$ref": "basic_types.json#/definitions/timestamp"}),
 )
 
 
