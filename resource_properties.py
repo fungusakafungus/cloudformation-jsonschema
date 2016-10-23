@@ -43,6 +43,8 @@ type_patterns = (
      {"type": "object"}),
     ('type : a list of amazon sns topics arns',
      {"$ref": "basic_types.json#/definitions/list<string>"}),
+    ('type : a list of security groups',
+     {"$ref": "basic_types.json#/definitions/list<string>"}),
     ('key-value pairs',
      {"$ref": "basic_types.json#/definitions/key-value-pairs"}),
     ('type : time stamp',

@@ -5636,7 +5636,7 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "SecurityGroups": {
-                                "description": "<p><span class=\"emphasis\"><em>Required</em></span>: No</p><p><span class=\"emphasis\"><em>Type</em></span>: A list of security groups assigned to your load balancer within your\n                  virtual private cloud (VPC).</p><p><span class=\"emphasis\"><em>Update requires</em></span>: <a class=\"link\" href=\"http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt\">No interruption</a></p>"
+                                "$ref": "basic_types.json#/definitions/list<string>"
                             },
                             "Subnets": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
