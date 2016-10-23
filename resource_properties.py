@@ -81,24 +81,21 @@ def pretty_print_element(el):
     print highlight(code, HtmlLexer(), TerminalFormatter())
 
 
-def set_resource_properties(schema, res_type):
-    log.extra['type'] = res_type
-    type_href = all_resource_hrefs[res_type]
-    log.extra['href'] = type_href
-    h = tools.get_pq(type_href)
+def parse_properties_from_href(href):
+    h = tools.get_pq(href)
     dl = h('#main-col-body .variablelist dl').filter(
         lambda i: 'Type :' in q(this).text()
     )
     #pretty_print_element(dl)
     #import pdb; pdb.set_trace()
-    resources = tools.get_resource_types(schema)
     pairs = zip(dl.children('dt'), dl.children('dd'))
     pairs = [(q(dt), q(dd)) for dt, dd in pairs]
-    shortcut = resources[res_type]['properties']
-    shortcut['Properties']['properties'] = OrderedDict(
+
+    properties = OrderedDict(
         (dt.text(), get_type(dd))
         for dt, dd in pairs
     )
+
     required = [
         k.text()
         for k, v
@@ -108,6 +105,19 @@ def set_resource_properties(schema, res_type):
             not 'Yes, for VPC security groups' in q(this).text()
         )
     ]
+
+    return properties, required
+
+
+def set_resource_properties(schema, res_type):
+    log.extra['type'] = res_type
+    type_href = all_resource_hrefs[res_type]
+    log.extra['href'] = type_href
+    resources = tools.get_resource_types(schema)
+    shortcut = resources[res_type]['properties']
+
+    properties, required = parse_properties_from_href(type_href)
+    shortcut['Properties']['properties'] = properties
     if required:
         shortcut['Properties']['required'] = required
         resources[res_type]['required'] += ['Properties']
