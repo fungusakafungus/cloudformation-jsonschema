@@ -148,6 +148,7 @@ def all_res_properties():
         href = q(a).attr("href")
         res[property_name_from_href(href)] = OD((
             ("title", " ".join(a.text.split())),
-            ("descriptionURL", href)
+            ("descriptionURL", href),
+            ("type", "object"),
         ))
     return res
