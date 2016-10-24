@@ -659,10 +659,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "StageKeys": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-apitgateway-apikey-stagekey"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-apitgateway-apikey-stagekey"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         }
                     },
@@ -914,10 +921,17 @@
                                 "$ref": "#/definitions/property_types/aws-properties-apitgateway-method-integration"
                             },
                             "MethodResponses": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-apitgateway-method-methodresponse"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-apitgateway-method-methodresponse"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "RequestModels": {
                                 "$ref": "basic_types.json#/definitions/key-value-pairs"
@@ -1192,10 +1206,17 @@
                         "additionalProperties": false,
                         "properties": {
                             "ApiStages": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-apigateway-usageplan-apistage"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-apigateway-usageplan-apistage"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "Description": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -1388,28 +1409,49 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "MetricsCollection": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-as-metricscollection"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-as-metricscollection"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "MinSize": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "NotificationConfigurations": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-as-notificationconfigurations"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-as-notificationconfigurations"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "PlacementGroup": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Tags": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-as-tags"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-as-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "TargetGroupARNs": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
@@ -1421,10 +1463,17 @@
                                 "$ref": "basic_types.json#/definitions/list<string>"
                             },
                             "NotificationConfiguration": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-as-notificationconfigurations"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-as-notificationconfigurations"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -1474,10 +1523,17 @@
                                 "$ref": "basic_types.json#/definitions/boolean"
                             },
                             "BlockDeviceMappings": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-as-launchconfig-blockdev-mapping"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-as-launchconfig-blockdev-mapping"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "ClassicLinkVPCId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -1648,10 +1704,17 @@
                                 "$ref": "basic_types.json#/definitions/integer"
                             },
                             "StepAdjustments": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-autoscaling-scalingpolicy-stepadjustments"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-autoscaling-scalingpolicy-stepadjustments"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -1753,16 +1816,33 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "DomainValidationOptions": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-certificatemanager-certificate-domainvalidationoption"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-certificatemanager-certificate-domainvalidationoption"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "SubjectAlternativeNames": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -1986,7 +2066,17 @@
                                 "$ref": "#/definitions/property_types/aws-properties-stack-parameters"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "TemplateURL": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -2184,7 +2274,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -2240,10 +2340,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Dimensions": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-cw-dimension"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-cw-dimension"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "EvaluationPeriods": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -2322,10 +2429,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Triggers": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-codecommit-repository-triggers"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-codecommit-repository-triggers"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -2505,10 +2619,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "ConfigurationProperties": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-resource-codepipeline-customactiontype-configurationproperties"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-resource-codepipeline-customactiontype-configurationproperties"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "InputArtifactDetails": {
                                 "$ref": "#/definitions/property_types/aws-resource-codepipeline-customactiontype-artifactdetails"
@@ -2569,10 +2690,17 @@
                                 "$ref": "#/definitions/property_types/aws-properties-codepipeline-pipeline-artifactstore"
                             },
                             "DisableInboundStageTransitions": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-codepipeline-pipeline-disableinboundstagetransitions"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-codepipeline-pipeline-disableinboundstagetransitions"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "Name": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -2794,13 +2922,30 @@
                                 "$ref": "#/definitions/property_types/aws-properties-datapipeline-pipeline-parametervalues"
                             },
                             "PipelineObjects": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-datapipeline-pipeline-pipelineobjects"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-datapipeline-pipeline-pipelineobjects"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "PipelineTags": {
-                                "$ref": "#/definitions/property_types/aws-properties-datapipeline-pipeline-pipelinetags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-datapipeline-pipeline-pipelinetags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -2962,28 +3107,56 @@
                         "additionalProperties": false,
                         "properties": {
                             "AttributeDefinitions": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-dynamodb-attributedef"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-dynamodb-attributedef"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "GlobalSecondaryIndexes": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-dynamodb-gsi"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-dynamodb-gsi"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "KeySchema": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-dynamodb-keyschema"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-dynamodb-keyschema"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "LocalSecondaryIndexes": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-dynamodb-lsi"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-dynamodb-lsi"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "ProvisionedThroughput": {
                                 "$ref": "#/definitions/property_types/aws-properties-dynamodb-provisionedthroughput"
@@ -3040,7 +3213,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "Type": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3100,7 +3283,17 @@
                                 "$ref": "basic_types.json#/definitions/list<string>"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         }
                     },
@@ -3332,10 +3525,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "BlockDeviceMappings": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-ec2-blockdev-mapping"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-ec2-blockdev-mapping"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "DisableApiTermination": {
                                 "$ref": "basic_types.json#/definitions/boolean"
@@ -3368,10 +3568,17 @@
                                 "$ref": "basic_types.json#/definitions/boolean"
                             },
                             "NetworkInterfaces": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-ec2-network-iface-embedded"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-ec2-network-iface-embedded"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "PlacementGroupName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3392,16 +3599,33 @@
                                 "$ref": "basic_types.json#/definitions/boolean"
                             },
                             "SsmAssociations": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-ec2-instance-ssmassociations"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-ec2-instance-ssmassociations"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "SubnetId": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "Tenancy": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3410,10 +3634,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Volumes": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-ec2-mount-point"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-ec2-mount-point"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "AdditionalInfo": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3459,7 +3690,17 @@
                         "additionalProperties": false,
                         "properties": {
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         }
                     },
@@ -3539,7 +3780,17 @@
                         "additionalProperties": false,
                         "properties": {
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "VpcId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -3656,10 +3907,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "PrivateIpAddresses": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-ec2-network-interface-privateipspec"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-ec2-network-interface-privateipspec"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "SecondaryPrivateIpAddressCount": {
                                 "$ref": "basic_types.json#/definitions/integer"
@@ -3671,7 +3929,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -3860,7 +4128,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -3903,19 +4181,43 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "SecurityGroupEgress": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-ec2-security-group-rule"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-ec2-security-group-rule"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "SecurityGroupIngress": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-ec2-security-group-rule"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-ec2-security-group-rule"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "VpcId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4134,7 +4436,17 @@
                                 "$ref": "basic_types.json#/definitions/boolean"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "VpcId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4287,7 +4599,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "VolumeType": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4390,7 +4712,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -4573,7 +4905,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "VpcId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4626,7 +4968,17 @@
                                 "$ref": "basic_types.json#/definitions/boolean"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "VpnGatewayId": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4718,7 +5070,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -4886,10 +5248,17 @@
                                 "$ref": "basic_types.json#/definitions/integer"
                             },
                             "LoadBalancers": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-ecs-service-loadbalancers"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-ecs-service-loadbalancers"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "Role": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4936,10 +5305,17 @@
                         "additionalProperties": false,
                         "properties": {
                             "ContainerDefinitions": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-ecs-taskdefinition-containerdefinitions"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-ecs-taskdefinition-containerdefinitions"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "Family": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -4948,10 +5324,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Volumes": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-ecs-taskdefinition-volumes"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-ecs-taskdefinition-volumes"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -4992,7 +5375,17 @@
                         "additionalProperties": false,
                         "properties": {
                             "FileSystemTags": {
-                                "$ref": "#/definitions/property_types/aws-properties-efs-filesystem-filesystemtags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-efs-filesystem-filesystemtags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "PerformanceMode": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5139,7 +5532,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "VpcSecurityGroupIds": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
@@ -5255,10 +5658,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "NodeGroupConfiguration": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-elasticache-replicationgroup-nodegroupconfiguration"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-elasticache-replicationgroup-nodegroupconfiguration"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "NotificationTopicArn": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5309,7 +5719,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -5574,10 +5994,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "OptionSettings": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-beanstalk-option-settings"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-beanstalk-option-settings"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "SolutionStackName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5635,16 +6062,33 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "OptionSettings": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-beanstalk-option-settings"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-beanstalk-option-settings"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "SolutionStackName": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "TemplateName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5696,10 +6140,17 @@
                                 "$ref": "#/definitions/property_types/aws-properties-ec2-elb-accessloggingpolicy"
                             },
                             "AppCookieStickinessPolicy": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-ec2-elb-AppCookieStickinessPolicy"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-ec2-elb-AppCookieStickinessPolicy"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "AvailabilityZones": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
@@ -5720,25 +6171,46 @@
                                 "$ref": "basic_types.json#/definitions/list<string>"
                             },
                             "LBCookieStickinessPolicy": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-ec2-elb-LBCookieStickinessPolicy"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-ec2-elb-LBCookieStickinessPolicy"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "LoadBalancerName": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Listeners": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-ec2-elb-listener"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-ec2-elb-listener"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "Policies": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-ec2-elb-policy"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-ec2-elb-policy"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "Scheme": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5750,7 +6222,17 @@
                                 "$ref": "basic_types.json#/definitions/list<string>"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -5790,16 +6272,30 @@
                         "additionalProperties": false,
                         "properties": {
                             "Certificates": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-listener-certificates"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-listener-certificates"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "DefaultActions": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-listener-defaultactions"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-listener-defaultactions"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "LoadBalancerArn": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5854,16 +6350,30 @@
                         "additionalProperties": false,
                         "properties": {
                             "Actions": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-listenerrule-actions"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-listenerrule-actions"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "Conditions": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-listenerrule-conditions"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-listenerrule-conditions"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "ListenerArn": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5912,10 +6422,17 @@
                         "additionalProperties": false,
                         "properties": {
                             "LoadBalancerAttributes": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-loadbalancer-loadbalancerattributes"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "Name": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -5930,7 +6447,17 @@
                                 "$ref": "basic_types.json#/definitions/list<string>"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -6000,19 +6527,43 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "TargetGroupAttributes": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattributes"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-targetgroup-targetgroupattributes"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "Targets": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-targetgroup-targetdescription"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-elasticloadbalancingv2-targetgroup-targetdescription"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "UnhealthyThresholdCount": {
                                 "$ref": "basic_types.json#/definitions/integer"
@@ -6081,7 +6632,17 @@
                                 "$ref": "#/definitions/property_types/aws-properties-elasticsearch-domain-snapshotoptions"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         }
                     },
@@ -6120,22 +6681,43 @@
                                 "type": "object"
                             },
                             "Applications": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-emr-cluster-application"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-emr-cluster-application"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "BootstrapActions": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-emr-cluster-bootstrapactionconfig"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-emr-cluster-bootstrapactionconfig"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "Configurations": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-emr-cluster-configuration"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-emr-cluster-configuration"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "Instances": {
                                 "$ref": "#/definitions/property_types/aws-properties-emr-cluster-jobflowinstancesconfig"
@@ -6156,7 +6738,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "VisibleToAllUsers": {
                                 "$ref": "basic_types.json#/definitions/boolean"
@@ -6205,10 +6797,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Configurations": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-emr-cluster-configuration"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-emr-cluster-configuration"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "EbsConfiguration": {
                                 "$ref": "#/definitions/property_types/aws-properties-emr-ebsconfiguration"
@@ -6342,10 +6941,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Targets": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-events-rule-target"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-events-rule-target"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         }
                     },
@@ -6479,10 +7085,17 @@
                                 "$ref": "basic_types.json#/definitions/integer"
                             },
                             "EC2InboundPermissions": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-gamelift-fleet-ec2inboundpermission"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-gamelift-fleet-ec2inboundpermission"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "EC2InstanceType": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -6602,10 +7215,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Policies": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-iam-policy"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-iam-policy"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         }
                     },
@@ -6802,10 +7422,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Policies": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-iam-policy"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-iam-policy"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "RoleName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -6860,10 +7487,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Policies": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-iam-policy"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-iam-policy"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "UserName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -7209,7 +7843,17 @@
                                 "$ref": "basic_types.json#/definitions/integer"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -7799,10 +8443,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "MetricTransformations": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-logs-metricfilter-metrictransformation"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-logs-metricfilter-metrictransformation"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -7910,10 +8561,17 @@
                                 "$ref": "basic_types.json#/definitions/boolean"
                             },
                             "Environment": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-opsworks-app-environment"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-opsworks-app-environment"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "Name": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -8140,10 +8798,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "VolumeConfigurations": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-opsworks-layer-volumeconfig"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-opsworks-layer-volumeconfig"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -8327,10 +8992,17 @@
                                 "$ref": "basic_types.json#/definitions/boolean"
                             },
                             "Tags": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-resource-tags"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "VpcSecurityGroupIds": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
@@ -8382,10 +9054,17 @@
                                 "$ref": "basic_types.json#/definitions/key-value-pairs"
                             },
                             "Tags": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-resource-tags"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -8529,7 +9208,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "VPCSecurityGroups": {
                                 "$ref": "basic_types.json#/definitions/list<string>"
@@ -8581,10 +9270,17 @@
                                 "$ref": "basic_types.json#/definitions/key-value-pairs"
                             },
                             "Tags": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-resource-tags"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -8628,19 +9324,33 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "DBSecurityGroupIngress": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-rds-security-group-rule"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-rds-security-group-rule"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "GroupDescription": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Tags": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-resource-tags"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -8739,10 +9449,17 @@
                                 "$ref": "basic_types.json#/definitions/list<string>"
                             },
                             "Tags": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-resource-tags"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -8847,7 +9564,17 @@
                                 "$ref": "#/definitions/property_types/aws-properties-rds-optiongroup-optionconfigurations"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -9189,10 +9916,17 @@
                                 "$ref": "#/definitions/property_types/aws-properties-route53-healthcheck-healthcheckconfig"
                             },
                             "HealthCheckTags": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-route53-healthcheck-healthchecktags"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-route53-healthcheck-healthchecktags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -9235,19 +9969,33 @@
                                 "$ref": "#/definitions/property_types/aws-properties-route53-hostedzone-hostedzoneconfig"
                             },
                             "HostedZoneTags": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-route53-hostedzone-hostedzonetags"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-route53-hostedzone-hostedzonetags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "Name": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "VPCs": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-resource-route53-hostedzone-hostedzonevpcs"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-resource-route53-hostedzone-hostedzonevpcs"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -9440,7 +10188,17 @@
                                 "$ref": "#/definitions/property_types/aws-properties-s3-bucket-replicationconfiguration"
                             },
                             "Tags": {
-                                "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-resource-tags"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "VersioningConfiguration": {
                                 "$ref": "#/definitions/property_types/aws-properties-s3-bucket-versioningconfig"
@@ -9565,10 +10323,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Subscription": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-sns-subscription"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-sns-subscription"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "TopicName": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -9789,10 +10554,17 @@
                         "additionalProperties": false,
                         "properties": {
                             "ByteMatchTuples": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-waf-bytematchset-bytematchtuples"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-waf-bytematchset-bytematchtuples"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "Name": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -9835,10 +10607,17 @@
                         "additionalProperties": false,
                         "properties": {
                             "IPSetDescriptors": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-waf-ipset-ipsetdescriptors"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-waf-ipset-ipsetdescriptors"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "Name": {
                                 "$ref": "basic_types.json#/definitions/string"
@@ -9887,10 +10666,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Predicates": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-waf-rule-predicates"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-waf-rule-predicates"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -9934,10 +10720,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "SizeConstraints": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-waf-sizeconstraintset-sizeconstraint"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-waf-sizeconstraintset-sizeconstraint"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -9981,10 +10774,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "SqlInjectionMatchTuples": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-waf-sqlinjectionmatchset-sqlinjectionmatchtuples"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-waf-sqlinjectionmatchset-sqlinjectionmatchtuples"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -10033,10 +10833,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Rules": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-waf-webacl-rules"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-waf-webacl-rules"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -10081,10 +10888,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "XssMatchTuples": {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/definitions/property_types/aws-properties-waf-xssmatchset-xssmatchtuple"
-                                }
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-waf-xssmatchset-xssmatchtuple"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -10298,10 +11112,17 @@
                         "$ref": "basic_types.json#/definitions/string"
                     },
                     "IntegrationResponses": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-apitgateway-method-integration-integrationresponse"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-apitgateway-method-integration-integrationresponse"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "PassthroughBehavior": {
                         "$ref": "basic_types.json#/definitions/string"
@@ -10489,10 +11310,17 @@
                         "$ref": "basic_types.json#/definitions/integer"
                     },
                     "StepAdjustments": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-applicationautoscaling-scalingpolicy-stepscalingpolicyconfiguration-stepadjustment"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     }
                 },
                 "additionalProperties": false
@@ -10713,19 +11541,33 @@
                         "$ref": "basic_types.json#/definitions/list<string>"
                     },
                     "CacheBehaviors": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-cloudfront-cachebehavior"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-cloudfront-cachebehavior"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "Comment": {
                         "$ref": "basic_types.json#/definitions/string"
                     },
                     "CustomErrorResponses": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-cloudfront-distributionconfig-customerrorresponse"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-cloudfront-distributionconfig-customerrorresponse"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "DefaultCacheBehavior": {
                         "$ref": "#/definitions/property_types/aws-properties-cloudfront-defaultcachebehavior"
@@ -10740,10 +11582,17 @@
                         "$ref": "#/definitions/property_types/aws-properties-cloudfront-logging"
                     },
                     "Origins": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-cloudfront-origin"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-cloudfront-origin"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "PriceClass": {
                         "$ref": "basic_types.json#/definitions/string"
@@ -10919,10 +11768,17 @@
                         "$ref": "basic_types.json#/definitions/string"
                     },
                     "OriginCustomHeaders": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-cloudfront-origin-origincustomheader"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-cloudfront-origin-origincustomheader"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "OriginPath": {
                         "$ref": "basic_types.json#/definitions/string"
@@ -11437,16 +12293,30 @@
                 "type": "object",
                 "properties": {
                     "Actions": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-codepipeline-pipeline-stages-actions"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-codepipeline-pipeline-stages-actions"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "Blockers": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-codepipeline-pipeline-stages-blockers"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-codepipeline-pipeline-stages-blockers"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "Name": {
                         "$ref": "basic_types.json#/definitions/string"
@@ -11470,19 +12340,33 @@
                         "type": "object"
                     },
                     "InputArtifacts": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-codepipeline-pipeline-stages-actions-inputartifacts"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-codepipeline-pipeline-stages-actions-inputartifacts"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "Name": {
                         "$ref": "basic_types.json#/definitions/string"
                     },
                     "OutputArtifacts": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-codepipeline-pipeline-stages-actions-outputartifacts"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-codepipeline-pipeline-stages-actions-outputartifacts"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "RoleArn": {
                         "$ref": "basic_types.json#/definitions/string"
@@ -11598,10 +12482,17 @@
                         "$ref": "basic_types.json#/definitions/string"
                     },
                     "SourceDetails": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-config-configrule-source-sourcedetails"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-config-configrule-source-sourcedetails"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "SourceIdentifier": {
                         "$ref": "basic_types.json#/definitions/string"
@@ -11993,10 +12884,17 @@
                 "type": "object",
                 "properties": {
                     "AssociationParameters": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-ec2-instance-ssmassociations-associationparameters"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-ec2-instance-ssmassociations-associationparameters"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "DocumentName": {
                         "$ref": "basic_types.json#/definitions/string"
@@ -12070,10 +12968,17 @@
                         "$ref": "basic_types.json#/definitions/string"
                     },
                     "PrivateIpAddresses": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-ec2-network-interface-privateipspec"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-ec2-network-interface-privateipspec"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "SecondaryPrivateIpAddressCount": {
                         "$ref": "basic_types.json#/definitions/integer"
@@ -12186,10 +13091,17 @@
                         "$ref": "basic_types.json#/definitions/string"
                     },
                     "LaunchSpecifications": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "SpotPrice": {
                         "$ref": "basic_types.json#/definitions/string"
@@ -12221,10 +13133,17 @@
                 "type": "object",
                 "properties": {
                     "BlockDeviceMappings": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-blockdevicemappings"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "EbsOptimized": {
                         "$ref": "basic_types.json#/definitions/boolean"
@@ -12248,10 +13167,17 @@
                         "$ref": "#/definitions/property_types/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-monitoring"
                     },
                     "NetworkInterfaces": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "Placement": {
                         "$ref": "#/definitions/property_types/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-placement"
@@ -12260,10 +13186,17 @@
                         "$ref": "basic_types.json#/definitions/string"
                     },
                     "SecurityGroups": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-securitygroups"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-securitygroups"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "SpotPrice": {
                         "$ref": "basic_types.json#/definitions/string"
@@ -12379,10 +13312,17 @@
                         "$ref": "basic_types.json#/definitions/string"
                     },
                     "PrivateIpAddresses": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces-privateipaddresses"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-ec2-spotfleet-spotfleetrequestconfigdata-launchspecifications-networkinterfaces-privateipaddresses"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "SecondaryPrivateIpAddressCount": {
                         "$ref": "basic_types.json#/definitions/integer"
@@ -12506,19 +13446,33 @@
                         "$ref": "basic_types.json#/definitions/list<string>"
                     },
                     "Environment": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-ecs-taskdefinition-containerdefinitions-environment"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-ecs-taskdefinition-containerdefinitions-environment"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "Essential": {
                         "$ref": "basic_types.json#/definitions/boolean"
                     },
                     "ExtraHosts": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-ecs-taskdefinition-containerdefinitions-hostentry"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-ecs-taskdefinition-containerdefinitions-hostentry"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "Hostname": {
                         "$ref": "basic_types.json#/definitions/string"
@@ -12536,19 +13490,33 @@
                         "$ref": "basic_types.json#/definitions/integer"
                     },
                     "MountPoints": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-ecs-taskdefinition-containerdefinitions-mountpoints"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-ecs-taskdefinition-containerdefinitions-mountpoints"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "Name": {
                         "$ref": "basic_types.json#/definitions/string"
                     },
                     "PortMappings": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-ecs-taskdefinition-containerdefinitions-portmappings"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-ecs-taskdefinition-containerdefinitions-portmappings"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "Privileged": {
                         "$ref": "basic_types.json#/definitions/boolean"
@@ -12557,19 +13525,33 @@
                         "$ref": "basic_types.json#/definitions/boolean"
                     },
                     "Ulimits": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-ecs-taskdefinition-containerdefinitions-ulimit"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-ecs-taskdefinition-containerdefinitions-ulimit"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "User": {
                         "$ref": "basic_types.json#/definitions/string"
                     },
                     "VolumesFrom": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-ecs-taskdefinition-containerdefinitions-volumesfrom"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-ecs-taskdefinition-containerdefinitions-volumesfrom"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "WorkingDirectory": {
                         "$ref": "basic_types.json#/definitions/string"
@@ -13268,10 +14250,17 @@
                         "$ref": "basic_types.json#/definitions/string"
                     },
                     "Configurations": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-emr-cluster-configuration"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-emr-cluster-configuration"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     }
                 },
                 "additionalProperties": false
@@ -13333,10 +14322,17 @@
                         "$ref": "basic_types.json#/definitions/string"
                     },
                     "Configurations": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-emr-cluster-configuration"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-emr-cluster-configuration"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "EbsConfiguration": {
                         "$ref": "#/definitions/property_types/aws-properties-emr-ebsconfiguration"
@@ -13380,10 +14376,17 @@
                 "type": "object",
                 "properties": {
                     "EbsBlockDeviceConfigs": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-emr-ebsconfiguration-ebsblockdeviceconfig"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "EbsOptimized": {
                         "$ref": "basic_types.json#/definitions/boolean"
@@ -13444,10 +14447,17 @@
                         "$ref": "basic_types.json#/definitions/string"
                     },
                     "StepProperties": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-emr-step-hadoopjarstepconfig-keyvalue"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-emr-step-hadoopjarstepconfig-keyvalue"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     }
                 },
                 "required": [
@@ -14742,10 +15752,17 @@
                         "$ref": "#/definitions/property_types/aws-properties-s3-bucket-lifecycleconfig-rule-noncurrentversiontransition"
                     },
                     "NoncurrentVersionTransitions": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-s3-bucket-lifecycleconfig-rule-noncurrentversiontransition"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-s3-bucket-lifecycleconfig-rule-noncurrentversiontransition"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "Prefix": {
                         "$ref": "basic_types.json#/definitions/string"
@@ -14757,10 +15774,17 @@
                         "$ref": "#/definitions/property_types/aws-properties-s3-bucket-lifecycleconfig-rule-transition"
                     },
                     "Transitions": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-s3-bucket-lifecycleconfig-rule-transition"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-s3-bucket-lifecycleconfig-rule-transition"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     }
                 },
                 "required": [
@@ -14857,10 +15881,17 @@
                 "type": "object",
                 "properties": {
                     "Rules": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-s3-bucket-notificationconfiguration-config-filter-s3key-rules"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-s3-bucket-notificationconfiguration-config-filter-s3key-rules"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     }
                 },
                 "required": [
@@ -14958,10 +15989,17 @@
                         "$ref": "basic_types.json#/definitions/string"
                     },
                     "Rules": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-s3-bucket-replicationconfiguration-rules"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-s3-bucket-replicationconfiguration-rules"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     }
                 },
                 "required": [
@@ -15041,10 +16079,17 @@
                         "$ref": "#/definitions/property_types/aws-properties-s3-websiteconfiguration-redirectallrequeststo"
                     },
                     "RoutingRules": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/definitions/property_types/aws-properties-s3-websiteconfiguration-routingrules"
-                        }
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-s3-websiteconfiguration-routingrules"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     }
                 },
                 "required": [
