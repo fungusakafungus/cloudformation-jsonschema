@@ -59,6 +59,11 @@ def get_type(dd_):
     for pattern, schema_fragment in type_patterns:
         if pattern in t:
             return schema_fragment
+    if dd('a') and 'list of' in t:
+        return OD((
+            ('type', 'array'),
+            ('items', property_ref_from_href(dd('a').attr('href'))),
+        ))
     if dd('a'):
         return property_ref_from_href(dd('a').attr('href'))
     if dd_('.type') and len(dd_('.type')):
