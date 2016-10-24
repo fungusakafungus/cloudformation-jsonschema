@@ -2,6 +2,7 @@
 from pyquery import PyQuery as q
 from collections import OrderedDict
 import tools
+from tools import OD
 import logging
 
 
@@ -83,6 +84,19 @@ def pretty_print_element(el):
     print highlight(code, HtmlLexer(), TerminalFormatter())
 
 
+def set_resource_property_type_properties(schema, res_prop_type):
+    schema = schema['definitions']['property_types'][res_prop_type]
+    href = schema['descriptionURL']
+    log.extra['type'] = res_prop_type
+    log.extra['href'] = href
+    properties, required = parse_properties_from_href(href)
+    schema['properties'] = properties
+    if required:
+        schema['required'] = required
+    schema['additionalProperties'] = False
+
+
+
 def parse_properties_from_href(href):
     h = tools.get_pq(href)
     dl = h('#main-col-body .variablelist dl').filter(
@@ -129,12 +143,11 @@ def set_resource_properties(schema, res_type):
 
 def all_res_properties():
     h = tools.get_pq(PROPERTIES_REFERENCE)
-    res = OrderedDict(
-        (
-            property_name_from_href(q(a).attr("href")),
-            {
-                "title": " ".join(a.text.split()),
-                "description": q(a).attr("href")
-            }
-        ) for a in h('#main-col-body li a'))
+    res = OrderedDict()
+    for a in h('#main-col-body li a'):
+        href = q(a).attr("href")
+        res[property_name_from_href(href)] = OD((
+            ("title", " ".join(a.text.split())),
+            ("descriptionURL", href)
+        ))
     return res

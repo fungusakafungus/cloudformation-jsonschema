@@ -55,6 +55,12 @@ def main(argv):
 
     all_properties = resource_properties.all_res_properties()
     resource_schema['definitions']['property_types'] = all_properties
+    for rpt_name, rpt_schema in all_properties.items():
+        print >> sys.stderr, rpt_name
+        resource_properties.set_resource_property_type_properties(
+            resource_schema,
+            rpt_name
+        )
 
     tweak_resource_schema.apply_all_tweaks(resource_schema)
 
