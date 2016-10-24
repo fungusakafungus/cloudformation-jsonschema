@@ -2,6 +2,7 @@
 from pyquery import PyQuery as q
 from collections import OrderedDict
 import tools
+from tools import OD
 import logging
 
 
@@ -25,6 +26,39 @@ def property_ref_from_href(href):
         '#/definitions/property_types/%s' % property_name_from_href(href)
     }
 
+def property_ref(dt, dd_, dd, t):
+    name = dt('.term').text()
+    href = dd('a').attr('href')
+    #import pdb; pdb.set_trace()
+    if name == 'DBSecurityGroupIngress':
+        return OD((
+            ('oneOf', [
+                OD((
+                    ('type', 'array'),
+                    ('items', property_ref_from_href(href)),
+                )),
+                {"$ref": "basic_types.json#/definitions/function"},
+                property_ref_from_href(href),
+            ]),
+        ))
+
+    if 'list of' in t or 'tags' in t or name in (
+        'Parameters',
+        'Stages',
+        'Tags',
+        'KeySchema',
+    ):
+        return OD((
+            ('oneOf', [
+                OD((
+                    ('type', 'array'),
+                    ('items', property_ref_from_href(href)),
+                )),
+                {"$ref": "basic_types.json#/definitions/function"},
+            ]),
+        ))
+    return property_ref_from_href(href)
+
 
 type_patterns = (
     ('type : string',
@@ -43,6 +77,8 @@ type_patterns = (
      {"type": "object"}),
     ('type : a list of amazon sns topics arns',
      {"$ref": "basic_types.json#/definitions/list<string>"}),
+    ('type : a list of security groups',
+     {"$ref": "basic_types.json#/definitions/list<string>"}),
     ('key-value pairs',
      {"$ref": "basic_types.json#/definitions/key-value-pairs"}),
     ('type : time stamp',
@@ -50,14 +86,14 @@ type_patterns = (
 )
 
 
-def get_type(dd_):
+def get_type(dt, dd_):
     dd = dd_('p').filter(lambda x: q(this).text().startswith('Type'))
     t = dd.text().lower()
     for pattern, schema_fragment in type_patterns:
         if pattern in t:
             return schema_fragment
     if dd('a'):
-        return property_ref_from_href(dd('a').attr('href'))
+        return property_ref(dt, dd_, dd, t)
     if dd_('.type') and len(dd_('.type')):
         if (dd_('.type').text() == 'AWS::EC2::SecurityGroup' and
                 'list of' in t):
@@ -81,24 +117,34 @@ def pretty_print_element(el):
     print highlight(code, HtmlLexer(), TerminalFormatter())
 
 
-def set_resource_properties(schema, res_type):
-    log.extra['type'] = res_type
-    type_href = all_resource_hrefs[res_type]
-    log.extra['href'] = type_href
-    h = tools.get_pq(type_href)
+def set_resource_property_type_properties(schema, res_prop_type):
+    schema = schema['definitions']['property_types'][res_prop_type]
+    href = schema['descriptionURL']
+    log.extra['type'] = res_prop_type
+    log.extra['href'] = href
+    properties, required = parse_properties_from_href(href)
+    schema['properties'] = properties
+    if required:
+        schema['required'] = required
+    schema['additionalProperties'] = False
+
+
+
+def parse_properties_from_href(href):
+    h = tools.get_pq(href)
     dl = h('#main-col-body .variablelist dl').filter(
         lambda i: 'Type :' in q(this).text()
     )
     #pretty_print_element(dl)
     #import pdb; pdb.set_trace()
-    resources = tools.get_resource_types(schema)
     pairs = zip(dl.children('dt'), dl.children('dd'))
     pairs = [(q(dt), q(dd)) for dt, dd in pairs]
-    shortcut = resources[res_type]['properties']
-    shortcut['Properties']['properties'] = OrderedDict(
-        (dt.text(), get_type(dd))
+
+    properties = OrderedDict(
+        (dt.text().split()[0], get_type(dt, dd))
         for dt, dd in pairs
     )
+
     required = [
         k.text()
         for k, v
@@ -108,6 +154,19 @@ def set_resource_properties(schema, res_type):
             not 'Yes, for VPC security groups' in q(this).text()
         )
     ]
+
+    return properties, required
+
+
+def set_resource_properties(schema, res_type):
+    log.extra['type'] = res_type
+    type_href = all_resource_hrefs[res_type]
+    log.extra['href'] = type_href
+    resources = tools.get_resource_types(schema)
+    shortcut = resources[res_type]['properties']
+
+    properties, required = parse_properties_from_href(type_href)
+    shortcut['Properties']['properties'] = properties
     if required:
         shortcut['Properties']['required'] = required
         resources[res_type]['required'] += ['Properties']
@@ -117,12 +176,12 @@ def set_resource_properties(schema, res_type):
 
 def all_res_properties():
     h = tools.get_pq(PROPERTIES_REFERENCE)
-    res = OrderedDict(
-        (
-            property_name_from_href(q(a).attr("href")),
-            {
-                "title": " ".join(a.text.split()),
-                "description": q(a).attr("href")
-            }
-        ) for a in h('#main-col-body li a'))
+    res = OrderedDict()
+    for a in h('#main-col-body li a'):
+        href = q(a).attr("href")
+        res[property_name_from_href(href)] = OD((
+            ("title", " ".join(a.text.split())),
+            ("descriptionURL", href),
+            ("type", "object"),
+        ))
     return res

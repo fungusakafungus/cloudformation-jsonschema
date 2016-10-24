@@ -84,11 +84,9 @@ def add_AutoScalingGroup_NotificationConfiguration(resource_schema):
             resource_schema['definitions']['resource_types']
             ['AWS::AutoScaling::AutoScalingGroup']['properties']
             ['Properties']['properties']
-        )['NotificationConfiguration'] = (
-            resource_schema['definitions']['resource_types']
-            ['AWS::AutoScaling::AutoScalingGroup']['properties']
-            ['Properties']['properties']
-        )['NotificationConfigurations']
+        )['NotificationConfiguration'] = {
+            "$ref": "#/definitions/property_types/aws-properties-as-notificationconfigurations"
+        }
     except KeyError:
         logging.warning('Failed to apply a tweak')
 
