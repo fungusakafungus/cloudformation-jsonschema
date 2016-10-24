@@ -12141,10 +12141,10 @@
                     "CidrIp": {
                         "$ref": "basic_types.json#/definitions/string"
                     },
-                    "DestinationPrefixListId (SecurityGroupEgress only)": {
+                    "DestinationPrefixListId": {
                         "$ref": "basic_types.json#/definitions/string"
                     },
-                    "DestinationSecurityGroupId (SecurityGroupEgress only)": {
+                    "DestinationSecurityGroupId": {
                         "$ref": "basic_types.json#/definitions/string"
                     },
                     "FromPort": {
@@ -12153,13 +12153,13 @@
                     "IpProtocol": {
                         "$ref": "basic_types.json#/definitions/string"
                     },
-                    "SourceSecurityGroupId (SecurityGroupIngress only)": {
+                    "SourceSecurityGroupId": {
                         "$ref": "basic_types.json#/definitions/string"
                     },
-                    "SourceSecurityGroupName (SecurityGroupIngress only)": {
+                    "SourceSecurityGroupName": {
                         "$ref": "basic_types.json#/definitions/string"
                     },
-                    "SourceSecurityGroupOwnerId (SecurityGroupIngress only)": {
+                    "SourceSecurityGroupOwnerId": {
                         "$ref": "basic_types.json#/definitions/string"
                     },
                     "ToPort": {
@@ -14738,7 +14738,7 @@
                     "NoncurrentVersionExpirationInDays": {
                         "$ref": "basic_types.json#/definitions/integer"
                     },
-                    "NoncurrentVersionTransition (deprecated)": {
+                    "NoncurrentVersionTransition": {
                         "$ref": "#/definitions/property_types/aws-properties-s3-bucket-lifecycleconfig-rule-noncurrentversiontransition"
                     },
                     "NoncurrentVersionTransitions": {
@@ -14753,7 +14753,7 @@
                     "Status": {
                         "$ref": "basic_types.json#/definitions/string"
                     },
-                    "Transition (deprecated)": {
+                    "Transition": {
                         "$ref": "#/definitions/property_types/aws-properties-s3-bucket-lifecycleconfig-rule-transition"
                     },
                     "Transitions": {

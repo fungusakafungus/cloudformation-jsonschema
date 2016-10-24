@@ -113,7 +113,7 @@ def parse_properties_from_href(href):
     pairs = [(q(dt), q(dd)) for dt, dd in pairs]
 
     properties = OrderedDict(
-        (dt.text(), get_type(dd))
+        (dt.text().split()[0], get_type(dd))
         for dt, dd in pairs
     )
 
