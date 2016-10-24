@@ -8,7 +8,7 @@ This is not your glossy software.
 Many things are validated.
 Some resource properties are not parsed properly, so their values are not validated.
 
-Preliminary hosted version of the schema can be found at http://fungusakafungus.github.io/cloudformation-jsonschema/v0.2/schema.json
+Preliminary hosted version of the schema can be found at http://fungusakafungus.github.io/cloudformation-jsonschema/v0.3/schema.json
 
 The scraping code is in a miserable state.
 
