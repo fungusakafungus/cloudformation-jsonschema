@@ -1463,17 +1463,7 @@
                                 "$ref": "basic_types.json#/definitions/list<string>"
                             },
                             "NotificationConfiguration": {
-                                "oneOf": [
-                                    {
-                                        "type": "array",
-                                        "items": {
-                                            "$ref": "#/definitions/property_types/aws-properties-as-notificationconfigurations"
-                                        }
-                                    },
-                                    {
-                                        "$ref": "basic_types.json#/definitions/function"
-                                    }
-                                ]
+                                "$ref": "#/definitions/property_types/aws-properties-as-notificationconfigurations"
                             }
                         },
                         "required": [
