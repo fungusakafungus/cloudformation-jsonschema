@@ -2063,7 +2063,17 @@
                                 "$ref": "basic_types.json#/definitions/list<string>"
                             },
                             "Parameters": {
-                                "$ref": "#/definitions/property_types/aws-properties-stack-parameters"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-stack-parameters"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             },
                             "Tags": {
                                 "oneOf": [
@@ -2712,7 +2722,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Stages": {
-                                "$ref": "#/definitions/property_types/aws-properties-codepipeline-pipeline-stages"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-properties-codepipeline-pipeline-stages"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -9333,6 +9353,9 @@
                                     },
                                     {
                                         "$ref": "basic_types.json#/definitions/function"
+                                    },
+                                    {
+                                        "$ref": "#/definitions/property_types/aws-properties-rds-security-group-rule"
                                     }
                                 ]
                             },
@@ -9739,7 +9762,17 @@
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Parameters": {
-                                "$ref": "#/definitions/property_types/aws-property-redshift-clusterparametergroup-parameter"
+                                "oneOf": [
+                                    {
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/definitions/property_types/aws-property-redshift-clusterparametergroup-parameter"
+                                        }
+                                    },
+                                    {
+                                        "$ref": "basic_types.json#/definitions/function"
+                                    }
+                                ]
                             }
                         },
                         "required": [
@@ -12726,7 +12759,17 @@
                         "$ref": "basic_types.json#/definitions/string"
                     },
                     "KeySchema": {
-                        "$ref": "#/definitions/property_types/aws-properties-dynamodb-keyschema"
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-dynamodb-keyschema"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "Projection": {
                         "$ref": "#/definitions/property_types/aws-properties-dynamodb-projectionobject"
@@ -12770,7 +12813,17 @@
                         "$ref": "basic_types.json#/definitions/string"
                     },
                     "KeySchema": {
-                        "$ref": "#/definitions/property_types/aws-properties-dynamodb-keyschema"
+                        "oneOf": [
+                            {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/definitions/property_types/aws-properties-dynamodb-keyschema"
+                                }
+                            },
+                            {
+                                "$ref": "basic_types.json#/definitions/function"
+                            }
+                        ]
                     },
                     "Projection": {
                         "$ref": "#/definitions/property_types/aws-properties-dynamodb-projectionobject"
