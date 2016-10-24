@@ -59,10 +59,17 @@ def get_type(dd_):
     for pattern, schema_fragment in type_patterns:
         if pattern in t:
             return schema_fragment
-    if dd('a') and 'list of' in t:
+    if dd('a') and ('list of' in t or 'tags' in t):
         return OD((
-            ('type', 'array'),
-            ('items', property_ref_from_href(dd('a').attr('href'))),
+            ('oneOf', [
+                OD((
+                    ('type', 'array'),
+                    ('items', property_ref_from_href(dd('a').attr('href'))),
+                )),
+                OD((
+                    ("$ref", "basic_types.json#/definitions/function"),
+                )),
+            ]),
         ))
     if dd('a'):
         return property_ref_from_href(dd('a').attr('href'))
