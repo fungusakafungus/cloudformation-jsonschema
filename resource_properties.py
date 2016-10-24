@@ -26,6 +26,39 @@ def property_ref_from_href(href):
         '#/definitions/property_types/%s' % property_name_from_href(href)
     }
 
+def property_ref(dt, dd_, dd, t):
+    name = dt('.term').text()
+    href = dd('a').attr('href')
+    #import pdb; pdb.set_trace()
+    if name == 'DBSecurityGroupIngress':
+        return OD((
+            ('oneOf', [
+                OD((
+                    ('type', 'array'),
+                    ('items', property_ref_from_href(href)),
+                )),
+                {"$ref": "basic_types.json#/definitions/function"},
+                property_ref_from_href(href),
+            ]),
+        ))
+
+    if 'list of' in t or 'tags' in t or name in (
+        'Parameters',
+        'Stages',
+        'Tags',
+        'KeySchema',
+    ):
+        return OD((
+            ('oneOf', [
+                OD((
+                    ('type', 'array'),
+                    ('items', property_ref_from_href(href)),
+                )),
+                {"$ref": "basic_types.json#/definitions/function"},
+            ]),
+        ))
+    return property_ref_from_href(href)
+
 
 type_patterns = (
     ('type : string',
@@ -53,26 +86,14 @@ type_patterns = (
 )
 
 
-def get_type(dd_):
+def get_type(dt, dd_):
     dd = dd_('p').filter(lambda x: q(this).text().startswith('Type'))
     t = dd.text().lower()
     for pattern, schema_fragment in type_patterns:
         if pattern in t:
             return schema_fragment
-    if dd('a') and ('list of' in t or 'tags' in t):
-        return OD((
-            ('oneOf', [
-                OD((
-                    ('type', 'array'),
-                    ('items', property_ref_from_href(dd('a').attr('href'))),
-                )),
-                OD((
-                    ("$ref", "basic_types.json#/definitions/function"),
-                )),
-            ]),
-        ))
     if dd('a'):
-        return property_ref_from_href(dd('a').attr('href'))
+        return property_ref(dt, dd_, dd, t)
     if dd_('.type') and len(dd_('.type')):
         if (dd_('.type').text() == 'AWS::EC2::SecurityGroup' and
                 'list of' in t):
@@ -120,7 +141,7 @@ def parse_properties_from_href(href):
     pairs = [(q(dt), q(dd)) for dt, dd in pairs]
 
     properties = OrderedDict(
-        (dt.text().split()[0], get_type(dd))
+        (dt.text().split()[0], get_type(dt, dd))
         for dt, dd in pairs
     )
 
