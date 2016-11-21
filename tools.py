@@ -54,7 +54,7 @@ def write(schema, filename='resource.json'):
 
 
 def print_(schema):
-    return json.dumps(schema, indent=4)
+    return json.dumps(schema, indent=4, separators=(',', ': '))
 
 
 def get_all_resource_type_names():
