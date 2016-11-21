@@ -484,6 +484,9 @@
             "$ref": "#/definitions/resource_types/AWS::SDB::Domain"
         },
         {
+            "$ref": "#/definitions/resource_types/AWS::SNS::Subscription"
+        },
+        {
             "$ref": "#/definitions/resource_types/AWS::SNS::Topic"
         },
         {
@@ -1632,9 +1635,7 @@
                         },
                         "required": [
                             "AutoScalingGroupName",
-                            "LifecycleTransition",
-                            "NotificationTargetARN",
-                            "RoleARN"
+                            "LifecycleTransition"
                         ]
                     },
                     "Type": {
@@ -5743,6 +5744,7 @@
                             }
                         },
                         "required": [
+                            "Engine",
                             "ReplicationGroupDescription"
                         ]
                     },
@@ -8151,10 +8153,16 @@
                             "Description": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
+                            "Environment": {
+                                "$ref": "#/definitions/property_types/aws-properties-lambda-function-environment"
+                            },
                             "FunctionName": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "Handler": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "KmsKeyArn": {
                                 "$ref": "basic_types.json#/definitions/string"
                             },
                             "MemorySize": {
@@ -10335,6 +10343,48 @@
                 ],
                 "additionalProperties": false
             },
+            "AWS::SNS::Subscription": {
+                "type": "object",
+                "properties": {
+                    "Properties": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                            "Endpoint": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "Protocol": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            },
+                            "TopicArn": {
+                                "$ref": "basic_types.json#/definitions/string"
+                            }
+                        }
+                    },
+                    "Type": {
+                        "type": "string",
+                        "enum": [
+                            "AWS::SNS::Subscription"
+                        ]
+                    },
+                    "DependsOn": {
+                        "$ref": "#/definitions/attributes/DependsOn"
+                    },
+                    "Metadata": {
+                        "type": "object"
+                    },
+                    "DeletionPolicy": {
+                        "$ref": "#/definitions/attributes/DeletionPolicy"
+                    },
+                    "Condition": {
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "Type"
+                ],
+                "additionalProperties": false
+            },
             "AWS::SNS::Topic": {
                 "type": "object",
                 "properties": {
@@ -11601,6 +11651,9 @@
                     "Enabled": {
                         "$ref": "basic_types.json#/definitions/boolean"
                     },
+                    "HttpVersion": {
+                        "$ref": "basic_types.json#/definitions/string"
+                    },
                     "Logging": {
                         "$ref": "#/definitions/property_types/aws-properties-cloudfront-logging"
                     },
@@ -11935,6 +11988,9 @@
                     },
                     "QueryString": {
                         "$ref": "basic_types.json#/definitions/boolean"
+                    },
+                    "QueryStringCacheKeys": {
+                        "$ref": "basic_types.json#/definitions/list<string>"
                     }
                 },
                 "required": [
@@ -15186,6 +15242,17 @@
                     },
                     "NoEncryptionConfig": {
                         "$ref": "basic_types.json#/definitions/string"
+                    }
+                },
+                "additionalProperties": false
+            },
+            "aws-properties-lambda-function-environment": {
+                "title": "AWS Lambda Function Environment",
+                "descriptionURL": "http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-lambda-function-environment.html",
+                "type": "object",
+                "properties": {
+                    "Variables": {
+                        "$ref": "basic_types.json#/definitions/key-value-pairs"
                     }
                 },
                 "additionalProperties": false
