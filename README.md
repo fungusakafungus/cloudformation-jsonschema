@@ -1,5 +1,7 @@
 An attempt to write a json schema (http://json-schema.org) for AWS Cloudformation.
 
+You might be interested in http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-resource-specification.html, which is the official source of machine-readable CloudFormation specification. That is not a JSON Schema in the sense of http://json-schema.org/ but it is comprehensive.
+
 For now, I'm scraping AWS documentation with PyQuery.
 
 This is not your glossy software.
